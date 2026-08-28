@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import { asset } from '@/data/content'
 
 const NAV = [
   { to: '/', label: 'Home' },
@@ -32,7 +33,7 @@ export default function Navbar() {
     >
       <div className="container-luxe flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src="/brand/chacadom-logo.jpg" alt="Chacadom Investments" className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
+          <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom Investments" className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-tight text-ink">
               CHACA<span className="gold-text">DOM</span>

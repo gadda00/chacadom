@@ -4,6 +4,7 @@ import {
   Bot, ShieldCheck, Calculator, MessageCircle, Globe2, ArrowRight, Building2, Sparkles, TrendingUp, Lock,
 } from 'lucide-react'
 import { SITE } from '@/data/content'
+import { asset } from '@/data/content'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -34,10 +35,10 @@ export default function Ventures() {
         <div className="container-luxe grid items-center gap-12 lg:grid-cols-2">
           <motion.div {...fadeUp} className="relative order-2 lg:order-1">
             <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
-            <img src="/brand/keja-banner.jpg" alt="Keja.ai by Chacadom" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
+            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
             <div className="absolute -bottom-5 left-4 rounded-2xl bg-white p-4 shadow-card-hover ring-1 ring-gold-100 sm:left-8">
               <div className="flex items-center gap-3">
-                <img src="/brand/keja-logo.jpg" alt="Keja" className="h-12 w-12 rounded-xl object-cover ring-2 ring-gold-200" />
+                <img src={asset('/brand/keja-logo.jpg')} alt="Keja" className="h-12 w-12 rounded-xl object-cover ring-2 ring-gold-200" />
                 <div>
                   <p className="font-display text-base font-bold text-ink">Keja.ai</p>
                   <p className="text-xs text-ink-muted">Intelligent Real Estate. Verified Trust.</p>

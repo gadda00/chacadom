@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react'
 import { SITE, whatsappLink } from '@/data/content'
+import { asset } from '@/data/content'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -141,7 +142,7 @@ export default function Contact() {
             </div>
 
             <div className="card-luxe overflow-hidden">
-              <img src="/brand/chacadom-flyer.jpg" alt="Chacadom Investments" className="h-72 w-full object-cover object-top" />
+              <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" className="h-72 w-full object-cover object-top" />
               <div className="p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gold-700">{SITE.pillars.join(' · ')}</p>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">

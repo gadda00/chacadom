@@ -5,6 +5,7 @@ import {
   ArrowRight, Eye, Target, ShieldCheck, Bot, ChevronRight, CheckCircle2, Globe2,
 } from 'lucide-react'
 import { SITE, SERVICES, STATS } from '@/data/content'
+import { asset } from '@/data/content'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -23,7 +24,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <img src="/images/hero-office.jpg" alt="Commercial real estate" className="h-full w-full object-cover opacity-30" />
+          <img src={asset('/images/hero-office.jpg')} alt="Commercial real estate" className="h-full w-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink" />
           <div className="absolute inset-0 bg-gold-shimmer opacity-[0.05]" />
         </div>
@@ -32,7 +33,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="flex items-center gap-3">
               <span className="divider-gold !w-12" />
-              <img src="/brand/chacadom-logo.jpg" alt="Chacadom" className="h-14 w-14 rounded-xl object-cover shadow-gold-lg ring-1 ring-gold-400/40" />
+              <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom" className="h-14 w-14 rounded-xl object-cover shadow-gold-lg ring-1 ring-gold-400/40" />
               <span className="divider-gold !w-12" />
             </div>
           </motion.div>
@@ -226,7 +227,7 @@ export default function Home() {
 
           <motion.div {...fadeUp} className="relative">
             <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-3xl" />
-            <img src="/brand/keja-banner.jpg" alt="Keja.ai by Chacadom" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
+            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
           </motion.div>
         </div>
       </section>
@@ -249,8 +250,8 @@ export default function Home() {
             </Link>
           </motion.div>
           <motion.div {...fadeUp} className="grid gap-4 sm:grid-cols-2">
-            <img src="/insights/smart-investments.jpg" alt="Smart investments build lasting wealth" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
-            <img src="/insights/real-estate-rewards.jpg" alt="Real estate rewards" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
+            <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
+            <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
           </motion.div>
         </div>
       </section>
@@ -264,7 +265,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gold-shimmer opacity-[0.07]" />
             <div className="relative">
-              <img src="/brand/chacadom-logo.jpg" alt="Chacadom" className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-gold-lg" />
+              <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom" className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-gold-lg" />
               <h2 className="mt-6 font-display text-3xl font-bold text-white sm:text-5xl">
                 Invest today. <span className="gold-text">Secure your tomorrow.</span>
               </h2>

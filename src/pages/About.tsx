@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ShieldCheck, Handshake, Gauge, Users, ChevronRight, Target, Eye, Compass } from 'lucide-react'
 import { SITE, TIMELINE } from '@/data/content'
+import { asset } from '@/data/content'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -57,7 +58,7 @@ export default function About() {
 
           <motion.div {...fadeUp} className="relative">
             <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
-            <img src="/brand/chacadom-flyer.jpg" alt="Chacadom Investments" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
+            <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
           </motion.div>
         </div>
       </section>

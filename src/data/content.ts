@@ -1,3 +1,6 @@
+/** Base-path aware asset URL (works at root and under subpaths like GitHub Pages). */
+export const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
 export const SITE = {
   name: 'Chacadom Investments',
   shortName: 'Chacadom',

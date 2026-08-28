@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { MapPinned, Coins, TrendingUp, Lightbulb, Landmark, ShieldCheck, ArrowRight } from 'lucide-react'
+import { asset } from '@/data/content'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -110,10 +111,10 @@ export default function Insights() {
       <section className="section-pad bg-white">
         <div className="container-luxe grid gap-8 sm:grid-cols-2">
           <motion.div {...fadeUp} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-gold-100">
-            <img src="/insights/smart-investments.jpg" alt="Smart investments build lasting wealth" className="w-full" />
+            <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" className="w-full" />
           </motion.div>
           <motion.div {...fadeUp} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-gold-100">
-            <img src="/insights/real-estate-rewards.jpg" alt="Real estate rewards: patience, positioning, timing" className="w-full" />
+            <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards: patience, positioning, timing" className="w-full" />
           </motion.div>
         </div>
       </section>
