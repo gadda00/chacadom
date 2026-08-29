@@ -11,7 +11,9 @@ export const SITE = {
   phone: '+254 700 123 456',
   whatsapp: '254700123456',
   address: 'Westlands, Nairobi · Kenya',
-  kejaUrl: 'https://keja.ai',
+  /** Live deployment (keja.ai domain pending registration/DNS) */
+  kejaUrl: 'https://gadda00.github.io/keja-ai/',
+  tokenizeUrl: 'https://gadda00.github.io/keja-ai/tokenize',
 }
 
 export const whatsappLink = (message?: string) =>
@@ -118,6 +120,6 @@ export const TIMELINE = [
   {
     year: '2026',
     title: 'The digital flagship — Keja.ai',
-    text: 'Chacadom launches Keja.ai, Kenya\u2019s AI real-estate advisor and cross-agency trust layer — taking the house discipline of verified facts and honest math to the whole market.',
+    text: 'Chacadom launches Keja.ai, Kenya\u2019s AI real-estate advisor and cross-agency trust layer — taking the house discipline of verified facts and honest math to the whole market, with tokenized fractional ownership in development.',
   },
 ]

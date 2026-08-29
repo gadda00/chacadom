@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  Bot, ShieldCheck, Calculator, MessageCircle, Globe2, ArrowRight, Building2, Sparkles, TrendingUp, Lock,
+  Bot, ShieldCheck, Calculator, MessageCircle, Globe2, ArrowRight, Building2, Sparkles, TrendingUp, Lock, Coins, Link2, Scale,
 } from 'lucide-react'
 import { SITE } from '@/data/content'
 import { asset } from '@/data/content'
@@ -34,8 +34,8 @@ export default function Ventures() {
       <section className="section-pad bg-white">
         <div className="container-luxe grid items-center gap-12 lg:grid-cols-2">
           <motion.div {...fadeUp} className="relative order-2 lg:order-1">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
-            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
+            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
+            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" loading="lazy" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
             <div className="absolute -bottom-5 left-4 rounded-2xl bg-white p-4 shadow-card-hover ring-1 ring-gold-100 sm:left-8">
               <div className="flex items-center gap-3">
                 <img src={asset('/brand/keja-logo.jpg')} alt="Keja" className="h-12 w-12 rounded-xl object-cover ring-2 ring-gold-200" />
@@ -82,7 +82,7 @@ export default function Ventures() {
             <p className="eyebrow">What Keja.ai does</p>
             <h2 className="heading-display mt-3 text-3xl sm:text-4xl">Six capabilities, one platform</h2>
           </motion.div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: Bot, title: 'Conversational AI advisor', text: 'Property search, recommendations and qualification in English, Kiswahili and French — warm, professional, never pushy.' },
               { icon: ShieldCheck, title: 'Cross-agency trust scores', text: 'Title checks, photo authenticity, duplicate detection, pricing anomalies and agent reputation — on every listing.' },
@@ -103,8 +103,97 @@ export default function Ventures() {
         </div>
       </section>
 
+      {/* KEJA TOKENIZE */}
+      <section className="relative overflow-hidden bg-ink py-20 sm:py-24">
+        <div className="absolute inset-0 bg-gold-shimmer opacity-[0.05]" />
+        <div className="container-luxe relative grid items-center gap-12 lg:grid-cols-2">
+          <motion.div {...fadeUp}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-white/5 px-4 py-1.5">
+              <Coins className="h-3.5 w-3.5 text-gold-400" />
+              <span className="text-xs font-bold uppercase tracking-wide2 text-gold-300">New venture capability · Keja Tokenize</span>
+            </div>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Fractional ownership of Kenyan real estate, <span className="gold-text">from $100</span>
+            </h2>
+            <p className="mt-5 leading-relaxed text-white/65">
+              Chacadom is building real-estate tokenization into Keja.ai: institutional-grade property
+              placed in a dedicated SPV, converted into digital tokens on a blockchain, and offered to
+              KYC-verified investors — a $10M building becomes 1,000,000 tokens at $10 each. Rental
+              income is distributed monthly or quarterly, pro-rata, with every payout recorded on-chain.
+            </p>
+            <ul className="mt-6 space-y-3.5">
+              {[
+                { icon: Coins, text: 'Fractional entry — participate in prime assets without $100K minimums' },
+                { icon: Scale, text: 'SPV legal wrappers, Ardhisasa-verified titles, independent valuations' },
+                { icon: Link2, text: 'On-chain ownership record — auditable, immutable, transparent' },
+                { icon: ShieldCheck, text: 'KYC/AML-gated investing, structured with Kenya’s CMA sandbox in mind' },
+              ].map((f) => (
+                <li key={f.text} className="flex gap-3">
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gold-400/30 bg-white/5">
+                    <f.icon className="h-4 w-4 text-gold-400" />
+                  </span>
+                  <span className="text-sm leading-relaxed text-white/70">{f.text}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={SITE.tokenizeUrl} target="_blank" rel="noreferrer" className="btn-gold">
+                Explore Keja Tokenize <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href={SITE.tokenizeUrl + '?view=learn'}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border border-gold-400/50 px-6 py-3 text-sm font-semibold tracking-wide text-gold-300 transition hover:bg-gold-400/10"
+              >
+                How tokenization works
+              </a>
+            </div>
+            <p className="mt-5 text-[11.5px] leading-relaxed text-white/40">
+              Demonstration environment — tokens, valuations and distributions are simulated pending
+              regulatory approval. Educational content, not an offer of securities.
+            </p>
+          </motion.div>
+
+          <motion.div {...fadeUp} className="relative">
+            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-3xl border border-gold-400/20 shadow-gold-lg">
+              <img
+                src={asset('/images/skyline.jpg')}
+                alt="Nairobi skyline — tokenized real estate offerings by Keja Tokenize"
+                loading="lazy"
+                className="h-[420px] w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+              <div className="absolute inset-x-6 bottom-6">
+                <p className="text-[10px] font-bold uppercase tracking-wide2 text-gold-300">Live demo offerings</p>
+                <p className="mt-1 font-display text-2xl font-bold text-white">$45.5M+ tokenized · 7.3% blended yield</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {['KJ-WST1 · 7.0%', 'KJ-KLM2 · 8.0%', 'KJ-KRN3 · funding', 'KJ-THK5 · Q4 2026'].map((t) => (
+                    <span key={t} className="rounded-full border border-gold-400/40 bg-ink/60 px-3 py-1 text-[11px] font-semibold text-gold-200 backdrop-blur">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="absolute -top-5 -right-2 rounded-2xl border border-gold-400/30 bg-ink/90 p-4 shadow-gold-md backdrop-blur sm:-right-5">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold-gradient">
+                  <Link2 className="h-5 w-5 text-white" />
+                </span>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wide text-gold-300">Entry minimum</p>
+                  <p className="text-lg font-bold leading-none text-white">$100</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ROADMAP / VISION */}
-      <section className="bg-ink py-20">
+      <section className="border-t border-white/10 bg-ink py-20">
         <div className="container-luxe">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <p className="eyebrow !text-gold-400">The long-term vision</p>
@@ -118,7 +207,7 @@ export default function Ventures() {
             </p>
           </motion.div>
 
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+          <div className="mt-14 grid gap-4 grid-cols-1 md:grid-cols-3">
             {[
               { phase: 'Phase 1', window: '0–3 months', title: 'Agency AI Advisor', text: 'White-label AI advisor per agency: property database, ROI calculator, WhatsApp lead qualification, investor reports. Revenue from day one.' },
               { phase: 'Phase 2', window: '3–9 months', title: 'The Trust Layer', text: 'Duplicate-listing detection, agent reputation scoring and Ardhisasa cross-checks activated across agencies. “Verified by Keja” becomes a premium product.' },

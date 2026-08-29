@@ -57,7 +57,7 @@ export default function About() {
           </motion.div>
 
           <motion.div {...fadeUp} className="relative">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
+            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
             <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
           </motion.div>
         </div>
@@ -77,7 +77,7 @@ export default function About() {
                 <motion.div
                   key={t.year}
                   {...fadeUp}
-                  className={`relative grid gap-4 sm:grid-cols-2 sm:gap-12 ${i % 2 === 1 ? 'sm:text-left' : ''}`}
+                  className={`relative grid gap-4 grid-cols-1 sm:grid-cols-2 sm:gap-12 ${i % 2 === 1 ? 'sm:text-left' : ''}`}
                 >
                   <div className={`pl-12 sm:pl-0 ${i % 2 === 1 ? 'sm:order-2 sm:pl-12' : 'sm:pr-12 sm:text-right'}`}>
                     <p className="font-display text-3xl font-bold gold-text">{t.year}</p>
@@ -107,7 +107,7 @@ export default function About() {
               decisions.
             </p>
           </motion.div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: ShieldCheck, title: 'Trust', text: 'Verification before marketing. We publish our checks, label our assumptions, and put the client’s outcome ahead of the commission.' },
               { icon: Handshake, title: 'Integrity', text: 'The deal we’d accept for our own families — or we say no. Our reputation compounds; a single shortcut spends it.' },
@@ -128,7 +128,7 @@ export default function About() {
 
       {/* MISSION STRIP */}
       <section className="bg-ink py-16">
-        <div className="container-luxe grid gap-8 md:grid-cols-3">
+        <div className="container-luxe grid gap-8 grid-cols-1 md:grid-cols-3">
           {[
             { icon: Target, title: 'Mission', text: 'Turn property information into intelligent investment decisions, and qualified prospects into confident real-estate clients.' },
             { icon: Eye, title: 'Vision', text: 'East Africa’s most trusted real-estate investment house — the standard for verified, disciplined, client-first property transactions.' },

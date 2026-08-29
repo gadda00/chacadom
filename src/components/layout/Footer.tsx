@@ -48,6 +48,11 @@ export default function Footer() {
                 keja.ai ↗
               </a>
             </li>
+            <li>
+              <a href={SITE.tokenizeUrl} target="_blank" rel="noreferrer" className="font-semibold text-gold-300 hover:text-gold-200">
+                Keja Tokenize ↗
+              </a>
+            </li>
           </ul>
         </div>
 

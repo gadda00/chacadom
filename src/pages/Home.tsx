@@ -124,7 +124,7 @@ export default function Home() {
               portfolio.
             </p>
           </motion.div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: Eye, title: 'Vision', text: 'We see property the way it becomes, not the way it is — infrastructure first, corridors early, value before the crowd.' },
               { icon: Target, title: 'Value', text: 'Every shilling is underwritten. If the math doesn’t work as an investment, it doesn’t become a transaction.' },
@@ -158,7 +158,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => {
               const Icon = ICONS[s.icon]
               return (
@@ -202,6 +202,7 @@ export default function Home() {
                 'AI advisor in English, Kiswahili & French',
                 'Trust scores on every listing — title, photos, pricing, agents',
                 'Investment math with facts, estimates and assumptions labelled',
+                'Keja Tokenize — fractional ownership of prime assets from $100',
                 'M-Pesa escrow and WhatsApp-first client service',
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-sm text-white/75">
@@ -222,12 +223,20 @@ export default function Home() {
               >
                 <Globe2 className="h-4 w-4" /> Visit keja.ai
               </a>
+              <a
+                href={SITE.tokenizeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border border-gold-400/50 px-6 py-3 text-sm font-semibold tracking-wide text-gold-300 transition hover:bg-gold-400/10"
+              >
+                Keja Tokenize ↗
+              </a>
             </div>
           </motion.div>
 
           <motion.div {...fadeUp} className="relative">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-3xl" />
-            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
+            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-3xl" />
+            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" loading="lazy" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
           </motion.div>
         </div>
       </section>
@@ -249,9 +258,9 @@ export default function Home() {
               Read the philosophy <ChevronRight className="h-4 w-4" />
             </Link>
           </motion.div>
-          <motion.div {...fadeUp} className="grid gap-4 sm:grid-cols-2">
-            <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
-            <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
+          <motion.div {...fadeUp} className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+            <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" loading="lazy" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
+            <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards" loading="lazy" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
           </motion.div>
         </div>
       </section>

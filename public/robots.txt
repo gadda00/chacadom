@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gadda00.github.io/chacadom/sitemap.xml

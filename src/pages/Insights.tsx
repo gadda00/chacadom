@@ -37,7 +37,7 @@ export default function Insights() {
               entered early.&rdquo;
             </p>
           </motion.div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 grid-cols-1 md:grid-cols-3">
             {[
               { title: 'Patience', text: 'Great opportunities belong to those who wait wisely. Property is a five-to-ten-year instrument — the compounding happens in the years you hold, not the month you buy. We help clients buy assets worth holding.' },
               { title: 'Positioning', text: 'The right location today creates tomorrow’s value. Infrastructure drives value faster than hype — bypasses, expressways, industrial parks, SEZs, airports, universities and tourism zones are the real price-makers.' },
@@ -60,7 +60,7 @@ export default function Insights() {
             <p className="eyebrow">Key advice for clients & investors</p>
             <h2 className="heading-display mt-3 text-3xl sm:text-4xl">Six rules from the Chacadom desk</h2>
           </motion.div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="mt-12 grid gap-5 grid-cols-1 md:grid-cols-2">
             {[
               {
                 icon: MapPinned,
@@ -109,7 +109,7 @@ export default function Insights() {
 
       {/* POSTERS */}
       <section className="section-pad bg-white">
-        <div className="container-luxe grid gap-8 sm:grid-cols-2">
+        <div className="container-luxe grid gap-8 grid-cols-1 sm:grid-cols-2">
           <motion.div {...fadeUp} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-gold-100">
             <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" className="w-full" />
           </motion.div>

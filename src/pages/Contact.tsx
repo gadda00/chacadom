@@ -31,7 +31,7 @@ export default function Contact() {
       </section>
 
       <section className="section-pad bg-white">
-        <div className="container-luxe grid gap-10 lg:grid-cols-[1.2fr_1fr]">
+        <div className="container-luxe grid gap-10 grid-cols-1 lg:grid-cols-[1.2fr_1fr]">
           {/* form */}
           <motion.div {...fadeUp} className="card-luxe p-6 sm:p-8">
             {sent ? (
@@ -64,7 +64,7 @@ export default function Contact() {
                     setSent(true)
                   }}
                 >
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                     <div>
                       <label className="label-luxe">Full name *</label>
                       <input required className="input-luxe" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Jane Wanjiku" />
@@ -74,7 +74,7 @@ export default function Contact() {
                       <input required className="input-luxe" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+254 7XX XXX XXX" />
                     </div>
                   </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                     <div>
                       <label className="label-luxe">Email</label>
                       <input type="email" className="input-luxe" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
@@ -142,7 +142,7 @@ export default function Contact() {
             </div>
 
             <div className="card-luxe overflow-hidden">
-              <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" className="h-72 w-full object-cover object-top" />
+              <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" loading="lazy" className="h-72 w-full object-cover object-top" />
               <div className="p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gold-700">{SITE.pillars.join(' · ')}</p>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
