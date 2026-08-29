@@ -192,28 +192,32 @@ export default function Ventures() {
         </div>
       </section>
 
-      {/* ROADMAP / VISION */}
+      {/* ROADMAP / VISION — aligned to the KEJA blueprint 2026–2030 */}
       <section className="border-t border-white/10 bg-ink py-20">
         <div className="container-luxe">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <p className="eyebrow !text-gold-400">The long-term vision</p>
             <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
-              East Africa’s trusted intelligent real-estate platform
+              Africa&apos;s intelligent real-estate infrastructure
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-white/60">
-              Not a chatbot bolted onto one developer’s inventory — the trust and intelligence layer every
-              agency, developer and buyer routes through: discovery, advisory, verification, analysis, viewing,
-              escrowed purchase, furnishing, rental, management and reporting, in one flow.
+              Not a chatbot bolted onto one developer&apos;s inventory — the intelligence and
+              operating layer for African real estate: discovery, advisory, verification, analysis,
+              viewing, escrowed purchase, furnishing, rental, management and reporting in one flow,
+              with regulated tokenization when the legal and market architecture matures.
             </p>
           </motion.div>
 
           <div className="mt-14 grid gap-4 grid-cols-1 md:grid-cols-3">
             {[
-              { phase: 'Phase 1', window: '0–3 months', title: 'Agency AI Advisor', text: 'White-label AI advisor per agency: property database, ROI calculator, WhatsApp lead qualification, investor reports. Revenue from day one.' },
-              { phase: 'Phase 2', window: '3–9 months', title: 'The Trust Layer', text: 'Duplicate-listing detection, agent reputation scoring and Ardhisasa cross-checks activated across agencies. “Verified by Keja” becomes a premium product.' },
-              { phase: 'Phase 3', window: '9–24 months', title: 'Consumer Marketplace', text: 'Public renter/buyer marketplace across all onboarded agencies, with trust scores as the differentiator — plus M-Pesa escrow and property management.' },
+              { phase: '2026 H2', window: 'Q3–Q4', title: 'Foundation & Structure', text: 'Legal/IP structure, classification, product specification, data model and regulatory engagement. MVP live with AI advisor, property database and investment calculator.' },
+              { phase: '2027', window: 'H1–H2', title: 'KEJA AI MVP & Portal', text: 'Property intelligence and developer portal; wallet beta, KJAI utility design, compliance stack and audits.' },
+              { phase: '2028', window: 'H1–H2', title: 'Controlled Token Launch', text: 'Controlled KJAI ecosystem launch subject to approvals; first KPT property pilot and asset servicing.' },
+              { phase: '2029', window: 'Scale', title: 'Scale & East Africa', text: 'Scale tokenized products and expand across East African markets — Uganda, Tanzania, Rwanda.' },
+              { phase: '2030', window: 'Pan-African', title: 'Institutional Infrastructure', text: 'Pan-African network and institutional infrastructure — banks, funds and enterprise clients on KEJA DATA.' },
+              { phase: 'North Star', window: 'The principle', title: 'Intelligence First', text: 'Build intelligence first; prove value second; marketplace and recurring revenue third; regulated financial infrastructure only when legally, economically and operationally defensible.' },
             ].map((p, i) => (
-              <motion.div key={p.phase} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur transition hover:border-gold-400/40">
+              <motion.div key={p.phase} {...fadeUp} transition={{ ...fadeUp.transition, delay: (i % 3) * 0.08 }} className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur transition hover:border-gold-400/40">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-bold uppercase tracking-wide2 text-gold-400">{p.phase}</p>
                   <p className="text-xs text-white/40">{p.window}</p>
@@ -222,6 +226,88 @@ export default function Ventures() {
                 <p className="mt-2 text-sm leading-relaxed text-white/55">{p.text}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INVESTOR RELATIONS — blueprint Part IV & Ch.11 */}
+      <section className="section-pad bg-cream">
+        <div className="container-luxe">
+          <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">Investor relations</p>
+            <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
+              Capital follows <span className="gold-text">evidence</span>
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+              The KEJA blueprint raises against measurable milestones rather than geography, hype or
+              an unvalidated token narrative. Kenya first, then East-African clusters — every new
+              country gets its own legal, tax and operating analysis.
+            </p>
+          </motion.div>
+
+          <div className="mt-12 grid gap-5 grid-cols-1 lg:grid-cols-2">
+            {/* funding stages */}
+            <motion.div {...fadeUp} className="card-luxe p-6 sm:p-8">
+              <h3 className="heading-display text-xl">Funding stages (illustrative)</h3>
+              <div className="mt-5 space-y-3">
+                {[
+                  ['Founder / Incubation', 'KSh 2M–3M', 'MVP, AI, data, product and validation'],
+                  ['Angel / Pre-seed', 'KSh 10M–30M', 'Team, Kenya expansion, repeatable sales'],
+                  ['Seed', 'KSh 50M–150M+', 'Marketplace, AI and KEJA Investor'],
+                  ['Series A', 'KSh 300M–1B+', 'East Africa, enterprise sales, tokenization infrastructure'],
+                ].map(([stage, target, purpose]) => (
+                  <div key={stage} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-xl border border-gold-100 bg-white p-4">
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-ink">{stage}</p>
+                      <p className="text-xs text-ink-muted">{purpose}</p>
+                    </div>
+                    <p className="shrink-0 font-display text-sm font-bold text-gold-700">{target}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-[11px] leading-relaxed text-ink-faint">
+                Planning ranges, not guaranteed fundraising outcomes. Investor data room available
+                under NDA: incorporation, IP assignments, cap table, financial model, customer
+                pipeline and risk register.
+              </p>
+            </motion.div>
+
+            {/* milestones + expansion */}
+            <motion.div {...fadeUp} className="flex flex-col gap-5">
+              <div className="card-luxe p-6 sm:p-8">
+                <h3 className="heading-display text-xl">Investor milestones</h3>
+                <div className="mt-4 grid grid-cols-2 gap-2.5">
+                  {[
+                    ['1,000 users', 'registered'],
+                    ['100 qualified leads', 'pipeline'],
+                    ['20 conversions', 'viewings/transactions'],
+                    ['100 paying professionals', 'KEJA PRO'],
+                    ['KSh 1M+ ARR', 'recurring revenue'],
+                    ['First regional pilot', 'East Africa'],
+                  ].map(([m, sub]) => (
+                    <div key={m} className="rounded-xl bg-gold-50 p-3.5 ring-1 ring-gold-100">
+                      <p className="font-display text-sm font-bold text-ink">{m}</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-faint">{sub}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="card-luxe bg-ink p-6 text-white sm:p-8">
+                <h3 className="font-display text-xl font-bold">Expansion waves</h3>
+                <div className="mt-4 space-y-3">
+                  {[
+                    ['Wave 1', 'Kenya — build data density and prove customer value'],
+                    ['Wave 2', 'Uganda, Tanzania and Rwanda — cluster expansion'],
+                    ['Wave 3', 'Nigeria, Ghana, South Africa, Zambia, DRC and Francophone markets'],
+                  ].map(([w, d]) => (
+                    <div key={w} className="flex items-start gap-3">
+                      <span className="mt-0.5 rounded-full bg-gold-gradient px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">{w}</span>
+                      <p className="text-xs leading-relaxed text-white/70">{d}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

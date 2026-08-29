@@ -193,16 +193,18 @@ export default function Home() {
               Keja.ai — <span className="gold-text">intelligent real estate,</span> verified trust
             </h2>
             <p className="mt-5 leading-relaxed text-white/65">
-              Chacadom’s market discipline, made available to everyone. Keja.ai is Kenya’s AI real-estate
-              advisor and cross-agency trust layer: conversational property search, investment analysis, title
-              verification and fraud detection — across every agency, not just ours.
+              Chacadom&apos;s market discipline, made available to everyone. Keja.ai is Africa&apos;s
+              intelligent real-estate infrastructure: conversational property search, investment
+              analysis, title verification, fraud detection and regulated tokenization — across
+              every agency, not just ours.
             </p>
             <ul className="mt-6 space-y-3">
               {[
                 'AI advisor in English, Kiswahili & French',
-                'Trust scores on every listing — title, photos, pricing, agents',
+                'Trust scores & Investment Score™ on every listing',
                 'Investment math with facts, estimates and assumptions labelled',
                 'Keja Tokenize — fractional ownership of prime assets from $100',
+                'Google sign-in, investor accounts & agent tools — one platform',
                 'M-Pesa escrow and WhatsApp-first client service',
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-sm text-white/75">
