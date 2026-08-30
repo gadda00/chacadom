@@ -1,52 +1,30 @@
 # Chacadom Investments — Building Wealth Through Real Estate Excellence
 
-> Corporate website for **Chacadom Investments** — Vision · Value · Growth · Legacy.
-> Home of the company's flagship digital venture: [Keja.ai](https://keja.ai).
+Corporate site of Chacadom Investments, parent of **Keja.ai** (Kenya's AI real-estate trust layer).
+Live at **https://gadda00.github.io/chacadom/**
 
-## ✨ Pages
+## Pages
 
-| Page | Contents |
-|------|----------|
-| **Home** | Hero, service overview, Vision/Value/Growth/Legacy pillars, Keja.ai feature, philosophy teaser, stats, CTA |
-| **About** | Story, milestones timeline (2022 → 2026), values: Trust · Integrity · Performance · Partnership |
-| **Services** | All 7 service lines: Commercial Sales, Leasing & Tenant Sourcing, Investment Advisory, Land Acquisition & Development, Marketing, Joint Ventures, Portfolio Management |
-| **Ventures** | Keja.ai flagship showcase, six platform capabilities, 3-phase roadmap |
-| **Insights** | Investment philosophy: Patience · Positioning · Timing + six rules for clients & investors |
-| **Contact** | Enquiry form, direct lines, WhatsApp |
+Home · About (2022–2026 timeline) · **Leadership & Desks** · Services (7 lines) · **Track Record** · Ventures (Keja.ai showcase + 2026–2030 roadmap + investor relations) · Insights (philosophy) · Contact (mailto + WhatsApp handoff) · **FAQ** · **Privacy Policy (KDPA-aligned)** · **Terms & Disclaimers**
 
-## 🎨 Brand
+Bold = added in the 2026 trust-build wave, alongside: per-route SEO titles/descriptions, WCAG-AA gold contrast (deep-gold CTAs, #a88727 brand alignment), PWA (manifest + service worker + offline page), real 404, error boundary, focus/ARIA fixes, optimized images (WebP, 4KB logo variants), and the fixed Keja.ai banner (previously a live 404).
 
-- **Palette:** white + metallic gold (`#C6A34F` family) with warm-charcoal ink — luxury, trustworthy
-- **Typography:** Playfair Display (display serif) + Inter (body)
-- **Assets:** official Chacadom logo and Keja.ai brand images in `public/brand/` and `public/insights/`
+## Stack
 
-## 🧱 Tech Stack
+React 19 · Vite 8 · TypeScript · Tailwind 3.4 · framer-motion · GitHub Pages via Actions.
 
-React 18 · TypeScript · Vite · Tailwind CSS 3 · React Router 6 · Framer Motion · Lucide icons.
-Static SPA — no backend required.
-
-## 🚀 Run locally
+## Develop
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
-npm run build      # production build → dist/
+npm run dev
+npm run build   # base /chacadom/ baked into vite.config (matches CI)
 ```
 
-## 🌍 Deploy to Netlify
+## Contact details
 
-Netlify-ready (`netlify.toml` + `_redirects` included):
+`src/data/content.ts` holds the single source for phone/email/WhatsApp — replace the placeholder numbers there (and in `index.html` JSON-LD) when the real client lines are confirmed.
 
-1. Push this repo to GitHub.
-2. Netlify → **Add new site → Import from GitHub → select this repo**.
-3. Build command `npm run build`, publish directory `dist` (auto-detected).
-4. Add custom domain `chacadom.com` in **Site settings → Domain management**.
+## Deployment
 
-## 🔧 Configuration
-
-All company details (phone, email, WhatsApp, stats, services, timeline) live in `src/data/content.ts`.
-The Keja.ai link is set there too (`kejaUrl`) — update it if the product URL changes.
-
----
-
-© Chacadom Investments · *We don't sell property. We help people make better property decisions.*
+`git push origin main` → Actions builds `--base=/chacadom/`, SPA 404 fallback, Pages deploy.
