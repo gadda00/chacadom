@@ -21,11 +21,20 @@ function upsertLink(rel: string, href: string) {
   el.setAttribute('href', href)
 }
 
+/** Optional per-route meta directives handled by usePageMeta. */
+export interface PageMetaOptions {
+  /** e.g. 'noindex, follow' for soft-404 pages. Absent ⇒ robots meta is removed. */
+  robots?: string
+  /** Per-route social image — upserts og:image + twitter:image when provided. */
+  image?: string
+}
+
 /**
  * Per-route document title + meta description + canonical + OG tags.
  * Keeps social shares and search snippets accurate on every route of the SPA.
  */
-export function usePageMeta(title: string, description?: string) {
+export function usePageMeta(title: string, description?: string, options?: PageMetaOptions) {
+  const { robots, image } = options ?? {}
   useEffect(() => {
     const full = title.includes(SITE.name) ? title : `${title} — ${SITE.name}`
     document.title = full
@@ -34,12 +43,23 @@ export function usePageMeta(title: string, description?: string) {
       upsertMeta('property', 'og:description', description)
       upsertMeta('name', 'twitter:description', description)
     }
+    if (robots) {
+      upsertMeta('name', 'robots', robots)
+    } else {
+      // Drop any directive left by a previous route (e.g. a 404's noindex)
+      // so it can never leak onto an indexable page.
+      document.head.querySelector('meta[name="robots"]')?.remove()
+    }
+    if (image) {
+      upsertMeta('property', 'og:image', image)
+      upsertMeta('name', 'twitter:image', image)
+    }
     upsertMeta('property', 'og:title', full)
     upsertMeta('name', 'twitter:title', full)
     const canonical = `${window.location.origin}${window.location.pathname}`
     upsertLink('canonical', canonical)
     upsertMeta('property', 'og:url', canonical)
-  }, [title, description])
+  }, [title, description, robots, image])
 }
 
 /* ------------------------- structured data builders ------------------------ */
@@ -78,4 +98,3 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
     })),
   }
 }
-

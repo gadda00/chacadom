@@ -21,27 +21,56 @@ const Careers = lazy(() => import('@/pages/Careers'))
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
+  // Every route change resets scroll to the top — regardless of hash. Anchor
+  // navigations then scroll to their target (below), which always runs after
+  // and therefore lands in the right place.
   useEffect(() => {
-    if (hash) {
-      const t = window.setTimeout(() => {
-        document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' })
-      }, 60)
-      return () => window.clearTimeout(t)
-    }
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-  }, [pathname, hash])
+    // pathname is intentionally a trigger-only dependency: the effect must
+    // re-run on every route change even though the body does not read it.
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies
+  }, [pathname])
+
+  useEffect(() => {
+    if (!hash) return undefined
+    // Routes are lazy(): on slow loads the hash target is not mounted yet,
+    // so a single fixed-delay scroll silently fails. Retry briefly instead —
+    // scroll as soon as the element exists, give up quietly after ~20 tries.
+    const targetId = hash.slice(1)
+    let attempts = 0
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const tryScroll = () => {
+      const el = document.getElementById(targetId)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+        return
+      }
+      attempts += 1
+      if (attempts < 20) timer = setTimeout(tryScroll, 100)
+      // else: element never appeared — give up silently
+    }
+    timer = setTimeout(tryScroll, 100)
+    return () => clearTimeout(timer)
+  }, [hash])
   return null
 }
 
 function LazyFallback() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-label="Loading page">
+    <div
+      className="flex min-h-[60vh] items-center justify-center"
+      role="status"
+      aria-label="Loading page"
+    >
       <span className="h-10 w-10 animate-spin rounded-full border-4 border-gold-100 border-t-gold-600" />
     </div>
   )
 }
 
 export default function App() {
+  // Keying the boundary per route resets its error state on navigation, so a
+  // crash on one route can't brick every other route for the rest of the visit.
+  const location = useLocation()
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <ScrollManager />
@@ -53,25 +82,25 @@ export default function App() {
       </a>
       <Navbar />
       <main id="main-content" className="flex-1 pt-16">
-        <ErrorBoundary>
+        <ErrorBoundary key={location.pathname}>
           <Suspense fallback={<LazyFallback />}>
             <MotionConfig reducedMotion="user">
-        <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/ventures" element={<Ventures />} />
-              <Route path="/insights" element={<Insights />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/faq" element={<Faq />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-      </MotionConfig>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/ventures" element={<Ventures />} />
+                <Route path="/insights" element={<Insights />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/faq" element={<Faq />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </MotionConfig>
           </Suspense>
         </ErrorBoundary>
       </main>

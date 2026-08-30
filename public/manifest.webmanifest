@@ -34,21 +34,21 @@
       "purpose": "maskable"
     }
   ],
-  "id": "/chacadom/",
+  "id": "./",
   "shortcuts": [
     {
       "name": "Contact",
-      "url": "/chacadom/contact",
+      "url": "./contact",
       "description": "Talk to the Chacadom desk"
     },
     {
       "name": "Track Record",
-      "url": "/chacadom/portfolio",
+      "url": "./portfolio",
       "description": "Representative mandates"
     },
     {
       "name": "Ventures \u2014 Keja.ai",
-      "url": "/chacadom/ventures",
+      "url": "./ventures",
       "description": "Our digital flagship and tokenization demo"
     }
   ]

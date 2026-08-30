@@ -2,16 +2,34 @@ import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  Building2, KeyRound, TrendingUp, Landmark, Megaphone, Handshake, PieChart,
-  ArrowRight, Eye, Target, ShieldCheck, Bot, ChevronRight, CheckCircle2, Globe2,
+  Building2,
+  KeyRound,
+  TrendingUp,
+  Landmark,
+  Megaphone,
+  Handshake,
+  PieChart,
+  ArrowRight,
+  Eye,
+  Target,
+  ShieldCheck,
+  Bot,
+  ChevronRight,
+  CheckCircle2,
+  Globe2,
 } from 'lucide-react'
 import { SITE, SERVICES, STATS } from '@/data/content'
 import { asset } from '@/data/content'
 import { fadeUp } from '@/lib/motion'
 
-
 const ICONS: Record<string, React.ElementType> = {
-  Building2, KeyRound, TrendingUp, Landmark, Megaphone, Handshake, PieChart,
+  Building2,
+  KeyRound,
+  TrendingUp,
+  Landmark,
+  Megaphone,
+  Handshake,
+  PieChart,
 }
 
 export default function Home() {
@@ -25,18 +43,35 @@ export default function Home() {
       <section className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
           <picture>
-              <source srcSet={asset('/images/hero-office.webp')} type="image/webp" />
-              <img src={asset('/images/hero-office.jpg')} alt="Commercial real estate" width={1600} height={1067} fetchPriority="high" className="h-full w-full object-cover opacity-30" />
-            </picture>
+            <source srcSet={asset('/images/hero-office.webp')} type="image/webp" />
+            <img
+              src={asset('/images/hero-office.jpg')}
+              alt="Commercial real estate"
+              width={1600}
+              height={1067}
+              fetchPriority="high"
+              className="h-full w-full object-cover opacity-30"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink" />
           <div className="absolute inset-0 bg-gold-shimmer opacity-[0.05]" />
         </div>
 
         <div className="container-luxe relative flex flex-col items-center py-28 text-center sm:py-36">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
             <div className="flex items-center gap-3">
               <span className="divider-gold !w-12" />
-              <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom" width={56} height={56} className="h-14 w-14 rounded-xl object-cover shadow-gold-lg ring-1 ring-gold-400/40" />
+              <img
+                src={asset('/brand/chacadom-logo-128.jpg')}
+                alt="Chacadom"
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-xl object-cover shadow-gold-lg ring-1 ring-gold-400/40"
+              />
               <span className="divider-gold !w-12" />
             </div>
           </motion.div>
@@ -56,8 +91,8 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.28 }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            Your trusted partner in commercial real estate. We do more than close deals — we create opportunities,
-            build wealth, and transform visions into valuable investments.
+            Your trusted partner in commercial real estate. We do more than close deals — we create
+            opportunities, build wealth, and transform visions into valuable investments.
           </motion.p>
 
           <motion.div
@@ -67,7 +102,10 @@ export default function Home() {
             className="mt-8 flex flex-wrap items-center justify-center gap-2.5"
           >
             {['Buy', 'Sell', 'Lease', 'Develop', 'Invest'].map((x, i) => (
-              <span key={x} className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wide2 text-gold-300">
+              <span
+                key={x}
+                className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wide2 text-gold-300"
+              >
                 {x}
                 {i < 4 && <span className="text-white/25">|</span>}
               </span>
@@ -107,8 +145,12 @@ export default function Home() {
         <div className="container-luxe grid grid-cols-2 gap-6 py-12 sm:grid-cols-4">
           {STATS.map((s) => (
             <motion.div key={s.label} {...fadeUp} className="text-center">
-              <p className="font-display text-3xl font-bold sm:text-4xl"><span className="gold-text">{s.value}</span></p>
-              <p className="mt-2 text-xs font-medium uppercase tracking-wider text-ink-muted">{s.label}</p>
+              <p className="font-display text-3xl font-bold sm:text-4xl">
+                <span className="gold-text">{s.value}</span>
+              </p>
+              <p className="mt-2 text-xs font-medium uppercase tracking-wider text-ink-muted">
+                {s.label}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -127,18 +169,39 @@ export default function Home() {
               Vision. Value. Growth. <span className="gold-text">Legacy.</span>
             </h2>
             <p className="mt-4 leading-relaxed text-ink-muted">
-              Four words that order every decision we make — from a KES 3M land plot to a half-billion-shilling
-              portfolio.
+              Four words that order every decision we make — from a KES 3M land plot to a
+              half-billion-shilling portfolio.
             </p>
           </motion.div>
           <div className="mt-12 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Eye, title: 'Vision', text: 'We see property the way it becomes, not the way it is — infrastructure first, corridors early, value before the crowd.' },
-              { icon: Target, title: 'Value', text: 'Every shilling is underwritten. If the math doesn’t work as an investment, it doesn’t become a transaction.' },
-              { icon: TrendingUp, title: 'Growth', text: 'For our clients, our partners and our city. Compounding discipline beats chasing headlines, every time.' },
-              { icon: ShieldCheck, title: 'Legacy', text: 'We build what outlives deals: trust, relationships, and portfolios families pass on. That’s the real asset.' },
+              {
+                icon: Eye,
+                title: 'Vision',
+                text: 'We see property the way it becomes, not the way it is — infrastructure first, corridors early, value before the crowd.',
+              },
+              {
+                icon: Target,
+                title: 'Value',
+                text: 'Every shilling is underwritten. If the math doesn’t work as an investment, it doesn’t become a transaction.',
+              },
+              {
+                icon: TrendingUp,
+                title: 'Growth',
+                text: 'For our clients, our partners and our city. Compounding discipline beats chasing headlines, every time.',
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Legacy',
+                text: 'We build what outlives deals: trust, relationships, and portfolios families pass on. That’s the real asset.',
+              },
             ].map((p, i) => (
-              <motion.div key={p.title} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.07 }} className="card-luxe card-luxe-hover p-7 text-center">
+              <motion.div
+                key={p.title}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.07 }}
+                className="card-luxe card-luxe-hover p-7 text-center"
+              >
                 <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-gold-gradient shadow-gold-sm">
                   <p.icon className="h-6 w-6 text-white" />
                 </span>
@@ -200,10 +263,10 @@ export default function Home() {
               Keja.ai — <span className="gold-text">intelligent real estate,</span> verified trust
             </h2>
             <p className="mt-5 leading-relaxed text-white/65">
-              Chacadom&apos;s market discipline, made available to everyone. Keja.ai is Africa&apos;s
-              intelligent real-estate infrastructure: conversational property search, investment
-              analysis, title verification, fraud detection and regulated tokenization — across
-              every agency, not just ours.
+              Chacadom&apos;s market discipline, made available to everyone. Keja.ai is
+              Africa&apos;s intelligent real-estate infrastructure: conversational property search,
+              investment analysis, title verification, fraud detection and regulated tokenization —
+              across every agency, not just ours.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -220,6 +283,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <p className="mt-5 text-[11.5px] leading-relaxed text-white/65">
+              Illustrative figures — tokenization is a simulated, pre-CMA demo.
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/ventures" className="btn-gold">
                 Discover Keja.ai <ArrowRight className="h-4 w-4" />
@@ -247,7 +313,14 @@ export default function Home() {
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-3xl" />
             <picture>
               <source srcSet={asset('/brand/keja-banner.webp')} type="image/webp" />
-              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={1100} loading="lazy" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
+              <img
+                src={asset('/brand/keja-banner.jpg')}
+                alt="Keja.ai by Chacadom"
+                width={1100}
+                height={1100}
+                loading="lazy"
+                className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30"
+              />
             </picture>
           </motion.div>
         </div>
@@ -262,9 +335,10 @@ export default function Home() {
               Patience. Positioning. <span className="gold-text">Timing.</span>
             </h2>
             <p className="mt-5 leading-relaxed text-ink-soft">
-              &ldquo;The people who wait for a place to become expensive usually fund the profits of those who
-              entered early.&rdquo; We help clients enter early — the right property, in the right location, with
-              the right strategy — and then let time do what time does best.
+              &ldquo;The people who wait for a place to become expensive usually fund the profits of
+              those who entered early.&rdquo; We help clients enter early — the right property, in
+              the right location, with the right strategy — and then let time do what time does
+              best.
             </p>
             <Link to="/insights" className="btn-gold mt-8">
               Read the philosophy <ChevronRight className="h-4 w-4" />
@@ -273,11 +347,25 @@ export default function Home() {
           <motion.div {...fadeUp} className="grid gap-4 grid-cols-1 sm:grid-cols-2">
             <picture>
               <source srcSet={asset('/insights/smart-investments.webp')} type="image/webp" />
-              <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" width={1024} height={1536} loading="lazy" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
+              <img
+                src={asset('/insights/smart-investments.jpg')}
+                alt="Smart investments build lasting wealth"
+                width={1024}
+                height={1536}
+                loading="lazy"
+                className="rounded-2xl shadow-card ring-1 ring-gold-100"
+              />
             </picture>
             <picture>
               <source srcSet={asset('/insights/real-estate-rewards.webp')} type="image/webp" />
-              <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards" width={1024} height={1536} loading="lazy" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
+              <img
+                src={asset('/insights/real-estate-rewards.jpg')}
+                alt="Real estate rewards"
+                width={1024}
+                height={1536}
+                loading="lazy"
+                className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10"
+              />
             </picture>
           </motion.div>
         </div>
@@ -292,7 +380,13 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gold-shimmer opacity-[0.07]" />
             <div className="relative">
-              <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom" width={64} height={64} className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-gold-lg" />
+              <img
+                src={asset('/brand/chacadom-logo-128.jpg')}
+                alt="Chacadom"
+                width={64}
+                height={64}
+                className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-gold-lg"
+              />
               <h2 className="mt-6 font-display text-3xl font-bold text-white sm:text-5xl">
                 Invest today. <span className="gold-text">Secure your tomorrow.</span>
               </h2>
@@ -300,13 +394,18 @@ export default function Home() {
                 Capital is at risk. Real estate is illiquid and values can fall as well as rise.
               </p>
               <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-                Prime locations. Verified documents. Growth corridors identified before the crowd. Whether
-                you’re buying your first plot or balancing a portfolio — the discipline is the same, and it
-                starts with a conversation.
+                Prime locations. Verified documents. Growth corridors identified before the crowd.
+                Whether you’re buying your first plot or balancing a portfolio — the discipline is
+                the same, and it starts with a conversation.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Link to="/contact" className="btn-gold">Start the conversation</Link>
-                <Link to="/about" className="inline-flex items-center gap-2 border border-gold-400/50 px-6 py-3 text-sm font-semibold tracking-wide text-gold-300 transition hover:bg-gold-400/10">
+                <Link to="/contact" className="btn-gold">
+                  Start the conversation
+                </Link>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 border border-gold-400/50 px-6 py-3 text-sm font-semibold tracking-wide text-gold-300 transition hover:bg-gold-400/10"
+                >
                   Meet Chacadom
                 </Link>
               </div>

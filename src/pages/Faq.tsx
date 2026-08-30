@@ -69,7 +69,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0)
   useRouteJsonLd(useMemo(() => faqJsonLd(FAQS), []))
 
-const groups = [...new Set(FAQS.map((f) => f.group))]
+  const groups = [...new Set(FAQS.map((f) => f.group))]
 
   return (
     <div>
@@ -80,7 +80,8 @@ const groups = [...new Set(FAQS.map((f) => f.group))]
             Straight answers, <span className="gold-text">no sales fog</span>
           </h1>
           <p className="mt-6 leading-relaxed text-white/65">
-            The questions serious clients ask before they engage us — answered the way we would answer them across a desk.
+            The questions serious clients ask before they engage us — answered the way we would
+            answer them across a desk.
           </p>
         </div>
       </section>
@@ -93,22 +94,32 @@ const groups = [...new Set(FAQS.map((f) => f.group))]
               <div className="mt-4 space-y-3">
                 {FAQS.map((f, i) =>
                   f.group === g ? (
-                    <div key={f.q} className={`card-luxe overflow-hidden ${open === i ? 'ring-gold-300' : ''}`}>
+                    <div
+                      key={f.q}
+                      className={`card-luxe overflow-hidden ${open === i ? 'ring-gold-300' : ''}`}
+                    >
                       <button
                         onClick={() => setOpen(open === i ? null : i)}
                         aria-expanded={open === i}
-                        aria-controls={open === i ? `faq-panel-${i}` : undefined}
+                        aria-controls={`faq-panel-${i}`}
                         id={`faq-btn-${i}`}
                         className="flex w-full items-center justify-between gap-4 p-5 text-left"
                       >
                         <span className="font-display text-[15px] font-bold text-ink">{f.q}</span>
-                        <ChevronDown className={`h-5 w-5 shrink-0 text-gold-600 transition-transform ${open === i ? 'rotate-180' : ''}`} aria-hidden="true" />
+                        <ChevronDown
+                          className={`h-5 w-5 shrink-0 text-gold-600 transition-transform ${open === i ? 'rotate-180' : ''}`}
+                          aria-hidden="true"
+                        />
                       </button>
-                      {open === i && (
-                        <p id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} className="border-t border-gold-100 px-5 pb-5 pt-4 text-sm leading-relaxed text-ink-muted">
-                          {f.a}
-                        </p>
-                      )}
+                      <p
+                        id={`faq-panel-${i}`}
+                        role="region"
+                        aria-labelledby={`faq-btn-${i}`}
+                        hidden={open !== i}
+                        className="border-t border-gold-100 px-5 pb-5 pt-4 text-sm leading-relaxed text-ink-muted"
+                      >
+                        {f.a}
+                      </p>
                     </div>
                   ) : null,
                 )}

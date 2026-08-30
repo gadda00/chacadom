@@ -4,7 +4,6 @@ import { MapPin, TrendingUp, Building2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { fadeUp } from '@/lib/motion'
 
-
 const TRACK = [
   {
     asset: 'Westlands office floor plate',
@@ -70,8 +69,8 @@ export default function Portfolio() {
             Numbers first. <span className="gold-text">Then the stories.</span>
           </h1>
           <p className="mt-6 leading-relaxed text-white/65">
-            Representative mandates across our desks. Client identities stay confidential; the mechanics of each
-            outcome are exactly as described — because the process is the product.
+            Representative mandates across our desks. Client identities stay confidential; the
+            mechanics of each outcome are exactly as described — because the process is the product.
           </p>
         </div>
       </section>
@@ -84,7 +83,12 @@ export default function Portfolio() {
               { v: '40+', l: 'Completed mandates since 2022' },
               { v: '7', l: 'Service lines across four desks' },
             ].map((s, i) => (
-              <motion.div key={s.l} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.07 }} className="card-luxe p-7 text-center">
+              <motion.div
+                key={s.l}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.07 }}
+                className="card-luxe p-7 text-center"
+              >
                 <p className="font-display text-4xl font-bold gold-text">{s.v}</p>
                 <p className="mt-2 text-sm font-medium text-ink-muted">{s.l}</p>
               </motion.div>
@@ -101,8 +105,13 @@ export default function Portfolio() {
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700 ring-1 ring-gold-100">{t.type}</span>
-                    <span className="inline-flex items-center gap-1 text-xs text-ink-muted"><MapPin className="h-3 w-3" />{t.location}</span>
+                    <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700 ring-1 ring-gold-100">
+                      {t.type}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-xs text-ink-muted">
+                      <MapPin className="h-3 w-3" />
+                      {t.location}
+                    </span>
                   </div>
                   <h2 className="mt-2.5 font-display text-lg font-bold text-ink">{t.asset}</h2>
                   <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{t.note}</p>
@@ -117,17 +126,27 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <motion.div {...fadeUp} className="mx-auto mt-16 max-w-3xl rounded-2xl bg-ink p-8 text-center sm:p-10">
+          <motion.div
+            {...fadeUp}
+            className="mx-auto mt-16 max-w-3xl rounded-2xl bg-ink p-8 text-center sm:p-10"
+          >
             <Building2 className="mx-auto h-8 w-8 text-gold-400" />
-            <p className="mt-4 font-display text-2xl font-bold text-white">Your mandate has a shape like one of these</p>
-            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-white/60">
-              Tell us which outcome you are chasing and we will tell you — honestly — whether we are the right firm to run it.
+            <p className="mt-4 font-display text-2xl font-bold text-white">
+              Your mandate has a shape like one of these
             </p>
-            <Link to="/contact" className="btn-gold mt-7">Start the conversation <ArrowRight className="h-4 w-4" /></Link>
+            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-white/60">
+              Tell us which outcome you are chasing and we will tell you — honestly — whether we are
+              the right firm to run it.
+            </p>
+            <Link to="/contact" className="btn-gold mt-7">
+              Start the conversation <ArrowRight className="h-4 w-4" />
+            </Link>
           </motion.div>
 
           <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-ink-muted">
-            Past performance is not a guarantee of future results. Figures reflect completed mandates as advised by Chacadom between 2022 and 2026; detailed references are available under NDA.
+            Past performance is not a guarantee of future results. Figures reflect completed
+            mandates as advised by Chacadom between 2022 and 2026; detailed references are available
+            under NDA.
           </p>
         </div>
       </section>

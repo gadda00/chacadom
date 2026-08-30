@@ -11,7 +11,10 @@ if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   })
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root')
+if (!rootElement) throw new Error('Root element #root not found in index.html')
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />

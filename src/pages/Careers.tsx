@@ -4,7 +4,15 @@
  */
 import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
-import { Briefcase, GraduationCap, Handshake, LineChart, Mail, MapPin, Sparkles } from 'lucide-react'
+import {
+  Briefcase,
+  GraduationCap,
+  Handshake,
+  LineChart,
+  Mail,
+  MapPin,
+  Sparkles,
+} from 'lucide-react'
 import { fadeUp } from '@/lib/motion'
 import { motion } from 'framer-motion'
 import { SITE } from '@/data/content'
@@ -28,9 +36,21 @@ const VALUES = [
 ]
 
 const TRACKS = [
-  { role: 'Analyst — Research & Valuation', focus: 'Comparable analysis, corridor research, valuation models', shape: 'Full-time · Nairobi (Westlands)' },
-  { role: 'Associate — Investment Advisory', focus: 'Client mandates from sourcing to closing', shape: 'Full-time · Nairobi, with site travel' },
-  { role: 'Software — Keja.ai product team', focus: 'Full-stack, data engineering, AI/ML for the flagship platform', shape: 'Full-time · Nairobi or remote (EAT ±3)' },
+  {
+    role: 'Analyst — Research & Valuation',
+    focus: 'Comparable analysis, corridor research, valuation models',
+    shape: 'Full-time · Nairobi (Westlands)',
+  },
+  {
+    role: 'Associate — Investment Advisory',
+    focus: 'Client mandates from sourcing to closing',
+    shape: 'Full-time · Nairobi, with site travel',
+  },
+  {
+    role: 'Software — Keja.ai product team',
+    focus: 'Full-stack, data engineering, AI/ML for the flagship platform',
+    shape: 'Full-time · Nairobi or remote (EAT ±3)',
+  },
 ]
 
 export default function Careers() {
@@ -47,8 +67,9 @@ export default function Careers() {
             Small team. <span className="gold-text">Deep craft.</span>
           </h1>
           <p className="mt-6 leading-relaxed text-white/65">
-            We are deliberately small, because trust does not scale by headcount. When we hire, we hire
-            for judgment and appetite for responsibility — then we back you with real mandates from day one.
+            We are deliberately small, because trust does not scale by headcount. When we hire, we
+            hire for judgment and appetite for responsibility — then we back you with real mandates
+            from day one.
           </p>
         </div>
       </section>
@@ -74,12 +95,16 @@ export default function Careers() {
           <p className="eyebrow">Where we are growing</p>
           <h2 className="heading-display mt-3 text-3xl sm:text-4xl">Current tracks</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            We keep a short, honest list. If your track is not here, an exceptional introduction still gets read —
-            but we will not waste your time with a vacancy that does not exist.
+            We keep a short, honest list. If your track is not here, an exceptional introduction
+            still gets read — but we will not waste your time with a vacancy that does not exist.
           </p>
           <div className="mt-8 space-y-4">
             {TRACKS.map((t) => (
-              <motion.div key={t.role} {...fadeUp} className="card-luxe flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <motion.div
+                key={t.role}
+                {...fadeUp}
+                className="card-luxe flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between"
+              >
                 <div>
                   <h3 className="font-display text-lg font-bold text-ink">{t.role}</h3>
                   <p className="mt-1 text-sm text-ink-muted">{t.focus}</p>
@@ -102,15 +127,16 @@ export default function Careers() {
               <Sparkles className="h-5 w-5 text-gold-400" /> Internship &amp; attachment
             </p>
             <p className="mt-2 text-sm leading-relaxed text-white/65">
-              Two paid positions per quarter for final-year students and recent graduates in land economics,
-              real estate, finance, law or computer science. You will touch live research, real files and
-              real deals — with your name on the work.
+              Two paid positions per quarter for final-year students and recent graduates in land
+              economics, real estate, finance, law or computer science. You will touch live
+              research, real files and real deals — with your name on the work.
             </p>
           </motion.div>
 
           <p className="mt-8 text-center text-sm text-ink-muted">
             <Briefcase className="mr-1.5 inline h-4 w-4 text-gold-600" />
-            Chacadom Investments is an equal-opportunity employer. All applications are reviewed on merit.
+            Chacadom Investments is an equal-opportunity employer. All applications are reviewed on
+            merit.
           </p>
           <p className="mt-4 text-center text-sm">
             <Link to="/contact" className="font-semibold text-gold-700 hover:text-gold-600">

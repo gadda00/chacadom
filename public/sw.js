@@ -18,7 +18,9 @@ self.addEventListener('install', (event) => {
       caches.open(PAGE_CACHE).then((c) => c.add(`${BASE}offline.html`)),
     ]),
   )
-  self.skipWaiting()
+  // No skipWaiting(): a new SW must not activate under an open old page whose
+  // hashed chunks were just purged from cache — let the old tab keep working
+  // until it closes; the update takes over on the next visit.
 })
 
 self.addEventListener('activate', (event) => {

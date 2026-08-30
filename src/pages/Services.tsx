@@ -2,14 +2,27 @@ import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  Building2, KeyRound, TrendingUp, Landmark, Megaphone, Handshake, PieChart, CheckCircle2, ArrowRight,
+  Building2,
+  KeyRound,
+  TrendingUp,
+  Landmark,
+  Megaphone,
+  Handshake,
+  PieChart,
+  CheckCircle2,
+  ArrowRight,
 } from 'lucide-react'
 import { SERVICES } from '@/data/content'
 import { fadeUp } from '@/lib/motion'
 
-
 const ICONS: Record<string, React.ElementType> = {
-  Building2, KeyRound, TrendingUp, Landmark, Megaphone, Handshake, PieChart,
+  Building2,
+  KeyRound,
+  TrendingUp,
+  Landmark,
+  Megaphone,
+  Handshake,
+  PieChart,
 }
 
 export default function Services() {
@@ -26,8 +39,9 @@ export default function Services() {
             Buy · Sell · Lease · Develop · <span className="gold-text">Invest</span>
           </h1>
           <p className="mt-6 leading-relaxed text-white/65">
-            Seven service lines, one discipline: verified facts, honest math, and outcomes we’d accept for our
-            own families. From a first plot to a managed portfolio, the full value chain under one roof.
+            Seven service lines, one discipline: verified facts, honest math, and outcomes we’d
+            accept for our own families. From a first plot to a managed portfolio, the full value
+            chain under one roof.
           </p>
         </div>
       </section>
@@ -81,13 +95,16 @@ export default function Services() {
         <div className="container-luxe text-center">
           <motion.div {...fadeUp}>
             <h2 className="font-display text-2xl font-bold text-white sm:text-4xl">
-              Not sure which service you need? <span className="gold-text">That’s what the first call is for.</span>
+              Not sure which service you need?{' '}
+              <span className="gold-text">That’s what the first call is for.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/60">
-              Tell us where you are — first plot, growing portfolio, or institutional mandate — and we’ll map
-              the right entry point. No obligation, no pressure.
+              Tell us where you are — first plot, growing portfolio, or institutional mandate — and
+              we’ll map the right entry point. No obligation, no pressure.
             </p>
-            <Link to="/contact" className="btn-gold mt-8">Book a consultation</Link>
+            <Link to="/contact" className="btn-gold mt-8">
+              Book a consultation
+            </Link>
           </motion.div>
         </div>
       </section>

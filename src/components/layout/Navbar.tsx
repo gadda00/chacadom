@@ -12,6 +12,7 @@ const NAV = [
   { to: '/ventures', label: 'Ventures' },
   { to: '/insights', label: 'Insights' },
   { to: '/faq', label: 'FAQ' },
+  { to: '/careers', label: 'Careers' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -50,12 +51,20 @@ export default function Navbar() {
     >
       <div className="container-luxe flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={asset('/brand/chacadom-logo-128.jpg')} alt="" width={40} height={40} className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
+          <img
+            src={asset('/brand/chacadom-logo-128.jpg')}
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200"
+          />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-tight text-ink">
               CHACA<span className="gold-text">DOM</span>
             </span>
-            <span className="text-[9px] font-semibold uppercase tracking-wide2 text-ink-muted">Investments</span>
+            <span className="text-[9px] font-semibold uppercase tracking-wide2 text-ink-muted">
+              Investments
+            </span>
           </span>
         </Link>
 
@@ -67,7 +76,9 @@ export default function Navbar() {
               end={item.to === '/'}
               className={({ isActive }) =>
                 `rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
-                  isActive ? 'bg-gold-50 text-gold-700' : 'text-ink-soft hover:bg-gold-50/60 hover:text-gold-700'
+                  isActive
+                    ? 'bg-gold-50 text-gold-700'
+                    : 'text-ink-soft hover:bg-gold-50/60 hover:text-gold-700'
                 }`
               }
             >
@@ -93,7 +104,10 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 xl:hidden">
+        <div
+          id="mobile-menu"
+          className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 xl:hidden"
+        >
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <NavLink
@@ -109,7 +123,9 @@ export default function Navbar() {
                 {item.label}
               </NavLink>
             ))}
-            <Link to="/contact" className="btn-gold mt-2 w-full">Invest Today</Link>
+            <Link to="/contact" className="btn-gold mt-2 w-full">
+              Invest Today
+            </Link>
           </nav>
         </div>
       )}

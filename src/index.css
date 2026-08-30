@@ -6,6 +6,10 @@
   html {
     scroll-behavior: smooth;
   }
+  /* Hash targets land clear of the fixed 64px (h-16) navbar. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
   body {
     @apply bg-white text-ink antialiased font-sans;
   }

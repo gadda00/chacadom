@@ -29,10 +29,17 @@ export default class ErrorBoundary extends Component<Props, State> {
             An unexpected error occurred. Reloading usually resolves it.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <button onClick={() => window.location.reload()} className="btn-gold">Reload page</button>
-            <a href={import.meta.env.BASE_URL} className="btn-outline">Back to home</a>
+            <button onClick={() => window.location.reload()} className="btn-gold">
+              Reload page
+            </button>
+            <a href={import.meta.env.BASE_URL} className="btn-outline">
+              Back to home
+            </a>
           </div>
-          <p className="mt-6 max-w-lg truncate rounded-lg bg-cream px-3 py-2 font-mono text-[11px] text-ink-muted" role="note">
+          <p
+            className="mt-6 max-w-lg truncate rounded-lg bg-cream px-3 py-2 font-mono text-[11px] text-ink-muted"
+            role="note"
+          >
             {this.state.error.message}
           </p>
         </div>

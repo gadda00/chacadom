@@ -1,11 +1,16 @@
+# Netlify build config. NOTE: the canonical deployment is GitHub Pages
+# (https://gadda00.github.io/chacadom/). This file keeps a Netlify deploy
+# working too — VITE_BASE=/ makes the build emit root-relative asset URLs
+# instead of the /chacadom/ subpath that GH Pages needs.
 [build]
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  VITE_BASE = "/"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  NODE_VERSION = "20"
