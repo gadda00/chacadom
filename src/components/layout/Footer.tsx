@@ -103,16 +103,10 @@ export default function Footer() {
           </a>
         </div>
       </div>
+
       <div className="border-t border-white/10">
         <div className="container-luxe flex flex-col items-center justify-between gap-3 py-5 text-xs text-white/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} Chacadom Investments. All rights reserved.</p>
-          <p className="uppercase tracking-wider">{SITE.values.join(' · ')}</p>
-        </div>
-      </div>
-    
-      <div className="border-t border-white/10">
-        <div className="container-luxe flex flex-col items-center justify-between gap-3 py-5 text-xs text-white/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} Chacadom Investments. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Chacadom Investments. All rights reserved. · {SITE.values.join(' · ')}</p>
           <div className="flex items-center gap-5">
             <Link to="/privacy" className="hover:text-gold-300">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-gold-300">Terms & Disclaimers</Link>
