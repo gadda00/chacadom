@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -14,6 +15,10 @@ const fadeUp = {
 }
 
 export default function Ventures() {
+  usePageMeta(
+    'Ventures — Keja.ai & the 2026–2030 Roadmap',
+    'Keja.ai, the AI trust layer for East African property; tokenization roadmap and investor relations.',
+  )
   return (
     <div>
       <section className="relative overflow-hidden bg-ink py-20 sm:py-28">

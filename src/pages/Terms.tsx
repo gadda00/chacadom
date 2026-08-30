@@ -1,8 +1,13 @@
+import { usePageMeta } from '@/lib/seo'
 import { Scale } from 'lucide-react'
 
 const UPDATED = '30 August 2026'
 
 export default function Terms() {
+  usePageMeta(
+    'Terms of Use & Disclaimers',
+    'Information, not advice: the legal terms for using Chacadom and Keja.ai preview platforms.',
+  )
   return (
     <div>
       <section className="bg-ink py-16 sm:py-20">

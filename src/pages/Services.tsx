@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -17,6 +18,10 @@ const ICONS: Record<string, React.ElementType> = {
 }
 
 export default function Services() {
+  usePageMeta(
+    'Services — Seven Lines, One Standard',
+    'Commercial sales, leasing, investment advisory, land & development, marketing, joint ventures and portfolio management.',
+  )
   return (
     <div>
       <section className="bg-ink py-20 sm:py-24">

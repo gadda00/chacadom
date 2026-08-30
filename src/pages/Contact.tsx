@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react'
@@ -12,6 +13,10 @@ const fadeUp = {
 }
 
 export default function Contact() {
+  usePageMeta(
+    'Contact — Invest Today, Secure Your Tomorrow',
+    'Reach Chacadom on WhatsApp, phone or email — the first consultation is free and pressure-free.',
+  )
   const [form, setForm] = useState({ name: '', email: '', phone: '', interest: '', message: '' })
   const [sent, setSent] = useState(false)
   const [honey, setHoney] = useState('') // bot trap — humans never see it

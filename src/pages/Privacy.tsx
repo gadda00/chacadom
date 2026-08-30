@@ -1,8 +1,13 @@
+import { usePageMeta } from '@/lib/seo'
 import { ShieldCheck } from 'lucide-react'
 
 const UPDATED = '30 August 2026'
 
 export default function Privacy() {
+  usePageMeta(
+    'Privacy Policy — Chacadom Investments',
+    'How we handle personal data, aligned to the Kenya Data Protection Act, 2019.',
+  )
   return (
     <div>
       <section className="bg-ink py-16 sm:py-20">

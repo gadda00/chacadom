@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { MapPinned, Coins, TrendingUp, Lightbulb, Landmark, ShieldCheck, ArrowRight } from 'lucide-react'
@@ -11,6 +12,10 @@ const fadeUp = {
 }
 
 export default function Insights() {
+  usePageMeta(
+    'Insights — Philosophy & Market Notes',
+    'Patience, positioning, timing: the Chacadom investment philosophy.',
+  )
   return (
     <div>
       <section className="bg-ink py-20 sm:py-24">

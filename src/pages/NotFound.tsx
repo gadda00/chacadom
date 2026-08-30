@@ -1,6 +1,11 @@
+import { usePageMeta } from '@/lib/seo'
 import { Link, useLocation } from 'react-router-dom'
 
 export default function NotFound() {
+  usePageMeta(
+    'Page Not Found',
+    'This page does not exist.',
+  )
   const { pathname } = useLocation()
   return (
     <div className="container-luxe flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">

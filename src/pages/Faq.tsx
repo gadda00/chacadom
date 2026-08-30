@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { useState } from 'react'
 import { ChevronDown, MessageCircle } from 'lucide-react'
 import { whatsappLink } from '@/data/content'
@@ -61,6 +62,10 @@ const FAQS: { q: string; a: string; group: string }[] = [
 ]
 
 export default function Faq() {
+  usePageMeta(
+    'FAQ — Straight Answers',
+    'The questions serious clients ask before engaging Chacadom — answered without sales fog.',
+  )
   const [open, setOpen] = useState<number | null>(0)
   const groups = [...new Set(FAQS.map((f) => f.group))]
 

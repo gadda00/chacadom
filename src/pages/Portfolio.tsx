@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import { MapPin, TrendingUp, Building2, Landmark, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -61,6 +62,10 @@ const TRACK = [
 ]
 
 export default function Portfolio() {
+  usePageMeta(
+    'Track Record — Representative Mandates',
+    'Numbers first: representative Chacadom mandates across Nairobi and beyond, with honest disclaimers.',
+  )
   return (
     <div>
       <section className="bg-ink py-20 sm:py-24">

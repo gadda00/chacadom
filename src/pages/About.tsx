@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ShieldCheck, Handshake, Gauge, Users, ChevronRight, Target, Eye, Compass } from 'lucide-react'
@@ -12,6 +13,10 @@ const fadeUp = {
 }
 
 export default function About() {
+  usePageMeta(
+    'About — Leadership, Timeline & Philosophy',
+    'Chacadom Investments: founded 2022 on discipline over shortcuts. The story, the pillars and the people.',
+  )
   return (
     <div>
       <section className="bg-ink py-20 sm:py-24">

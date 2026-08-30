@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import { Award, Briefcase, Landmark, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -44,6 +45,10 @@ const DESKS = [
 ]
 
 export default function Team() {
+  usePageMeta(
+    'Leadership & Desks — Chacadom Investments',
+    'A deliberately small senior bench: investment strategy, land, portfolio management and the verification desk behind Keja.ai.',
+  )
   return (
     <div>
       <section className="bg-ink py-20 sm:py-24">

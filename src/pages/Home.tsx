@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -19,6 +20,10 @@ const ICONS: Record<string, React.ElementType> = {
 }
 
 export default function Home() {
+  usePageMeta(
+    'Chacadom Investments — Building Wealth Through Real Estate Excellence',
+    'Vision. Value. Growth. Legacy. Trusted commercial real estate partner in Kenya — and home of Keja.ai, the AI real-estate trust layer.',
+  )
   return (
     <div>
       {/* HERO */}
