@@ -43,11 +43,11 @@
     "vite": "^8.2.2",
     "vitest": "^4.1.11"
   },
-  "description": "Chacadom Investments — Building Wealth Through Real Estate Excellence. Corporate website.",
+  "description": "Chacadom Investments \u2014 Building Wealth Through Real Estate Excellence. Corporate website.",
   "author": "Chacadom Investments",
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=20.19"
+    "node": ">=22.0.0"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
