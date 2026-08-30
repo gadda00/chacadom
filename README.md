@@ -3,6 +3,8 @@
 Corporate site of Chacadom Investments, parent of **Keja.ai** (Kenya's AI real-estate trust layer).
 Live at **https://gadda00.github.io/chacadom/**
 
+Round-3 upgrades: honest contact flow (map embed, EAT hours), FAQ in nav + FAQPage structured data, real newsletter capture, risk disclaimers on performance figures, WebP image pipeline (~500KB lighter), prefers-reduced-motion support, WCAG-AA gradient contrast, Careers page, 12-route sitemap.
+
 ## Pages
 
 Home · About (2022–2026 timeline) · **Leadership & Desks** · Services (7 lines) · **Track Record** · Ventures (Keja.ai showcase + 2026–2030 roadmap + investor relations) · Insights (philosophy) · Contact (mailto + WhatsApp handoff) · **FAQ** · **Privacy Policy (KDPA-aligned)** · **Terms & Disclaimers**
