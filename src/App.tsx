@@ -10,6 +10,11 @@ const Services = lazy(() => import('@/pages/Services'))
 const Ventures = lazy(() => import('@/pages/Ventures'))
 const Insights = lazy(() => import('@/pages/Insights'))
 const Contact = lazy(() => import('@/pages/Contact'))
+const Team = lazy(() => import('@/pages/Team'))
+const Portfolio = lazy(() => import('@/pages/Portfolio'))
+const Faq = lazy(() => import('@/pages/Faq'))
+const Privacy = lazy(() => import('@/pages/Privacy'))
+const Terms = lazy(() => import('@/pages/Terms'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function ScrollManager() {
@@ -55,6 +60,11 @@ export default function App() {
               <Route path="/ventures" element={<Ventures />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/faq" element={<Faq />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

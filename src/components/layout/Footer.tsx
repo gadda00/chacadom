@@ -40,6 +40,9 @@ export default function Footer() {
           <h4 className="text-xs font-bold uppercase tracking-wide2 text-gold-400">Company</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li><Link to="/about" className="hover:text-gold-300">About Chacadom</Link></li>
+            <li><Link to="/team" className="hover:text-gold-300">Leadership & Desks</Link></li>
+            <li><Link to="/portfolio" className="hover:text-gold-300">Track Record</Link></li>
+            <li><Link to="/faq" className="hover:text-gold-300">FAQ</Link></li>
             <li><Link to="/ventures" className="hover:text-gold-300">Ventures — Keja.ai</Link></li>
             <li><Link to="/insights" className="hover:text-gold-300">Investment Philosophy</Link></li>
             <li><Link to="/contact" className="hover:text-gold-300">Contact</Link></li>
@@ -85,10 +88,36 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* newsletter */}
+      <div className="border-t border-white/10">
+        <div className="container-luxe flex flex-col items-center gap-4 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div>
+            <p className="font-display text-lg font-bold text-white">The Chacadom brief</p>
+            <p className="mt-1 text-sm text-white/55">One considered email a month — market notes, corridor updates, new mandates. No noise.</p>
+          </div>
+          <a
+            href={`mailto:${SITE.email}?subject=${encodeURIComponent('Newsletter subscription')}&body=${encodeURIComponent('Hello Chacadom, please add me to the monthly brief.\n\nName (optional):\nFocus areas (optional): ')}`}
+            className="btn-gold shrink-0 !px-5 !py-2.5 !text-xs"
+          >
+            Subscribe via email
+          </a>
+        </div>
+      </div>
       <div className="border-t border-white/10">
         <div className="container-luxe flex flex-col items-center justify-between gap-3 py-5 text-xs text-white/50 sm:flex-row">
           <p>© {new Date().getFullYear()} Chacadom Investments. All rights reserved.</p>
           <p className="uppercase tracking-wider">{SITE.values.join(' · ')}</p>
+        </div>
+      </div>
+    
+      <div className="border-t border-white/10">
+        <div className="container-luxe flex flex-col items-center justify-between gap-3 py-5 text-xs text-white/50 sm:flex-row">
+          <p>© {new Date().getFullYear()} Chacadom Investments. All rights reserved.</p>
+          <div className="flex items-center gap-5">
+            <Link to="/privacy" className="hover:text-gold-300">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-gold-300">Terms & Disclaimers</Link>
+            <Link to="/faq" className="hover:text-gold-300">FAQ</Link>
+          </div>
         </div>
       </div>
     </footer>

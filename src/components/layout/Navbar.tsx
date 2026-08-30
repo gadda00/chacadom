@@ -6,7 +6,9 @@ import { asset } from '@/data/content'
 const NAV = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
+  { to: '/team', label: 'Team' },
   { to: '/services', label: 'Services' },
+  { to: '/portfolio', label: 'Track Record' },
   { to: '/ventures', label: 'Ventures' },
   { to: '/insights', label: 'Insights' },
   { to: '/contact', label: 'Contact' },
@@ -50,7 +52,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 xl:flex">
           {NAV.map((item) => (
             <NavLink
               key={item.to}
@@ -67,13 +69,13 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Link to="/contact" className="btn-gold hidden !px-5 !py-2.5 lg:inline-flex">
+        <Link to="/contact" className="btn-gold hidden !px-5 !py-2.5 xl:inline-flex">
           Invest Today
         </Link>
 
         <button
           type="button"
-          className="rounded-lg p-2 text-ink hover:bg-gold-50 lg:hidden"
+          className="rounded-lg p-2 text-ink hover:bg-gold-50 xl:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -84,7 +86,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 lg:hidden">
+        <div id="mobile-menu" className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 xl:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <NavLink
