@@ -55,6 +55,11 @@
     @apply bg-gold-shimmer bg-clip-text text-transparent;
     background-size: 200% auto;
   }
+  /* Same shimmer, safe on white/cream sections (all stops >= 3.6:1 there) */
+  .gold-text-light {
+    @apply bg-gold-shimmer-deep bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
 
   .input-luxe {
     @apply w-full rounded-lg border border-gold-100 bg-white px-4 py-2.5 text-sm text-ink placeholder-ink-faint shadow-sm transition focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200;

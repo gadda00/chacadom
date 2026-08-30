@@ -54,9 +54,10 @@ describe('usePageMeta', () => {
     )
     expect(head()).toContain('name="robots" content="noindex, follow"')
 
-    // navigating from a 404 to a normal page must clear the directive
+    // navigating from a 404 to a normal page must RESET to the site default
+    // (never remove — index.html ships max-image-preview:large we must keep)
     rerender({ robots: undefined })
-    expect(head()).not.toContain('name="robots"')
+    expect(head()).toContain('name="robots" content="index, follow, max-image-preview:large"')
   })
 
   it('upserts per-route og:image + twitter:image when provided', () => {

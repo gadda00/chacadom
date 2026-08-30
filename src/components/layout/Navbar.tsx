@@ -60,7 +60,7 @@ export default function Navbar() {
           />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-tight text-ink">
-              CHACA<span className="gold-text">DOM</span>
+              CHACA<span className="gold-text-light">DOM</span>
             </span>
             <span className="text-[9px] font-semibold uppercase tracking-wide2 text-ink-muted">
               Investments

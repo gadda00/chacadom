@@ -82,7 +82,8 @@ export default function Ventures() {
               </span>
             </div>
             <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
-              Keja.ai — <span className="gold-text">the trust layer for East African property</span>
+              Keja.ai —{' '}
+              <span className="gold-text-light">the trust layer for East African property</span>
             </h2>
             <p className="mt-5 leading-relaxed text-ink-soft">
               &ldquo;Keja&rdquo; is Swahili for home. Keja.ai is Kenya’s AI real-estate advisor and
@@ -371,7 +372,7 @@ export default function Ventures() {
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Investor relations</p>
             <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
-              Capital follows <span className="gold-text">evidence</span>
+              Capital follows <span className="gold-text-light">evidence</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-ink-muted">
               The KEJA blueprint raises against measurable milestones rather than geography, hype or

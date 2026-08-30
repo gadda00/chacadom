@@ -6,7 +6,7 @@ export default function NotFound() {
   const { pathname } = useLocation()
   return (
     <div className="container-luxe flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
-      <p className="font-display text-7xl font-bold gold-text">404</p>
+      <p className="font-display text-7xl font-bold gold-text-light">404</p>
       <h1 className="heading-display mt-4 text-3xl">This page is off our books</h1>
       <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-muted">
         We couldn't find <span className="font-mono text-xs text-ink-soft">{pathname}</span>. It may

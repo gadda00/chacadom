@@ -89,7 +89,7 @@ export default function Portfolio() {
                 transition={{ ...fadeUp.transition, delay: i * 0.07 }}
                 className="card-luxe p-7 text-center"
               >
-                <p className="font-display text-4xl font-bold gold-text">{s.v}</p>
+                <p className="font-display text-4xl font-bold gold-text-light">{s.v}</p>
                 <p className="mt-2 text-sm font-medium text-ink-muted">{s.l}</p>
               </motion.div>
             ))}

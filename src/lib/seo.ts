@@ -46,9 +46,12 @@ export function usePageMeta(title: string, description?: string, options?: PageM
     if (robots) {
       upsertMeta('name', 'robots', robots)
     } else {
-      // Drop any directive left by a previous route (e.g. a 404's noindex)
-      // so it can never leak onto an indexable page.
-      document.head.querySelector('meta[name="robots"]')?.remove()
+      // Reset to the site default instead of removing: index.html statically
+      // ships `index, follow, max-image-preview:large`, and stripping the
+      // meta on normal routes would silently drop the image-preview directive
+      // (Google Images/Discover preview size). A 404's noindex can still never
+      // leak — this always overwrites it.
+      upsertMeta('name', 'robots', 'index, follow, max-image-preview:large')
     }
     if (image) {
       upsertMeta('property', 'og:image', image)

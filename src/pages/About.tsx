@@ -43,7 +43,8 @@ export default function About() {
           <motion.div {...fadeUp}>
             <p className="eyebrow">Our story</p>
             <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
-              From a single conviction to a <span className="gold-text">full value chain</span>
+              From a single conviction to a{' '}
+              <span className="gold-text-light">full value chain</span>
             </h2>
             <div className="mt-6 space-y-4 leading-relaxed text-ink-soft">
               <p>
@@ -103,7 +104,7 @@ export default function About() {
                   <div
                     className={`pl-12 sm:pl-0 ${i % 2 === 1 ? 'sm:order-2 sm:pl-12' : 'sm:pr-12 sm:text-right'}`}
                   >
-                    <p className="font-display text-3xl font-bold gold-text">{t.year}</p>
+                    <p className="font-display text-3xl font-bold gold-text-light">{t.year}</p>
                     <h3 className="mt-1 font-display text-xl font-semibold text-ink">{t.title}</h3>
                   </div>
                   <div
@@ -125,7 +126,7 @@ export default function About() {
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">How we work</p>
             <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
-              Trust. Integrity. Performance. <span className="gold-text">Partnership.</span>
+              Trust. Integrity. Performance. <span className="gold-text-light">Partnership.</span>
             </h2>
             <p className="mt-4 leading-relaxed text-ink-muted">
               Four values that are behavioural, not decorative — each one shows up in documents,
@@ -206,7 +207,7 @@ export default function About() {
         <div className="container-luxe text-center">
           <motion.div {...fadeUp}>
             <h2 className="heading-display text-3xl sm:text-4xl">
-              Work with a house that <span className="gold-text">verifies first</span>
+              Work with a house that <span className="gold-text-light">verifies first</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-ink-muted">
               {SITE.tagline} — start the conversation and see the difference discipline makes.

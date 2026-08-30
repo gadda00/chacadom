@@ -27,6 +27,13 @@ import { fileURLToPath } from 'node:url'
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = resolve(ROOT, 'dist')
 
+// The preview server's origin (http://localhost:4173) leaks into captured
+// HTML via window.location-derived canonical/og:url and vite's runtime
+// modulepreload links. Rewrite every occurrence to the production origin or
+// social scrapers would refuse the unfurls and canonicals would point off-site.
+const PROD_ORIGIN = process.env.PRERENDER_ORIGIN ?? 'https://gadda00.github.io'
+const PREVIEW_ORIGIN = 'http://localhost:4173'
+
 const args = process.argv.slice(2)
 const baseArgIdx = args.indexOf('--base')
 const BASE = (baseArgIdx !== -1 ? args[baseArgIdx + 1] : '/chacadom/').replace(/\/$/, '')
@@ -70,6 +77,7 @@ async function main() {
     try {
       const res = await fetch(origin + BASE + '/index.html')
       up = res.ok
+      if (!up) await new Promise((r) => setTimeout(r, 500))
     } catch {
       await new Promise((r) => setTimeout(r, 500))
     }
@@ -80,9 +88,10 @@ async function main() {
     process.exit(1)
   }
 
+  let failures = 0
+  try {
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  let failures = 0
 
   for (const route of ROUTES) {
     const url = origin + BASE + route
@@ -92,11 +101,16 @@ async function main() {
       await page.waitForFunction(() => document.readyState === 'complete')
       await page.waitForTimeout(350)
 
-      const html = await page.evaluate(() => {
+      let html = await page.evaluate(() => {
         // strip dev-only artifacts so they never leak into static files
         document.querySelectorAll('script[src*="@vite"]').forEach((s) => s.remove())
         return '<!DOCTYPE html>\n' + document.documentElement.outerHTML
       })
+      // canonical/og:url/modulepreload: preview origin -> production origin
+      html = html.replaceAll(PREVIEW_ORIGIN, PROD_ORIGIN)
+      if (html.includes('localhost:')) {
+        throw new Error('localhost URL survived the rewrite — check canonical/meta/modulepreload')
+      }
 
       // sanity: the route's own title must be present (catches a blank render)
       const title = await page.title()
@@ -115,7 +129,11 @@ async function main() {
   }
 
   await browser.close()
-  try { process.kill(-server.pid, 'SIGKILL') } catch { server.kill() }
+  } finally {
+    // always free the port — an orphaned preview server serving stale dist
+    // makes every later run "succeed" against the wrong build
+    try { process.kill(-server.pid, 'SIGKILL') } catch { server.kill() }
+  }
 
   if (failures > 0) {
     console.error(`[prerender] ${failures}/${ROUTES.length} routes failed`)

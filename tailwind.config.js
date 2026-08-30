@@ -33,9 +33,11 @@ export default {
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(135deg, #5C471A 0%, #8A6B26 40%, #7A6122 60%, #5C471A 100%)',
-        // All stops >= #8A6B26 so gold-text on bg-ink (#191612) keeps >= 3:1
+        // Dark-section text fill: all stops >= 3.6:1 on bg-ink (#191612)
         // contrast for large text (WCAG): dark tone + mid tone + highlight.
         'gold-shimmer': 'linear-gradient(120deg, #8A6B26, #A88727, #DFC470, #A88727, #8A6B26)',
+        // Light-section text fill: all stops >= 3.9:1 on white / >= 3.6:1 on cream.
+        'gold-shimmer-deep': 'linear-gradient(120deg, #6B521D, #8A6B26, #9E7C22, #8A6B26, #6B521D)',
       },
       boxShadow: {
         'gold-sm': '0 2px 12px rgba(138, 107, 38, 0.22)',

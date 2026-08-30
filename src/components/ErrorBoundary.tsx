@@ -24,7 +24,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.error) {
       return (
         <div className="container-luxe flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
-          <p className="font-display text-5xl font-bold gold-text">Something went wrong</p>
+          <p className="font-display text-5xl font-bold gold-text-light">Something went wrong</p>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-muted">
             An unexpected error occurred. Reloading usually resolves it.
           </p>
