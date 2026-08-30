@@ -37,7 +37,7 @@ export default function Ventures() {
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
             <picture>
               <source srcSet={asset('/brand/keja-banner.webp')} type="image/webp" />
-              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={619} loading="lazy" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
+              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={1100} loading="lazy" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
             </picture>
             <div className="absolute -bottom-5 left-4 rounded-2xl bg-white p-4 shadow-card-hover ring-1 ring-gold-100 sm:left-8">
               <div className="flex items-center gap-3">
@@ -163,7 +163,6 @@ export default function Ventures() {
             <div className="relative overflow-hidden rounded-3xl border border-gold-400/20 shadow-gold-lg">
               <picture>
                 <source srcSet={asset('/images/skyline.webp')} type="image/webp" />
-              </picture>
                 <img
                   src={asset('/images/skyline.jpg')}
                   alt="Nairobi skyline — tokenized real estate offerings by Keja Tokenize"
@@ -171,11 +170,12 @@ export default function Ventures() {
                   height={720}
                   loading="lazy"
                   className="h-[420px] w-full object-cover"
-              />
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
               <div className="absolute inset-x-6 bottom-6">
                 <p className="text-[10px] font-bold uppercase tracking-wide2 text-gold-300">Simulated demo portfolio</p>
-                <p className="mt-1 font-display text-2xl font-bold text-white">$45.5M+ tokenized · 7.3% blended yield</p>
+                <p className="mt-1 font-display text-2xl font-bold text-white">$45.5M+ simulated · 7.3% blended target yield</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {['KJ-WST1 · 7.0%', 'KJ-KLM2 · 8.0%', 'KJ-KRN3 · funding', 'KJ-THK5 · Q4 2026'].map((t) => (
                     <span key={t} className="rounded-full border border-gold-400/40 bg-ink/60 px-3 py-1 text-[11px] font-semibold text-gold-200 backdrop-blur">

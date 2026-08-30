@@ -1,6 +1,6 @@
 import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
-import { MapPin, TrendingUp, Building2, Landmark, ArrowRight } from 'lucide-react'
+import { MapPin, TrendingUp, Building2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { fadeUp } from '@/lib/motion'
 

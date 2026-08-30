@@ -54,7 +54,7 @@ export default function Contact() {
           {/* form */}
           <motion.div {...fadeUp} className="card-luxe p-6 sm:p-8">
             {sent ? (
-              <div className="py-12 text-center">
+              <div className="py-12 text-center" role="status" aria-live="polite">
                 <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-600" />
                 <h2 className="mt-4 font-display text-2xl font-bold text-ink">Your email app should have opened</h2>
                 <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-muted">

@@ -112,11 +112,11 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </section>
-        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-faint">
+        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-muted">
           Past performance is not a guarantee of future results. Figures reflect mandates completed
           between 2022 and 2026; outcomes depend on market conditions, execution and holding period.
         </p>
+      </section>
 
       {/* PILLARS */}
       <section className="section-pad bg-cream">

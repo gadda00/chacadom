@@ -34,7 +34,7 @@
       "purpose": "maskable"
     }
   ],
-  "id": "/",
+  "id": "/chacadom/",
   "shortcuts": [
     {
       "name": "Contact",
@@ -47,9 +47,9 @@
       "description": "Representative mandates"
     },
     {
-      "name": "Keja.ai",
-      "url": "https://gadda00.github.io/keja-ai/",
-      "description": "Our digital flagship"
+      "name": "Ventures \u2014 Keja.ai",
+      "url": "/chacadom/ventures",
+      "description": "Our digital flagship and tokenization demo"
     }
   ]
 }

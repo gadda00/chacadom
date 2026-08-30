@@ -57,10 +57,13 @@ function setRouteJsonLd(data: object | null) {
   document.head.appendChild(script)
 }
 
-/** Attach route-scoped JSON-LD to the current page. */
+/** Attach route-scoped JSON-LD to the current page (removed on unmount). */
 export function useRouteJsonLd(data: object | null) {
   useEffect(() => {
     setRouteJsonLd(data)
+    // Without this cleanup the FAQ schema (etc.) leaks onto every route that
+    // follows — actively harmful rich-result attribution.
+    return () => setRouteJsonLd(null)
   }, [data])
 }
 
@@ -76,15 +79,3 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
   }
 }
 
-export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((it, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: it.name,
-      item: `https://gadda00.github.io${it.path}`,
-    })),
-  }
-}

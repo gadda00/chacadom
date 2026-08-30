@@ -1,5 +1,5 @@
 import { usePageMeta, faqJsonLd, useRouteJsonLd } from '@/lib/seo'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ChevronDown, MessageCircle } from 'lucide-react'
 import { whatsappLink } from '@/data/content'
 
@@ -67,7 +67,7 @@ export default function Faq() {
     'The questions serious clients ask before engaging Chacadom — answered without sales fog.',
   )
   const [open, setOpen] = useState<number | null>(0)
-  useRouteJsonLd(faqJsonLd(FAQS))
+  useRouteJsonLd(useMemo(() => faqJsonLd(FAQS), []))
 
 const groups = [...new Set(FAQS.map((f) => f.group))]
 
@@ -97,7 +97,7 @@ const groups = [...new Set(FAQS.map((f) => f.group))]
                       <button
                         onClick={() => setOpen(open === i ? null : i)}
                         aria-expanded={open === i}
-                        aria-controls={`faq-panel-${i}`}
+                        aria-controls={open === i ? `faq-panel-${i}` : undefined}
                         id={`faq-btn-${i}`}
                         className="flex w-full items-center justify-between gap-4 p-5 text-left"
                       >
