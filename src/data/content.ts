@@ -118,6 +118,11 @@ export const TIMELINE = [
     text: 'Commercial sales, joint ventures and marketing services launch. First managed portfolios cross a quarter-billion shillings in value.',
   },
   {
+    year: '2025',
+    title: 'Productising the discipline',
+    text: 'The firm begins codifying its verification and underwriting playbooks into software — Ardhisasa cross-checks, pricing anomaly detection and investment scoring — laying the technical foundations for a platform, not just a practice.',
+  },
+  {
     year: '2026',
     title: 'The digital flagship — Keja.ai',
     text: 'Chacadom launches Keja.ai, Kenya\u2019s AI real-estate advisor and cross-agency trust layer — taking the house discipline of verified facts and honest math to the whole market, with tokenized fractional ownership in development.',

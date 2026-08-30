@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container-luxe grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom" className="h-11 w-11 rounded-lg object-cover ring-1 ring-gold-400/30" />
+            <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom" width={44} height={44} className="h-11 w-11 rounded-lg object-cover ring-1 ring-gold-400/30" />
             <span className="flex flex-col leading-none">
               <span className="font-display text-lg font-bold text-white">CHACA<span className="gold-text">DOM</span></span>
               <span className="text-[9px] font-semibold uppercase tracking-wide2 text-gold-300">Investments</span>

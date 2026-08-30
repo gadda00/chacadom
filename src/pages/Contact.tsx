@@ -14,6 +14,25 @@ const fadeUp = {
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', interest: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [honey, setHoney] = useState('') // bot trap — humans never see it
+
+  const emailValid = !form.email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email)
+  const valid = form.name.trim().length >= 2 && form.phone.trim().length >= 7 && emailValid && form.message.trim().length >= 10
+
+  const composeBody = () =>
+    `Name: ${form.name}\nPhone: ${form.phone}${form.email ? `\nEmail: ${form.email}` : ''}${
+      form.interest ? `\nInterest: ${form.interest}` : ''
+    }\n\n${form.message}\n\n— Sent from chacadom investments website contact form`
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!valid || honey) return
+    // Static hosting: compose the enquiry in the visitor's own email client,
+    // with WhatsApp as an alternate one-tap channel. No silent dead ends.
+    const subject = `Website enquiry — ${form.interest || 'General'} — ${form.name}`
+    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(composeBody())}`
+    setSent(true)
+  }
 
   return (
     <div>
@@ -43,12 +62,12 @@ export default function Contact() {
                   time-sensitive, WhatsApp reaches us fastest.
                 </p>
                 <a
-                  href={whatsappLink('Hello Chacadom, following up on my enquiry.')}
+                  href={whatsappLink(`Hello Chacadom! Enquiry from ${form.name || 'the website'}: ${form.interest || 'general'}. ${form.message.slice(0, 200)}`)}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-6 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
                 >
-                  <MessageCircle className="h-4 w-4" /> Continue on WhatsApp
+                  <MessageCircle className="h-4 w-4" /> Send via WhatsApp instead
                 </a>
               </div>
             ) : (
@@ -57,31 +76,35 @@ export default function Contact() {
                 <p className="mt-1.5 text-sm text-ink-muted">
                   The more you share, the sharper our first recommendation.
                 </p>
-                <form
-                  className="mt-6 space-y-5"
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    setSent(true)
-                  }}
-                >
+                <form className="mt-6 space-y-5" onSubmit={handleSubmit} noValidate>
+                  <input
+                    type="text"
+                    name="company_website"
+                    value={honey}
+                    onChange={(e) => setHoney(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                  />
                   <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                     <div>
-                      <label className="label-luxe">Full name *</label>
-                      <input required className="input-luxe" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Jane Wanjiku" />
+                      <label htmlFor="cf-name" className="label-luxe">Full name *</label>
+                      <input id="cf-name" required autoComplete="name" className="input-luxe" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Jane Wanjiku" aria-invalid={form.name.length > 0 && form.name.trim().length < 2} />
                     </div>
                     <div>
-                      <label className="label-luxe">Phone *</label>
-                      <input required className="input-luxe" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+254 7XX XXX XXX" />
+                      <label htmlFor="cf-phone" className="label-luxe">Phone *</label>
+                      <input id="cf-phone" required type="tel" autoComplete="tel" className="input-luxe" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+254 7XX XXX XXX" aria-invalid={form.phone.length > 0 && form.phone.trim().length < 7} />
                     </div>
                   </div>
                   <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                     <div>
-                      <label className="label-luxe">Email</label>
-                      <input type="email" className="input-luxe" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
+                      <label htmlFor="cf-email" className="label-luxe">Email</label>
+                      <input id="cf-email" type="email" autoComplete="email" className="input-luxe" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" aria-invalid={form.email.length > 0 && !emailValid} />
                     </div>
                     <div>
-                      <label className="label-luxe">I’m interested in</label>
-                      <select className="input-luxe" value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })}>
+                      <label htmlFor="cf-interest" className="label-luxe">I’m interested in</label>
+                      <select id="cf-interest" className="input-luxe" value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })}>
                         <option value="">Choose one…</option>
                         <option>Buying property</option>
                         <option>Selling property</option>
@@ -95,12 +118,20 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <label className="label-luxe">Message *</label>
-                    <textarea required rows={5} className="input-luxe resize-none" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Your goals, budget range, preferred areas and timeline…" />
+                    <label htmlFor="cf-message" className="label-luxe">Message *</label>
+                    <textarea id="cf-message" required rows={5} className="input-luxe resize-none" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Your goals, budget range, preferred areas and timeline…" aria-invalid={form.message.length > 0 && form.message.trim().length < 10} />
+                    {!valid && (form.name || form.message) && (
+                      <p className="mt-2 text-xs text-gold-700" role="note">
+                        Please complete the required fields (message of at least 10 characters) before sending.
+                      </p>
+                    )}
                   </div>
-                  <button type="submit" className="btn-gold w-full sm:w-auto">
+                  <button type="submit" disabled={!valid} className="btn-gold w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-50">
                     <Send className="h-4 w-4" /> Send message
                   </button>
+                  <p className="text-xs leading-relaxed text-ink-muted">
+                    Your email app will open with the enquiry ready to send — or reach us instantly on WhatsApp below.
+                  </p>
                 </form>
               </>
             )}

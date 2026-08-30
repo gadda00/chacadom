@@ -32,7 +32,7 @@
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-wide2 text-gold-600;
+    @apply text-xs font-semibold uppercase tracking-wide2 text-gold-700;
   }
 
   .heading-display {
@@ -99,20 +99,9 @@
   background: #f5f1e6;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c6a34f, #a88430);
+  background: linear-gradient(180deg, #8a6b26, #6b521d);
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a88430;
-}
-
-/* Chat typing indicator */
-.typing-dot {
-  animation: typing 1.2s ease-in-out infinite;
-}
-.typing-dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.typing-dot:nth-child(3) {
-  animation-delay: 0.4s;
+  background: #6b521d;
 }

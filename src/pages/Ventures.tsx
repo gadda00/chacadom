@@ -35,10 +35,13 @@ export default function Ventures() {
         <div className="container-luxe grid items-center gap-12 lg:grid-cols-2">
           <motion.div {...fadeUp} className="relative order-2 lg:order-1">
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-100/50 blur-2xl" />
-            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" loading="lazy" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
+            <picture>
+              <source srcSet={asset('/brand/keja-banner.webp')} type="image/webp" />
+              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={619} loading="lazy" className="w-full rounded-3xl shadow-card-hover ring-1 ring-gold-200" />
+            </picture>
             <div className="absolute -bottom-5 left-4 rounded-2xl bg-white p-4 shadow-card-hover ring-1 ring-gold-100 sm:left-8">
               <div className="flex items-center gap-3">
-                <img src={asset('/brand/keja-logo.jpg')} alt="Keja" className="h-12 w-12 rounded-xl object-cover ring-2 ring-gold-200" />
+                <img src={asset('/brand/keja-logo-128.jpg')} alt="Keja" width={48} height={48} className="h-12 w-12 rounded-xl object-cover ring-2 ring-gold-200" />
                 <div>
                   <p className="font-display text-base font-bold text-ink">Keja.ai</p>
                   <p className="text-xs text-ink-muted">Intelligent Real Estate. Verified Trust.</p>
@@ -50,7 +53,7 @@ export default function Ventures() {
           <motion.div {...fadeUp} className="order-1 lg:order-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-300 bg-gold-50 px-4 py-1.5">
               <Sparkles className="h-3.5 w-3.5 text-gold-600" />
-              <span className="text-xs font-bold uppercase tracking-wide2 text-gold-700">Flagship venture · Launched 2026</span>
+              <span className="text-xs font-bold uppercase tracking-wide2 text-gold-700">Flagship venture · Live in 2026</span>
             </div>
             <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
               Keja.ai — <span className="gold-text">the trust layer for East African property</span>
@@ -149,7 +152,7 @@ export default function Ventures() {
                 How tokenization works
               </a>
             </div>
-            <p className="mt-5 text-[11.5px] leading-relaxed text-white/40">
+            <p className="mt-5 text-[11.5px] leading-relaxed text-white/65">
               Demonstration environment — tokens, valuations and distributions are simulated pending
               regulatory approval. Educational content, not an offer of securities.
             </p>
@@ -210,7 +213,7 @@ export default function Ventures() {
 
           <div className="mt-14 grid gap-4 grid-cols-1 md:grid-cols-3">
             {[
-              { phase: '2026 H2', window: 'Q3–Q4', title: 'Foundation & Structure', text: 'Legal/IP structure, classification, product specification, data model and regulatory engagement. MVP live with AI advisor, property database and investment calculator.' },
+              { phase: '2026 H2', window: 'Q3–Q4', title: 'Institutional Foundation', text: 'The consumer platform is live; this phase builds the institutional layer around it — legal/IP structure, token classification, data model and regulatory engagement, plus the first SPV pilots for tokenization.' },
               { phase: '2027', window: 'H1–H2', title: 'KEJA AI MVP & Portal', text: 'Property intelligence and developer portal; wallet beta, KJAI utility design, compliance stack and audits.' },
               { phase: '2028', window: 'H1–H2', title: 'Controlled Token Launch', text: 'Controlled KJAI ecosystem launch subject to approvals; first KPT property pilot and asset servicing.' },
               { phase: '2029', window: 'Scale', title: 'Scale & East Africa', text: 'Scale tokenized products and expand across East African markets — Uganda, Tanzania, Rwanda.' },
@@ -220,7 +223,7 @@ export default function Ventures() {
               <motion.div key={p.phase} {...fadeUp} transition={{ ...fadeUp.transition, delay: (i % 3) * 0.08 }} className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur transition hover:border-gold-400/40">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-bold uppercase tracking-wide2 text-gold-400">{p.phase}</p>
-                  <p className="text-xs text-white/40">{p.window}</p>
+                  <p className="text-xs text-white/65">{p.window}</p>
                 </div>
                 <h3 className="mt-3 font-display text-xl font-semibold text-white">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/55">{p.text}</p>
@@ -265,7 +268,7 @@ export default function Ventures() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-[11px] leading-relaxed text-ink-faint">
+              <p className="mt-4 text-[11px] leading-relaxed text-ink-muted">
                 Planning ranges, not guaranteed fundraising outcomes. Investor data room available
                 under NDA: incorporation, IP assignments, cap table, financial model, customer
                 pipeline and risk register.
@@ -287,7 +290,7 @@ export default function Ventures() {
                   ].map(([m, sub]) => (
                     <div key={m} className="rounded-xl bg-gold-50 p-3.5 ring-1 ring-gold-100">
                       <p className="font-display text-sm font-bold text-ink">{m}</p>
-                      <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-faint">{sub}</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">{sub}</p>
                     </div>
                   ))}
                 </div>

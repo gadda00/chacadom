@@ -24,7 +24,10 @@ export default function Home() {
       {/* HERO */}
       <section className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <img src={asset('/images/hero-office.jpg')} alt="Commercial real estate" className="h-full w-full object-cover opacity-30" />
+          <picture>
+              <source srcSet={asset('/images/hero-office.webp')} type="image/webp" />
+              <img src={asset('/images/hero-office.jpg')} alt="Commercial real estate" width={1600} height={1067} fetchPriority="high" className="h-full w-full object-cover opacity-30" />
+            </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink" />
           <div className="absolute inset-0 bg-gold-shimmer opacity-[0.05]" />
         </div>
@@ -33,7 +36,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="flex items-center gap-3">
               <span className="divider-gold !w-12" />
-              <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom" className="h-14 w-14 rounded-xl object-cover shadow-gold-lg ring-1 ring-gold-400/40" />
+              <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom" width={56} height={56} className="h-14 w-14 rounded-xl object-cover shadow-gold-lg ring-1 ring-gold-400/40" />
               <span className="divider-gold !w-12" />
             </div>
           </motion.div>
@@ -92,7 +95,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="mt-12 text-xs font-semibold uppercase tracking-wide2 text-white/40"
+            className="mt-12 text-xs font-semibold uppercase tracking-wide2 text-white/65"
           >
             {SITE.pillars.join('  ·  ')}
           </motion.p>
@@ -238,7 +241,10 @@ export default function Home() {
 
           <motion.div {...fadeUp} className="relative">
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-3xl" />
-            <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" loading="lazy" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
+            <picture>
+              <source srcSet={asset('/brand/keja-banner.webp')} type="image/webp" />
+              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={619} loading="lazy" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
+            </picture>
           </motion.div>
         </div>
       </section>
@@ -276,7 +282,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gold-shimmer opacity-[0.07]" />
             <div className="relative">
-              <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom" className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-gold-lg" />
+              <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom" width={64} height={64} className="mx-auto h-16 w-16 rounded-2xl object-cover shadow-gold-lg" />
               <h2 className="mt-6 font-display text-3xl font-bold text-white sm:text-5xl">
                 Invest today. <span className="gold-text">Secure your tomorrow.</span>
               </h2>
@@ -291,7 +297,7 @@ export default function Home() {
                   Meet Chacadom
                 </Link>
               </div>
-              <p className="mt-8 text-xs font-semibold uppercase tracking-wide2 text-white/40">
+              <p className="mt-8 text-xs font-semibold uppercase tracking-wide2 text-white/65">
                 {SITE.values.join('  ·  ')}
               </p>
             </div>

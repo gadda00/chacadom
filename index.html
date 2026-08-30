@@ -2,14 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chacadom Investments — Building Wealth Through Real Estate Excellence</title>
     <meta name="description" content="Chacadom Investments — Building wealth through real estate excellence. Commercial property sales, leasing, investment advisory, land acquisition & development, joint ventures and portfolio management in Kenya." />
-    <meta name="keywords" content="real estate Kenya, commercial property Nairobi, property investment, leasing, land acquisition, portfolio management, joint ventures, Chacadom Investments" />
     <meta name="author" content="Chacadom Investments" />
-    <meta name="theme-color" content="#A88430" />
+    <meta name="theme-color" content="#8A6B26" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://gadda00.github.io/chacadom/" />
+
+    <!-- Icons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/icons/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="Chacadom" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Chacadom Investments — Building Wealth Through Real Estate Excellence" />
@@ -19,6 +26,7 @@
     <meta property="og:image" content="https://gadda00.github.io/chacadom/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Chacadom Investments — Vision. Value. Growth. Legacy." />
     <meta property="og:site_name" content="Chacadom Investments" />
     <meta property="og:locale" content="en_KE" />
 
@@ -27,12 +35,13 @@
     <meta name="twitter:title" content="Chacadom Investments — Building Wealth Through Real Estate Excellence" />
     <meta name="twitter:description" content="Vision. Value. Growth. Legacy. Trusted commercial real estate partner in Kenya." />
     <meta name="twitter:image" content="https://gadda00.github.io/chacadom/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Chacadom Investments — Vision. Value. Growth. Legacy." />
 
     <!-- Structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "RealEstateAgent",
+      "@type": "FinancialService",
       "name": "Chacadom Investments",
       "description": "Commercial real estate investment firm in Nairobi, Kenya — sales, leasing, advisory, land & development, JVs and portfolio management.",
       "url": "https://gadda00.github.io/chacadom/",
@@ -40,12 +49,17 @@
       "slogan": "Building Wealth Through Real Estate Excellence",
       "telephone": "+254700123456",
       "email": "info@chacadom.com",
+      "foundingDate": "2022",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Nairobi",
         "addressCountry": "Kenya"
       },
-      "areaServed": { "@type": "Country", "name": "Kenya" },
+      "areaServed": [
+        { "@type": "Country", "name": "Kenya" },
+        { "@type": "Country", "name": "East Africa" }
+      ],
+      "knowsAbout": ["Commercial Property Sales", "Property Leasing", "Real Estate Investment Advisory", "Land Acquisition", "Joint Ventures", "Portfolio Management", "Real Estate Tokenization"],
       "subOrganization": {
         "@type": "Organization",
         "name": "Keja.ai",
@@ -64,9 +78,10 @@
     }
     </script>
 
+    <!-- Fonts: trimmed weights + preconnect for fast first paint -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

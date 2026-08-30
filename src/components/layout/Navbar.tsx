@@ -25,6 +25,14 @@ export default function Navbar() {
 
   useEffect(() => setOpen(false), [location.pathname])
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -33,7 +41,7 @@ export default function Navbar() {
     >
       <div className="container-luxe flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={asset('/brand/chacadom-logo.jpg')} alt="Chacadom Investments" className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
+          <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom Investments" width={40} height={40} className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-tight text-ink">
               CHACA<span className="gold-text">DOM</span>
@@ -64,16 +72,19 @@ export default function Navbar() {
         </Link>
 
         <button
+          type="button"
           className="rounded-lg p-2 text-ink hover:bg-gold-50 lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 lg:hidden">
+        <div id="mobile-menu" className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 lg:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <NavLink
