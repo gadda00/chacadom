@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { MapPinned, Coins, TrendingUp, Lightbulb, Landmark, ShieldCheck, ArrowRight } from 'lucide-react'
 import { asset } from '@/data/content'
+import { fadeUp } from '@/lib/motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6 },
-}
 
 export default function Insights() {
   usePageMeta(

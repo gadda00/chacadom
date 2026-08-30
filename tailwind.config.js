@@ -33,7 +33,7 @@ export default {
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(135deg, #5C471A 0%, #8A6B26 40%, #7A6122 60%, #5C471A 100%)',
-        'gold-shimmer': 'linear-gradient(120deg, #6B521D, #8A6B26, #B08F35, #8A6B26, #6B521D)',
+        'gold-shimmer': 'linear-gradient(120deg, #6B521D, #8A6B26, #A88727, #8A6B26, #6B521D)',
       },
       boxShadow: {
         'gold-sm': '0 2px 12px rgba(138, 107, 38, 0.22)',

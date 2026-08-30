@@ -11,6 +11,7 @@ const NAV = [
   { to: '/portfolio', label: 'Track Record' },
   { to: '/ventures', label: 'Ventures' },
   { to: '/insights', label: 'Insights' },
+  { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -25,7 +26,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => setOpen(false), [location.pathname])
+  // Close the mobile menu on navigation without a setState-in-effect:
+  // derive it — the menu force-closes whenever the route changes.
+  const [route, setRoute] = useState(location.pathname)
+  if (route !== location.pathname) {
+    setRoute(location.pathname)
+    if (open) setOpen(false)
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -43,7 +50,7 @@ export default function Navbar() {
     >
       <div className="container-luxe flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={asset('/brand/chacadom-logo-128.jpg')} alt="Chacadom Investments" width={40} height={40} className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
+          <img src={asset('/brand/chacadom-logo-128.jpg')} alt="" width={40} height={40} className="h-10 w-10 rounded-lg object-cover ring-1 ring-gold-200" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-tight text-ink">
               CHACA<span className="gold-text">DOM</span>

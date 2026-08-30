@@ -1,4 +1,4 @@
-import { usePageMeta } from '@/lib/seo'
+import { usePageMeta, faqJsonLd, useRouteJsonLd } from '@/lib/seo'
 import { useState } from 'react'
 import { ChevronDown, MessageCircle } from 'lucide-react'
 import { whatsappLink } from '@/data/content'
@@ -37,7 +37,7 @@ const FAQS: { q: string; a: string; group: string }[] = [
   {
     group: 'Keja.ai & tokenization',
     q: 'What is Keja.ai and how does it relate to Chacadom?',
-    a: 'Keja.ai is our digital flagship — Kenya\u2019s AI real-estate advisor and cross-agency trust layer, launched in 2026. It carries the same verification discipline the firm runs manually into software: trust-scored listings, investment math with FACT/ESTIMATE/ASSUMPTION labels, and the Keja Tokenize demo for fractional ownership. You can browse it at the Keja.ai link in the footer.',
+    a: 'Keja.ai is our digital flagship — Kenya\u2019s AI real-estate advisor and cross-agency trust layer, launched in 2026. It carries the same verification discipline the firm runs manually into software: trust-scored listings, investment math with FACT/ESTIMATE/ASSUMPTION labels, and the Keja Tokenize demo for fractional ownership. You can browse it live at the Keja.ai preview (gadda00.github.io/keja-ai) until the keja.ai domain is pointed there.',
   },
   {
     group: 'Keja.ai & tokenization',
@@ -67,7 +67,9 @@ export default function Faq() {
     'The questions serious clients ask before engaging Chacadom — answered without sales fog.',
   )
   const [open, setOpen] = useState<number | null>(0)
-  const groups = [...new Set(FAQS.map((f) => f.group))]
+  useRouteJsonLd(faqJsonLd(FAQS))
+
+const groups = [...new Set(FAQS.map((f) => f.group))]
 
   return (
     <div>
@@ -95,13 +97,15 @@ export default function Faq() {
                       <button
                         onClick={() => setOpen(open === i ? null : i)}
                         aria-expanded={open === i}
+                        aria-controls={`faq-panel-${i}`}
+                        id={`faq-btn-${i}`}
                         className="flex w-full items-center justify-between gap-4 p-5 text-left"
                       >
                         <span className="font-display text-[15px] font-bold text-ink">{f.q}</span>
                         <ChevronDown className={`h-5 w-5 shrink-0 text-gold-600 transition-transform ${open === i ? 'rotate-180' : ''}`} aria-hidden="true" />
                       </button>
                       {open === i && (
-                        <p className="border-t border-gold-100 px-5 pb-5 pt-4 text-sm leading-relaxed text-ink-muted">
+                        <p id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} className="border-t border-gold-100 px-5 pb-5 pt-4 text-sm leading-relaxed text-ink-muted">
                           {f.a}
                         </p>
                       )}

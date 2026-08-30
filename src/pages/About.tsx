@@ -4,13 +4,8 @@ import { motion } from 'framer-motion'
 import { ShieldCheck, Handshake, Gauge, Users, ChevronRight, Target, Eye, Compass } from 'lucide-react'
 import { SITE, TIMELINE } from '@/data/content'
 import { asset } from '@/data/content'
+import { fadeUp } from '@/lib/motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6 },
-}
 
 export default function About() {
   usePageMeta(

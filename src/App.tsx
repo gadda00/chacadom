@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Home from '@/pages/Home'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import { MotionConfig } from 'framer-motion'
 
 const About = lazy(() => import('@/pages/About'))
 const Services = lazy(() => import('@/pages/Services'))
@@ -16,6 +17,7 @@ const Faq = lazy(() => import('@/pages/Faq'))
 const Privacy = lazy(() => import('@/pages/Privacy'))
 const Terms = lazy(() => import('@/pages/Terms'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
+const Careers = lazy(() => import('@/pages/Careers'))
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -53,13 +55,15 @@ export default function App() {
       <main id="main-content" className="flex-1 pt-16">
         <ErrorBoundary>
           <Suspense fallback={<LazyFallback />}>
-            <Routes>
+            <MotionConfig reducedMotion="user">
+        <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/ventures" element={<Ventures />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/careers" element={<Careers />} />
               <Route path="/team" element={<Team />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/faq" element={<Faq />} />
@@ -67,6 +71,7 @@ export default function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+      </MotionConfig>
           </Suspense>
         </ErrorBoundary>
       </main>

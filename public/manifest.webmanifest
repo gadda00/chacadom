@@ -1,7 +1,7 @@
 {
   "name": "Chacadom Investments",
   "short_name": "Chacadom",
-  "description": "Building wealth through real estate excellence — commercial property sales, leasing, advisory, land, JVs and portfolio management in Kenya.",
+  "description": "Building wealth through real estate excellence \u2014 commercial property sales, leasing, advisory, land, JVs and portfolio management in Kenya.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -9,10 +9,47 @@
   "background_color": "#FBF9F4",
   "theme_color": "#8A6B26",
   "lang": "en",
-  "categories": ["business", "finance", "productivity"],
+  "categories": [
+    "business",
+    "finance",
+    "productivity"
+  ],
   "icons": [
-    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "/",
+  "shortcuts": [
+    {
+      "name": "Contact",
+      "url": "/chacadom/contact",
+      "description": "Talk to the Chacadom desk"
+    },
+    {
+      "name": "Track Record",
+      "url": "/chacadom/portfolio",
+      "description": "Representative mandates"
+    },
+    {
+      "name": "Keja.ai",
+      "url": "https://gadda00.github.io/keja-ai/",
+      "description": "Our digital flagship"
+    }
   ]
 }

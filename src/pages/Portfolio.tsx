@@ -2,13 +2,8 @@ import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import { MapPin, TrendingUp, Building2, Landmark, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { fadeUp } from '@/lib/motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6 },
-}
 
 const TRACK = [
   {

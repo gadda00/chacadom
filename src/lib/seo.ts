@@ -41,3 +41,50 @@ export function usePageMeta(title: string, description?: string) {
     upsertMeta('property', 'og:url', canonical)
   }, [title, description])
 }
+
+/* ------------------------- structured data builders ------------------------ */
+
+const JSONLD_ID = 'chacadom-route-jsonld'
+
+/** Replace (or remove) the per-route JSON-LD structured-data block. */
+function setRouteJsonLd(data: object | null) {
+  document.getElementById(JSONLD_ID)?.remove()
+  if (!data) return
+  const script = document.createElement('script')
+  script.type = 'application/ld+json'
+  script.id = JSONLD_ID
+  script.textContent = JSON.stringify(data)
+  document.head.appendChild(script)
+}
+
+/** Attach route-scoped JSON-LD to the current page. */
+export function useRouteJsonLd(data: object | null) {
+  useEffect(() => {
+    setRouteJsonLd(data)
+  }, [data])
+}
+
+export function faqJsonLd(faqs: { q: string; a: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: `https://gadda00.github.io${it.path}`,
+    })),
+  }
+}

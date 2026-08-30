@@ -4,13 +4,8 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react'
 import { SITE, whatsappLink } from '@/data/content'
 import { asset } from '@/data/content'
+import { fadeUp } from '@/lib/motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6 },
-}
 
 export default function Contact() {
   usePageMeta(
@@ -27,7 +22,7 @@ export default function Contact() {
   const composeBody = () =>
     `Name: ${form.name}\nPhone: ${form.phone}${form.email ? `\nEmail: ${form.email}` : ''}${
       form.interest ? `\nInterest: ${form.interest}` : ''
-    }\n\n${form.message}\n\n— Sent from chacadom investments website contact form`
+    }\n\n${form.message}\n\n— Sent from the Chacadom Investments website contact form`
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -61,10 +56,11 @@ export default function Contact() {
             {sent ? (
               <div className="py-12 text-center">
                 <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-600" />
-                <h2 className="mt-4 font-display text-2xl font-bold text-ink">Message received — thank you.</h2>
+                <h2 className="mt-4 font-display text-2xl font-bold text-ink">Your email app should have opened</h2>
                 <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-muted">
-                  {form.name.split(' ')[0]}, our team will respond within one business day. If your matter is
-                  time-sensitive, WhatsApp reaches us fastest.
+                  {form.name.split(' ')[0]}, your enquiry is pre-filled and ready to send — just hit send in
+                  your email app. If nothing opened (or you use webmail), use the WhatsApp button below —
+                  nothing is sent until you complete one of those two steps.
                 </p>
                 <a
                   href={whatsappLink(`Hello Chacadom! Enquiry from ${form.name || 'the website'}: ${form.interest || 'general'}. ${form.message.slice(0, 200)}`)}
@@ -74,6 +70,9 @@ export default function Contact() {
                 >
                   <MessageCircle className="h-4 w-4" /> Send via WhatsApp instead
                 </a>
+                <button onClick={() => setSent(false)} className="mt-3 block text-sm font-semibold text-gold-700 hover:text-gold-600">
+                  ← Edit my message
+                </button>
               </div>
             ) : (
               <>
@@ -172,13 +171,25 @@ export default function Contact() {
                   <MapPin className="h-4 w-4 text-gold-600" /> {SITE.address}
                 </li>
                 <li className="flex items-center gap-3 text-ink-soft">
-                  <Clock className="h-4 w-4 text-gold-600" /> Mon–Fri 8:30–17:30 · Sat 9:00–13:00
+                  <Clock className="h-4 w-4 text-gold-600" /> Mon–Fri 8:30–17:30 · Sat 9:00–13:00 (EAT, GMT+3)
                 </li>
               </ul>
+              <div className="mt-4 overflow-hidden rounded-xl ring-1 ring-gold-200">
+                <iframe
+                  title="Chacadom Investments — Westlands, Nairobi"
+                  src="https://www.google.com/maps?q=Westlands,+Nairobi,+Kenya&output=embed"
+                  className="h-44 w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
 
             <div className="card-luxe overflow-hidden">
-              <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" loading="lazy" className="h-72 w-full object-cover object-top" />
+              <picture>
+                <source srcSet={asset('/brand/chacadom-flyer.webp')} type="image/webp" />
+                <img src={asset('/brand/chacadom-flyer.jpg')} alt="Chacadom Investments" width={1024} height={1536} loading="lazy" className="h-72 w-full object-cover object-top" />
+              </picture>
               <div className="p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gold-700">{SITE.pillars.join(' · ')}</p>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">

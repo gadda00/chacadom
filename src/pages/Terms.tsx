@@ -74,8 +74,10 @@ export default function Terms() {
           <div>
             <h2 className="heading-display text-xl">5. Third-party content &amp; links</h2>
             <p className="mt-3">
-              Listings may be submitted by third parties and, while screened by trust-by-design checks, remain the
-              responsibility of their submitters. We are not liable for third-party sites linked from this site.
+              Our digital flagship Keja.ai (linked from this site) publishes listings submitted by third
+              parties; those listings, while screened by trust-by-design checks, remain the responsibility
+              of their submitters. This corporate website itself hosts no listings. We are not liable for
+              third-party sites linked from either site.
             </p>
           </div>
 

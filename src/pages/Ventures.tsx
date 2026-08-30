@@ -6,13 +6,8 @@ import {
 } from 'lucide-react'
 import { SITE } from '@/data/content'
 import { asset } from '@/data/content'
+import { fadeUp } from '@/lib/motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6 },
-}
 
 export default function Ventures() {
   usePageMeta(
@@ -58,7 +53,7 @@ export default function Ventures() {
           <motion.div {...fadeUp} className="order-1 lg:order-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-300 bg-gold-50 px-4 py-1.5">
               <Sparkles className="h-3.5 w-3.5 text-gold-600" />
-              <span className="text-xs font-bold uppercase tracking-wide2 text-gold-700">Flagship venture · Live in 2026</span>
+              <span className="text-xs font-bold uppercase tracking-wide2 text-gold-700">Flagship venture · Live now — launched 2026</span>
             </div>
             <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
               Keja.ai — <span className="gold-text">the trust layer for East African property</span>
@@ -166,15 +161,20 @@ export default function Ventures() {
           <motion.div {...fadeUp} className="relative">
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-2xl" />
             <div className="relative overflow-hidden rounded-3xl border border-gold-400/20 shadow-gold-lg">
-              <img
-                src={asset('/images/skyline.jpg')}
-                alt="Nairobi skyline — tokenized real estate offerings by Keja Tokenize"
-                loading="lazy"
-                className="h-[420px] w-full object-cover"
+              <picture>
+                <source srcSet={asset('/images/skyline.webp')} type="image/webp" />
+              </picture>
+                <img
+                  src={asset('/images/skyline.jpg')}
+                  alt="Nairobi skyline — tokenized real estate offerings by Keja Tokenize"
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  className="h-[420px] w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
               <div className="absolute inset-x-6 bottom-6">
-                <p className="text-[10px] font-bold uppercase tracking-wide2 text-gold-300">Live demo offerings</p>
+                <p className="text-[10px] font-bold uppercase tracking-wide2 text-gold-300">Simulated demo portfolio</p>
                 <p className="mt-1 font-display text-2xl font-bold text-white">$45.5M+ tokenized · 7.3% blended yield</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {['KJ-WST1 · 7.0%', 'KJ-KLM2 · 8.0%', 'KJ-KRN3 · funding', 'KJ-THK5 · Q4 2026'].map((t) => (
@@ -219,7 +219,7 @@ export default function Ventures() {
           <div className="mt-14 grid gap-4 grid-cols-1 md:grid-cols-3">
             {[
               { phase: '2026 H2', window: 'Q3–Q4', title: 'Institutional Foundation', text: 'The consumer platform is live; this phase builds the institutional layer around it — legal/IP structure, token classification, data model and regulatory engagement, plus the first SPV pilots for tokenization.' },
-              { phase: '2027', window: 'H1–H2', title: 'KEJA AI MVP & Portal', text: 'Property intelligence and developer portal; wallet beta, KJAI utility design, compliance stack and audits.' },
+              { phase: '2027', window: 'H1–H2', title: 'KEJA AI Platform & Portal hardening', text: 'Property intelligence and developer portal; wallet beta, KJAI utility design, compliance stack and audits.' },
               { phase: '2028', window: 'H1–H2', title: 'Controlled Token Launch', text: 'Controlled KJAI ecosystem launch subject to approvals; first KPT property pilot and asset servicing.' },
               { phase: '2029', window: 'Scale', title: 'Scale & East Africa', text: 'Scale tokenized products and expand across East African markets — Uganda, Tanzania, Rwanda.' },
               { phase: '2030', window: 'Pan-African', title: 'Institutional Infrastructure', text: 'Pan-African network and institutional infrastructure — banks, funds and enterprise clients on KEJA DATA.' },

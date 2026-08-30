@@ -7,13 +7,8 @@ import {
 } from 'lucide-react'
 import { SITE, SERVICES, STATS } from '@/data/content'
 import { asset } from '@/data/content'
+import { fadeUp } from '@/lib/motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6 },
-}
 
 const ICONS: Record<string, React.ElementType> = {
   Building2, KeyRound, TrendingUp, Landmark, Megaphone, Handshake, PieChart,
@@ -118,6 +113,10 @@ export default function Home() {
           ))}
         </div>
       </section>
+        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-faint">
+          Past performance is not a guarantee of future results. Figures reflect mandates completed
+          between 2022 and 2026; outcomes depend on market conditions, execution and holding period.
+        </p>
 
       {/* PILLARS */}
       <section className="section-pad bg-cream">
@@ -248,7 +247,7 @@ export default function Home() {
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-400/10 blur-3xl" />
             <picture>
               <source srcSet={asset('/brand/keja-banner.webp')} type="image/webp" />
-              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={619} loading="lazy" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
+              <img src={asset('/brand/keja-banner.jpg')} alt="Keja.ai by Chacadom" width={1100} height={1100} loading="lazy" className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30" />
             </picture>
           </motion.div>
         </div>
@@ -272,8 +271,14 @@ export default function Home() {
             </Link>
           </motion.div>
           <motion.div {...fadeUp} className="grid gap-4 grid-cols-1 sm:grid-cols-2">
-            <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" loading="lazy" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
-            <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards" loading="lazy" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
+            <picture>
+              <source srcSet={asset('/insights/smart-investments.webp')} type="image/webp" />
+              <img src={asset('/insights/smart-investments.jpg')} alt="Smart investments build lasting wealth" width={1024} height={1536} loading="lazy" className="rounded-2xl shadow-card ring-1 ring-gold-100" />
+            </picture>
+            <picture>
+              <source srcSet={asset('/insights/real-estate-rewards.webp')} type="image/webp" />
+              <img src={asset('/insights/real-estate-rewards.jpg')} alt="Real estate rewards" width={1024} height={1536} loading="lazy" className="mt-8 rounded-2xl shadow-card ring-1 ring-gold-100 sm:mt-10" />
+            </picture>
           </motion.div>
         </div>
       </section>
@@ -291,6 +296,9 @@ export default function Home() {
               <h2 className="mt-6 font-display text-3xl font-bold text-white sm:text-5xl">
                 Invest today. <span className="gold-text">Secure your tomorrow.</span>
               </h2>
+              <p className="mt-3 text-[11px] text-white/45">
+                Capital is at risk. Real estate is illiquid and values can fall as well as rise.
+              </p>
               <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
                 Prime locations. Verified documents. Growth corridors identified before the crowd. Whether
                 you’re buying your first plot or balancing a portfolio — the discipline is the same, and it
