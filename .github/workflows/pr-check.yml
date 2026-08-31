@@ -34,8 +34,17 @@ jobs:
       - name: Lint
         run: npx oxlint src
 
+      - name: Formatting (Prettier, blocking)
+        run: npm run lint:prettier
+
       - name: Unit tests
         run: npm test
 
       - name: Build
         run: npm run build -- --base=/chacadom/
+
+      - name: Install Chromium for prerendering
+        run: npx playwright install chromium --with-deps
+
+      - name: Prerender all routes (catches blank/failed renders before deploy)
+        run: node scripts/prerender.mjs --base /chacadom/

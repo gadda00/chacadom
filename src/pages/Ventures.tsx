@@ -98,7 +98,7 @@ export default function Ventures() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={SITE.kejaUrl} target="_blank" rel="noreferrer" className="btn-gold">
-                <Globe2 className="h-4 w-4" /> Visit keja.ai
+                <Globe2 className="h-4 w-4" /> Preview keja.ai
               </a>
               <Link to="/contact" className="btn-outline">
                 Partner with us

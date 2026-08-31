@@ -37,20 +37,26 @@ jobs:
       - name: Lint (blocking quality gate)
         run: npx oxlint src
 
+      - name: Formatting (Prettier, blocking)
+        run: npm run lint:prettier
+
       - name: Unit tests
         run: npm test
 
       - name: Build (with GitHub Pages base path)
         run: npm run build -- --base=/chacadom/
 
-      - name: Prerender all routes (status-200 HTML for crawlers + social unfurls)
+      - name: Prerender all routes (status-200 HTML, real 404 page, visible no-JS content)
         run: node scripts/prerender.mjs --base /chacadom/
 
       - name: Refresh sitemap lastmod (build-date freshness)
         run: node scripts/refresh-sitemap.mjs
 
-      - name: SPA fallback (404 page for unknown routes)
-        run: cp dist/index.html dist/404.html
+      # prerender.mjs now emits dist/404.html (the real NotFound page) — the
+      # old `cp dist/index.html` flashed Home's content and meta on dead links.
+
+      - name: Stamp service-worker cache version from deployed content
+        run: node scripts/sw-version.mjs
 
       - uses: actions/configure-pages@v5
 

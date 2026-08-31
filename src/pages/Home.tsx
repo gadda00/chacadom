@@ -374,7 +374,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 border border-gold-400/50 px-6 py-3 text-sm font-semibold tracking-wide text-gold-300 transition hover:bg-gold-400/10"
               >
-                <Globe2 className="h-4 w-4" /> Visit keja.ai
+                <Globe2 className="h-4 w-4" /> Preview keja.ai
               </a>
               <a
                 href={SITE.tokenizeUrl}
@@ -468,7 +468,7 @@ export default function Home() {
               <h2 className="mt-6 font-display text-3xl font-bold text-white sm:text-5xl">
                 Invest today. <span className="gold-text">Secure your tomorrow.</span>
               </h2>
-              <p className="mt-3 text-[11px] text-white/45">
+              <p className="mt-3 text-[11px] text-white/60">
                 Capital is at risk. Real estate is illiquid and values can fall as well as rise.
               </p>
               <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">

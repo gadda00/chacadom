@@ -3,7 +3,11 @@
 # working too — VITE_BASE=/ makes the build emit root-relative asset URLs
 # instead of the /chacadom/ subpath that GH Pages needs.
 [build]
-  command = "npm run build"
+  # Full parity with the GitHub Pages deploy: prerender every route (status-200
+  # HTML + the real 404 page) instead of shipping a bare SPA shell whose deep
+  # links unfurl with Home's meta. PRERENDER_ORIGIN picks up Netlify's own URL
+  # so canonicals/og:url point at this host rather than the Pages mirror.
+  command = "npm run build && PRERENDER_ORIGIN=$URL node scripts/prerender.mjs --base /"
   publish = "dist"
 
 [build.environment]

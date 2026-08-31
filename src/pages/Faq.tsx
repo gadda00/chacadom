@@ -12,12 +12,12 @@ const FAQS: { q: string; a: string; group: string }[] = [
   {
     group: 'Working with us',
     q: 'How do you charge?',
-    a: 'Mandate-dependent and stated in writing before work begins: a success fee on sales and acquisitions, a management percentage on portfolios (typically 5–8% of collected income), and fixed or retainer structures for advisory and JV structuring. We are allergic to unclear fee stacks and will walk you through every line before you sign anything.',
+    a: 'Mandate-dependent and stated in writing before work begins: a success fee on sales and acquisitions, a management percentage on portfolios (market-typical ranges sit around 5–8% of collected income), and fixed or retainer structures for advisory and JV structuring. No formal fee schedule is published on this site yet — the fee disclosure on our Proof page states what is charged, what is negotiated per mandate, and what we deliberately do not charge for. We are allergic to unclear fee stacks and will walk you through every line before you sign anything.',
   },
   {
     group: 'Working with us',
     q: 'Do you work with diaspora clients remotely?',
-    a: 'Constantly — it is one of our core desks. The protocol: verification before money, escrowed deposits, staged payments against milestones, documented escorted inspections, and reporting you can read from any timezone. Our Nyali and Kitengela track-record entries ran end-to-end with clients who never boarded a flight.',
+    a: 'Constantly — it is one of our core desks. The protocol: verification before money, escrowed deposits, staged payments against milestones, documented escorted inspections, and reporting you can read from any timezone. Two of the representative mandates on our track-record page (Nyali, Kitengela) ran end-to-end with clients who never boarded a flight — the playbook is exactly as described; the named cases are labelled representative until permissioned client stories replace them.',
   },
   {
     group: 'Buying & selling',
@@ -98,19 +98,24 @@ export default function Faq() {
                       key={f.q}
                       className={`card-luxe overflow-hidden ${open === i ? 'ring-gold-300' : ''}`}
                     >
-                      <button
-                        onClick={() => setOpen(open === i ? null : i)}
-                        aria-expanded={open === i}
-                        aria-controls={`faq-panel-${i}`}
-                        id={`faq-btn-${i}`}
-                        className="flex w-full items-center justify-between gap-4 p-5 text-left"
-                      >
-                        <span className="font-display text-[15px] font-bold text-ink">{f.q}</span>
-                        <ChevronDown
-                          className={`h-5 w-5 shrink-0 text-gold-600 transition-transform ${open === i ? 'rotate-180' : ''}`}
-                          aria-hidden="true"
-                        />
-                      </button>
+                      {/* Question text lives inside an h3 > button so
+                          heading-based screen-reader navigation can find it —
+                          the primary way SR users browse an FAQ. */}
+                      <h3 className="font-display text-[15px] font-bold text-ink">
+                        <button
+                          onClick={() => setOpen(open === i ? null : i)}
+                          aria-expanded={open === i}
+                          aria-controls={`faq-panel-${i}`}
+                          id={`faq-btn-${i}`}
+                          className="flex w-full items-center justify-between gap-4 p-5 text-left"
+                        >
+                          <span>{f.q}</span>
+                          <ChevronDown
+                            className={`h-5 w-5 shrink-0 text-gold-600 transition-transform ${open === i ? 'rotate-180' : ''}`}
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </h3>
                       <p
                         id={`faq-panel-${i}`}
                         role="region"

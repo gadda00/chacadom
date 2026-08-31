@@ -20,7 +20,7 @@ export default {
           DEFAULT: '#191612',
           soft: '#2A2620',
           muted: '#6B6459',
-          faint: '#8F887C',
+          faint: '#6F6A61', // was #8F887C (3.51:1 on white) — darkened to pass WCAG AA 4.5:1 as text
         },
         cream: {
           DEFAULT: '#FBF9F4',

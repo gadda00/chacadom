@@ -13,7 +13,9 @@ export const SITE = {
   address: 'Westlands, Nairobi · Kenya',
   /** Live deployment (keja.ai domain pending registration/DNS) */
   kejaUrl: 'https://gadda00.github.io/keja-ai/',
-  tokenizeUrl: 'https://gadda00.github.io/keja-ai/tokenize',
+  /** Trailing slash matters: GitHub Pages 301s the bare path and DROPS the
+   *  query string — deep links like ?view=learn landed on the generic page. */
+  tokenizeUrl: 'https://gadda00.github.io/keja-ai/tokenize/',
 }
 
 export const whatsappLink = (message?: string) =>

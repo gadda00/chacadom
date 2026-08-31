@@ -81,7 +81,7 @@ npm install
 npm run dev
 npm run typecheck   # tsc -b (strict; same gate as CI)
 npm run lint        # oxlint
-npm test            # vitest (26 tests)
+npm test            # vitest (68 tests: pages, navbar, faq, contact, newsletter, seo, content, routes, sw-contract)
 npm run verify      # typecheck + lint + tests + build — the full CI pipeline
 npm run build       # production build (base /chacadom/ baked in)
 ```
@@ -118,10 +118,11 @@ numbers, permissioned case studies, fee schedule) — documented, not ignored.
 
 ## Deployment
 
-`git push origin main` → Actions runs typecheck + lint + tests, builds
-`--base=/chacadom/`, prerenders all routes, stamps the sitemap, adds the SPA
-404 fallback, deploys to Pages. Pull requests get the same checks via
-`.github/workflows/pr-check.yml`.
+`git push origin main` → Actions runs typecheck + lint + Prettier + tests,
+builds `--base=/chacadom/`, prerenders all routes (incl. the real 404 page),
+stamps the sitemap, stamps the service-worker cache version from deployed
+content, deploys to Pages. Pull requests get the same checks — plus the
+headless prerender pass — via `.github/workflows/pr-check.yml`.
 
 ## Netlify (optional)
 

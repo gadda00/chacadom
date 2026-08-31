@@ -2,7 +2,9 @@
    Strategy:
    - /assets/* (hashed): cache-first (immutable), only 200s
    - images: cache-first (only 200s), versioned cache
-   - navigations: network-first -> cached page -> cached shell -> offline page
+   - navigations: network-first (8s timeout) -> cached page -> cached shell -> offline page
+   Cache version is stamped mechanically by scripts/sw-version.mjs from a
+   hash of the deployed files — no manual bumping, stale caches self-evict.
 */
 const VERSION = 'v5'
 const ASSET_CACHE = `${VERSION}-assets`
@@ -48,7 +50,10 @@ self.addEventListener('fetch', (event) => {
           fetch(request).then((res) => {
             if (ok(res)) {
               const copy = res.clone()
-              caches.open(ASSET_CACHE).then((c) => c.put(request, copy))
+              // waitUntil: keep the SW alive until the cache write lands —
+              // a bare .then() chain can be killed mid-put and silently
+              // drop the entry
+              event.waitUntil(caches.open(ASSET_CACHE).then((c) => c.put(request, copy)))
             }
             return res
           }),
@@ -64,7 +69,7 @@ self.addEventListener('fetch', (event) => {
         return fetch(request).then((res) => {
           if (ok(res)) {
             const copy = res.clone()
-            caches.open(IMG_CACHE).then((c) => c.put(request, copy))
+            event.waitUntil(caches.open(IMG_CACHE).then((c) => c.put(request, copy)))
           }
           return res
         })
@@ -74,12 +79,18 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
+    // 8s timeout: on slow/lie-fi connections a hanging fetch used to block
+    // the cache fallback indefinitely (stuck blank page). Race it instead.
+    const timedFetch = Promise.race([
+      fetch(request),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('sw-timeout')), 8000)),
+    ])
     event.respondWith(
-      fetch(request)
+      timedFetch
         .then((res) => {
           if (ok(res)) {
             const copy = res.clone()
-            caches.open(PAGE_CACHE).then((c) => c.put(request, copy))
+            event.waitUntil(caches.open(PAGE_CACHE).then((c) => c.put(request, copy)))
           }
           return res
         })

@@ -126,7 +126,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="hover:text-gold-300"
               >
-                keja.ai ↗
+                keja.ai preview ↗
               </a>
             </li>
             <li>

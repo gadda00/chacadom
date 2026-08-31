@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 import { SITE } from '@/data/content'
 
+/** Default social image — matches the static tag shipped in index.html so a
+ *  route without its own image resets to the site default instead of sharing
+ *  the previous route's image (or dropping the card entirely). */
+const DEFAULT_OG_IMAGE = 'https://gadda00.github.io/chacadom/og-image.jpg'
+
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
   if (!el) {
@@ -56,6 +61,11 @@ export function usePageMeta(title: string, description?: string, options?: PageM
     if (image) {
       upsertMeta('property', 'og:image', image)
       upsertMeta('name', 'twitter:image', image)
+    } else {
+      // Reset to the site default so a route without its own image neither
+      // keeps the previous route's image (stale unfurls) nor loses the card.
+      upsertMeta('property', 'og:image', DEFAULT_OG_IMAGE)
+      upsertMeta('name', 'twitter:image', DEFAULT_OG_IMAGE)
     }
     upsertMeta('property', 'og:title', full)
     upsertMeta('name', 'twitter:title', full)

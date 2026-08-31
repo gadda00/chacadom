@@ -261,7 +261,7 @@ export default function Proof() {
               <h3 className="font-display text-xl font-semibold">Conflicts &amp; incentives</h3>
             </div>
             <p className="mt-4 leading-relaxed text-white/75">{FEES_DISCLOSURE.conflictsPolicy}</p>
-            <p className="mt-3 text-[11px] leading-relaxed text-white/45">
+            <p className="mt-3 text-[11px] leading-relaxed text-white/60">
               {FEES_DISCLOSURE.futureNote}
             </p>
           </motion.div>

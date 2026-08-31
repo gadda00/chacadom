@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { asset } from '@/data/content'
@@ -21,10 +21,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const menuRef = useRef<HTMLDivElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
+    // passive: scroll handlers must never block scrolling on the main thread
     const onScroll = () => setScrolled(window.scrollY > 12)
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -38,11 +41,39 @@ export default function Navbar() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false)
+      if (e.key === 'Escape' && open) {
+        setOpen(false)
+        // restore the user's place in the focus order — the toggle they used
+        toggleRef.current?.focus()
+      }
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [])
+  }, [open])
+
+  // Opening the menu moves focus into it, so keyboard users land on real
+  // menu items instead of continuing into the page behind the overlay.
+  useEffect(() => {
+    if (!open) return
+    const first = menuRef.current?.querySelector<HTMLElement>('a[href], button')
+    first?.focus()
+  }, [open])
+
+  // Focus trap: Tab wraps at the menu boundaries while it is open.
+  const onMenuKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab' || !menuRef.current) return
+    const focusables = menuRef.current.querySelectorAll<HTMLElement>('a[href], button')
+    if (!focusables.length) return
+    const first = focusables[0]
+    const last = focusables[focusables.length - 1]
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault()
+      last.focus()
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault()
+      first.focus()
+    }
+  }
 
   return (
     <header
@@ -76,7 +107,7 @@ export default function Navbar() {
               to={item.to}
               end={item.to === '/'}
               className={({ isActive }) =>
-                `rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
+                `rounded-lg px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 ${
                   isActive
                     ? 'bg-gold-50 text-gold-700'
                     : 'text-ink-soft hover:bg-gold-50/60 hover:text-gold-700'
@@ -94,11 +125,13 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="rounded-lg p-2 text-ink hover:bg-gold-50 xl:hidden"
+          ref={toggleRef}
+          className="rounded-lg p-2 text-ink hover:bg-gold-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 xl:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
-          aria-controls="mobile-menu"
+          aria-haspopup="true"
+          aria-controls={open ? 'mobile-menu' : undefined}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -107,6 +140,10 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
+          ref={menuRef}
+          role="dialog"
+          aria-label="Site menu"
+          onKeyDown={onMenuKeyDown}
           className="border-t border-gold-100 bg-white px-4 pb-4 pt-2 xl:hidden"
         >
           <nav className="flex flex-col gap-1">
@@ -116,7 +153,7 @@ export default function Navbar() {
                 to={item.to}
                 end={item.to === '/'}
                 className={({ isActive }) =>
-                  `rounded-lg px-4 py-2.5 text-sm font-medium ${
+                  `rounded-lg px-4 py-2.5 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 ${
                     isActive ? 'bg-gold-50 text-gold-700' : 'text-ink-soft hover:bg-gold-50/60'
                   }`
                 }

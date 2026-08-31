@@ -2,6 +2,7 @@ import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import { MapPin, TrendingUp, Building2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { STATS } from '@/data/content'
 import { fadeUp } from '@/lib/motion'
 
 const TRACK = [
@@ -69,28 +70,33 @@ export default function Portfolio() {
             Numbers first. <span className="gold-text">Then the stories.</span>
           </h1>
           <p className="mt-6 leading-relaxed text-white/65">
-            Representative mandates across our desks. Client identities stay confidential; the
-            mechanics of each outcome are exactly as described — because the process is the product.
+            Representative mandates across our desks, owner-attested and not independently audited.
+            Client identities stay confidential; each case describes the playbook exactly as it runs
+            — named cases are representative composites until permissioned client stories replace
+            them (see the{' '}
+            <Link to="/proof" className="font-semibold text-gold-300 underline underline-offset-2">
+              Proof &amp; Disclosure page
+            </Link>
+            ).
           </p>
         </div>
       </section>
 
       <section className="section-pad bg-white">
         <div className="container-luxe">
+          {/* Rendered from the single-source STATS register (content.ts) so the
+              value, label, definition and provenance can never drift between
+              Home, Proof and this page. */}
           <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
-            {[
-              { v: 'KES 1.2B+', l: 'Transaction value advised & managed' },
-              { v: '40+', l: 'Completed mandates since 2022' },
-              { v: '7', l: 'Service lines across four desks' },
-            ].map((s, i) => (
+            {STATS.slice(0, 3).map((s, i) => (
               <motion.div
-                key={s.l}
+                key={s.label}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.07 }}
                 className="card-luxe p-7 text-center"
               >
-                <p className="font-display text-4xl font-bold gold-text-light">{s.v}</p>
-                <p className="mt-2 text-sm font-medium text-ink-muted">{s.l}</p>
+                <p className="font-display text-4xl font-bold gold-text-light">{s.value}</p>
+                <p className="mt-2 text-sm font-medium text-ink-muted">{s.label}</p>
               </motion.div>
             ))}
           </div>
@@ -144,9 +150,13 @@ export default function Portfolio() {
           </motion.div>
 
           <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-ink-muted">
-            Past performance is not a guarantee of future results. Figures reflect completed
-            mandates as advised by Chacadom between 2022 and 2026; detailed references are available
-            under NDA.
+            Past performance is not a guarantee of future results. All figures are owner-attested
+            from Chacadom’s internal records (2022–2026), not independently audited — definitions,
+            as-of dates and sources for every figure live on the{' '}
+            <Link to="/proof" className="font-semibold text-gold-700 underline underline-offset-2">
+              Proof &amp; Disclosure page
+            </Link>
+            . Detailed references are available under NDA.
           </p>
         </div>
       </section>

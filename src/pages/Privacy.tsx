@@ -54,9 +54,11 @@ export default function Privacy() {
                 us.
               </li>
               <li>
-                • <b>Browser-local data</b> — saved searches, favourites and demo-account details
+                • <b>Browser-local data</b> — the email address you optionally leave in the
+                newsletter capture, and the timestamped consent records attached to your enquiries,
                 are stored in your browser&rsquo;s local storage on your device and never
-                transmitted to us.
+                transmitted to us. (On Keja.ai, the same applies to your demo account, saved
+                searches and comparison choices.)
               </li>
               <li>
                 • <b>Basic technical logs</b> — our static hosting provider may record standard

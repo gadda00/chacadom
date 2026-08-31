@@ -2,7 +2,7 @@ import { usePageMeta } from '@/lib/seo'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { SITE, whatsappLink } from '@/data/content'
 import { asset } from '@/data/content'
 import { fadeUp } from '@/lib/motion'
@@ -64,13 +64,19 @@ export default function Contact() {
   const setIntent = (v: string) => setUserIntent(v)
 
   const emailValid = !form.email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email)
+  // Phone must contain at least 7 DIGITS — `"abcdefg"` used to pass a bare
+  // length check. International formats (+, spaces, dashes) are fine.
+  const phoneValid = form.phone.replace(/\D/g, '').length >= 7
   const valid =
     form.name.trim().length >= 2 &&
-    form.phone.trim().length >= 7 &&
+    phoneValid &&
     emailValid &&
     form.message.trim().length >= 10 &&
     intent !== '' &&
     consent
+  // the cf-hint alert only exists while the form is incomplete — reference
+  // it from the fields only then, so aria-describedby never dangles
+  const showHint = !valid && !!(form.name || form.message)
 
   const intentLabel = INTENTS.find((i) => i.value === intent)?.label ?? 'General'
 
@@ -231,7 +237,7 @@ export default function Contact() {
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Jane Wanjiku"
                         aria-invalid={form.name.length > 0 && form.name.trim().length < 2}
-                        aria-describedby="cf-hint"
+                        aria-describedby={showHint ? 'cf-hint' : undefined}
                       />
                     </div>
                     <div>
@@ -247,8 +253,8 @@ export default function Contact() {
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
                         placeholder="+254 7XX XXX XXX"
-                        aria-invalid={form.phone.length > 0 && form.phone.trim().length < 7}
-                        aria-describedby="cf-hint"
+                        aria-invalid={form.phone.length > 0 && !phoneValid}
+                        aria-describedby={showHint ? 'cf-hint' : undefined}
                       />
                     </div>
                   </div>
@@ -267,7 +273,7 @@ export default function Contact() {
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="you@example.com"
                         aria-invalid={form.email.length > 0 && !emailValid}
-                        aria-describedby="cf-hint"
+                        aria-describedby={showHint ? 'cf-hint' : undefined}
                       />
                     </div>
                     <div>
@@ -341,9 +347,9 @@ export default function Contact() {
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Your goals, preferred areas and anything we should know…"
                       aria-invalid={form.message.length > 0 && form.message.trim().length < 10}
-                      aria-describedby="cf-hint"
+                      aria-describedby={showHint ? 'cf-hint' : undefined}
                     />
-                    {!valid && (form.name || form.message) && (
+                    {showHint && (
                       <p id="cf-hint" className="mt-2 text-xs text-gold-700" role="alert">
                         Please complete the required fields (message of at least 10 characters) and
                         confirm consent before sending.
@@ -364,12 +370,12 @@ export default function Contact() {
                       I agree to be contacted about <b className="text-ink">this enquiry only</b>,
                       via my preferred channel. The consent record (time, purpose) is stored on my
                       device and travels with the enquiry itself. No marketing lists — see the{' '}
-                      <a
-                        href="/privacy"
+                      <Link
+                        to="/privacy"
                         className="font-semibold text-gold-700 underline decoration-gold-400 underline-offset-2"
                       >
                         privacy policy
-                      </a>
+                      </Link>
                       .
                     </span>
                   </label>
@@ -426,13 +432,17 @@ export default function Contact() {
               </ul>
               <div className="mt-4 overflow-hidden rounded-xl ring-1 ring-gold-200">
                 {mapLoaded ? (
+                  // oxlint-disable-next-line iframe-missing-sandbox — sandboxing Google Maps embeds breaks them (opaque origin → storage-denied gray box); the click-to-load gate already keeps the request opt-in
                   <iframe
                     title="Chacadom Investments — Westlands, Nairobi"
                     src="https://www.google.com/maps?q=Westlands,+Nairobi,+Kenya&output=embed"
                     className="h-44 w-full border-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    sandbox="allow-scripts allow-popups allow-forms"
+                    // No `sandbox`: Google Maps embeds need a real origin
+                    // (storage access) — an opaque origin shows a gray box /
+                    // consent wall. The click-to-load gate above already keeps
+                    // the request out of the default page load.
                   />
                 ) : (
                   <button

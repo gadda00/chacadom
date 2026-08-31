@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chacadom Investments — Building Wealth Through Real Estate Excellence</title>
-    <meta name="description" content="Chacadom Investments — Building wealth through real estate excellence. Commercial property sales, leasing, investment advisory, land acquisition & development, joint ventures and portfolio management in Kenya." />
+    <meta name="description" content="Vision. Value. Growth. Legacy. Trusted commercial real estate partner in Kenya — commercial sales, leasing, advisory, land, JVs and portfolio management, and home of Keja.ai, the AI real-estate trust layer." />
     <meta name="author" content="Chacadom Investments" />
     <meta name="theme-color" content="#8A6B26" />
     <meta name="format-detection" content="telephone=no" />
@@ -37,7 +37,11 @@
     <meta name="twitter:image" content="https://gadda00.github.io/chacadom/og-image.jpg" />
     <meta name="twitter:image:alt" content="Chacadom Investments — Vision. Value. Growth. Legacy." />
 
-    <!-- Structured data -->
+    <!-- Structured data. Contact points are deliberately ABSENT: the phone
+         and email in content.ts are owner-attested placeholders until the
+         launch blocker is resolved — publishing them as schema.org facts
+         would turn placeholders into machine-trusted data. They are added
+         back the day real, tested contact channels exist. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,8 +51,6 @@
       "url": "https://gadda00.github.io/chacadom/",
       "logo": "https://gadda00.github.io/chacadom/brand/chacadom-logo-128.jpg",
       "slogan": "Building Wealth Through Real Estate Excellence",
-      "telephone": "+254700123456",
-      "email": "info@chacadom.com",
       "foundingDate": "2022",
       "address": {
         "@type": "PostalAddress",
@@ -78,10 +80,23 @@
     }
     </script>
 
-    <!-- Fonts: trimmed weights + preconnect for fast first paint -->
+    <!-- Fonts: preconnect + non-blocking load. The print-media trick keeps
+         the stylesheet out of the critical rendering path (no third-party
+         round-trip before first paint) while still applying once ready. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
