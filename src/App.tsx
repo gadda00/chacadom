@@ -19,6 +19,7 @@ const Privacy = lazy(() => import('@/pages/Privacy'))
 const Terms = lazy(() => import('@/pages/Terms'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 const Careers = lazy(() => import('@/pages/Careers'))
+const Waterfront = lazy(() => import('@/pages/Waterfront'))
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -97,6 +98,7 @@ export default function App() {
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/waterfront-karen" element={<Waterfront />} />
                 <Route path="/faq" element={<Faq />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />

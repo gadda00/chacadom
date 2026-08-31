@@ -17,9 +17,12 @@ import {
   ChevronRight,
   CheckCircle2,
   Globe2,
+  MapPin,
+  Waves,
 } from 'lucide-react'
 import { SITE, SERVICES, STATS } from '@/data/content'
 import { asset } from '@/data/content'
+import { WATERFRONT_KAREN } from '@/data/waterfront'
 import { fadeUp } from '@/lib/motion'
 
 const ICONS: Record<string, React.ElementType> = {
@@ -400,6 +403,97 @@ export default function Home() {
                 className="w-full rounded-3xl shadow-gold-lg ring-1 ring-gold-400/30"
               />
             </picture>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WATERFRONT KAREN — FLAGSHIP LOCATION */}
+      <section className="section-pad bg-cream">
+        <div className="container-luxe grid items-center gap-12 lg:grid-cols-2">
+          <motion.div {...fadeUp} className="relative order-2 lg:order-1">
+            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-100/60 blur-2xl" />
+            <div className="overflow-hidden rounded-3xl shadow-card-hover ring-1 ring-gold-200">
+              <picture>
+                <source
+                  srcSet={asset('/images/waterfront/waterfront-hero.webp')}
+                  type="image/webp"
+                />
+                <img
+                  src={asset('/images/waterfront/waterfront-hero.jpg')}
+                  alt={WATERFRONT_KAREN.hero.alt}
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  className="h-[340px] w-full object-cover sm:h-[380px]"
+                />
+              </picture>
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+            </div>
+            <div className="absolute -bottom-6 -left-2 hidden w-52 overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-gold-200 sm:block lg:-left-6">
+              <img
+                src={asset('/images/waterfront/waterfront-jump.jpg')}
+                alt="Family fun at the Maji Magic aqua park at The Waterfront Karen"
+                width={1200}
+                height={800}
+                loading="lazy"
+                className="h-32 w-full object-cover"
+              />
+            </div>
+            <div className="absolute -top-5 right-2 rounded-2xl bg-white p-4 shadow-card-hover ring-1 ring-gold-100 sm:right-4">
+              <p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">
+                Reported 2026
+              </p>
+              <p className="font-display text-xl font-bold text-ink">KES 9B</p>
+              <p className="text-[11px] leading-tight text-ink-muted">
+                incl. 50.6-acre expansion site
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeUp} className="order-1 lg:order-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold-300 bg-gold-50 px-4 py-1.5">
+              <MapPin className="h-3.5 w-3.5 text-gold-600" />
+              <span className="text-xs font-bold uppercase tracking-wide2 text-gold-700">
+                Flagship location · {WATERFRONT_KAREN.location}
+              </span>
+            </div>
+            <h2 className="heading-display mt-4 text-3xl sm:text-4xl">
+              The Waterfront Karen —{' '}
+              <span className="gold-text">lifestyle with institutional weight</span>
+            </h2>
+            <p className="mt-5 leading-relaxed text-ink-soft">
+              Karen&rsquo;s lakeside town centre — Naivas-anchored shopping, the Maji Magic aqua
+              park, dining, health and banking — anchors the suburb&rsquo;s premium. A reported KES
+              9 billion institutional transaction and a planned 50.6-acre expansion (residential,
+              offices, hotel) make the surrounding corridor the one Nairobi investors are watching.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {[
+                'Naivas anchor',
+                'Maji Magic Aqua Park',
+                'Dining & cafés',
+                'Health & fitness',
+                'Lakeside walks',
+                'Pet-friendly',
+              ].map((chip) => (
+                <li key={chip} className="chip !py-1">
+                  {chip}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link to="/waterfront-karen" className="btn-gold">
+                <Waves className="h-4 w-4" /> Explore the Waterfront
+              </Link>
+              <a
+                href={WATERFRONT_KAREN.kejaGuide}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-outline"
+              >
+                <Globe2 className="h-4 w-4" /> Live listings on Keja.ai
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

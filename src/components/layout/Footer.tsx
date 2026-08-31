@@ -95,6 +95,11 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/waterfront-karen" className="hover:text-gold-300">
+                The Waterfront Karen
+              </Link>
+            </li>
+            <li>
               <Link to="/faq" className="hover:text-gold-300">
                 FAQ
               </Link>

@@ -40,7 +40,9 @@ if (!existsSync(SW)) {
 }
 
 // hash every deployed artifact except the service worker itself
-const files = walk(dist).filter((f) => f !== SW).sort()
+const files = walk(dist)
+  .filter((f) => f !== SW)
+  .sort()
 const hash = createHash('sha256')
 for (const f of files) {
   hash.update(f.slice(dist.length))

@@ -2,7 +2,7 @@ import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import { MapPin, TrendingUp, Building2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { STATS } from '@/data/content'
+import { STATS, asset } from '@/data/content'
 import { fadeUp } from '@/lib/motion'
 
 const TRACK = [
@@ -53,6 +53,15 @@ const TRACK = [
     outcome: 'Three legacy plots consolidated into one income-producing strategy',
     note: 'Underperholding land converted to a single income asset with a five-year plan and quarterly reporting the family actually reads.',
     stat: 'Land → income',
+  },
+  {
+    asset: 'Waterfront Karen corridor — family acquisitions',
+    type: 'Advisory · Corridor watching brief & acquisitions',
+    location: 'Karen, Nairobi',
+    outcome:
+      'Clients positioned around the corridor’s lifestyle anchor, ahead of the reported expansion',
+    note: 'A standing brief on the streets behind The Waterfront: verified listings, honest price bands and catalyst timing — the reported KES 9B transaction and 50.6-acre mixed-use expansion are tracked as market signals, not hype.',
+    stat: 'Catalyst-tracked',
   },
 ]
 
@@ -131,6 +140,47 @@ export default function Portfolio() {
               </motion.article>
             ))}
           </div>
+
+          <motion.div
+            {...fadeUp}
+            className="relative mt-16 overflow-hidden rounded-3xl bg-ink ring-1 ring-gold-300/20"
+          >
+            <div className="absolute inset-0">
+              <picture>
+                <source
+                  srcSet={asset('/images/waterfront/waterfront-hero.webp')}
+                  type="image/webp"
+                />
+                <img
+                  src={asset('/images/waterfront/waterfront-hero.jpg')}
+                  alt="The Waterfront Karen town centre"
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  className="h-full w-full object-cover opacity-25"
+                />
+              </picture>
+              <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
+            </div>
+            <div className="relative grid gap-6 p-8 sm:p-10 lg:grid-cols-[1.5fr_auto] lg:items-center">
+              <div>
+                <p className="eyebrow !text-gold-400">Flagship corridor</p>
+                <p className="mt-2 font-display text-2xl font-bold text-white">
+                  We keep a live brief on the Waterfront Karen corridor
+                </p>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/60">
+                  Verified listings, honest bands and catalyst timing around the suburb&rsquo;s
+                  lifestyle anchor — positioned as math, not hype.
+                </p>
+              </div>
+              <Link
+                to="/waterfront-karen"
+                className="btn-gold shrink-0 justify-self-start lg:justify-self-end"
+              >
+                Read the corridor brief <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </motion.div>
 
           <motion.div
             {...fadeUp}

@@ -36,6 +36,28 @@ fees or case studies. This wave builds the truth layer:
 
 ## Round-4 upgrades (previous wave)
 
+## Round-6 — The Waterfront Karen, flagship location
+
+- **New page `/waterfront-karen`**: the client's flagship selling point given
+  its full weight — editorial investment thesis (institutional validation,
+  the reported 50.6-acre catalyst, Karen fundamentals), lifestyle amenity
+  grid, click-to-load YouTube tour (zero third-party JS until play), photo
+  gallery, sources & "as reported" labelling. Prerendered to a status-200
+  HTML page with Place JSON-LD, canonical, og:image; in the sitemap (0.9),
+  navbar and footer.
+- **Homepage**: a dedicated "Flagship location" section (hero image + aqua
+  park inset + reported-KES-9B stat chip + amenity chips) linking to the
+  page and to live listings on Keja.ai.
+- **Track Record**: a Waterfront Karen corridor watching-brief mandate entry
+  plus a corridor banner — reported figures framed as market signals, not hype.
+- **Cross-linking**: both sites now point at each other's Waterfront content
+  (chacadom advisory framing -> keja.ai listings guide).
+- Config cleanups: `__dirname` removed from vite/vitest configs
+  (`import.meta.url`), routes-consistency test now understands hyphenated
+  routes.
+
+## Round-4 upgrades
+
 - **Static-first deployment**: all 12 routes are prerendered at build time
   (`scripts/prerender.mjs`, headless Chromium) — every sitemap URL now returns
   **HTTP 200 with real HTML** (previously deep routes were served by the SPA
@@ -66,7 +88,7 @@ fees or case studies. This wave builds the truth layer:
 
 ## Pages
 
-Home · About (2022–2026 timeline) · **Leadership & Desks** · Services (7 lines) · **Track Record** · **Proof & Disclosure Center** · Ventures (Keja.ai showcase + 2026–2030 roadmap + investor relations) · Insights (philosophy) · Contact (structured inquiry + consent + reference ID, mailto + WhatsApp handoff, click-to-load map) · **FAQ** · **Careers** · **Privacy Policy (KDPA-aligned)** · **Terms & Disclaimers**
+Home (incl. Waterfront Karen flagship section) · About (2022–2026 timeline) · **Leadership & Desks** · Services (7 lines) · **Track Record** (incl. Waterfront corridor brief) · **The Waterfront Karen** (flagship location) · **Proof & Disclosure Center** · Ventures (Keja.ai showcase + 2026–2030 roadmap + investor relations) · Insights (philosophy) · Contact (structured inquiry + consent + reference ID, mailto + WhatsApp handoff, click-to-load map) · **FAQ** · **Careers** · **Privacy Policy (KDPA-aligned)** · **Terms & Disclaimers**
 
 Per-route SEO titles/descriptions/canonicals + FAQPage JSON-LD; 404 is `noindex`; Careers is in the primary nav; PWA (manifest + service worker + offline page); skip-link, reduced-motion support, focus/ARIA discipline.
 

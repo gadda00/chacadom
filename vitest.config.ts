@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config'
-import path from 'path'
+import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   // node env default; DOM-dependent tests opt in with `// @vitest-environment jsdom`
@@ -9,7 +9,7 @@ export default defineConfig({
     // let framer-motion pages mount in component tests
     setupFiles: ['src/test/setup.ts'],
   },
-  // import.meta.dirname avoids the deprecated __dirname escape that forces
+  // import.meta.url avoids the deprecated __dirname escape that forces
   // Vite's legacy config loader (warning under Vite 8).
-  resolve: { alias: { '@': path.resolve(import.meta.dirname, './src') } },
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
 })

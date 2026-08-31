@@ -47,6 +47,7 @@ const ROUTES = [
   '/team',
   '/services',
   '/portfolio',
+  '/waterfront-karen',
   '/ventures',
   '/insights',
   '/faq',
@@ -165,9 +166,7 @@ async function main() {
         document.querySelectorAll('script[src*="@vite"]').forEach((s) => s.remove())
         return '<!DOCTYPE html>\n' + document.documentElement.outerHTML
       })
-      html = html
-        .replaceAll(PREVIEW_ORIGIN, PROD_ORIGIN)
-        .replaceAll('/404-preview', 'this page')
+      html = html.replaceAll(PREVIEW_ORIGIN, PROD_ORIGIN).replaceAll('/404-preview', 'this page')
       if (html.includes('localhost:')) {
         throw new Error('localhost URL survived the rewrite — check canonical/meta/modulepreload')
       }

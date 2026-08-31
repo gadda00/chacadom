@@ -22,7 +22,9 @@ const sitemapRoutes = [...SITEMAP.matchAll(/<loc>[^<]*\/([^<]*)<\/loc>/g)]
   .map((m) => m[1])
   .map((r) => (r === '' ? '/' : `/${r}`))
 
-const prerenderRoutes = [...PRERENDER.matchAll(/'(\/[a-z]*)'|'\/'/g)].map((m) => m[1])
+const prerenderRoutes = [...PRERENDER.matchAll(/'(\/[a-z-]*|\/[a-z][a-z-]*\/[a-z-]+)'|'\/'/g)].map(
+  (m) => m[1],
+)
 
 describe('route inventory consistency', () => {
   it('every App route is in the sitemap (except the 404 wildcard)', () => {
