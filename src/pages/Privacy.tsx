@@ -62,13 +62,14 @@ export default function Privacy() {
                 • <b>Basic technical logs</b> — our static hosting provider may record standard
                 request data (IP address, browser type) for security and delivery, retained briefly.
               </li>
-            
+
               <li>
                 • <b>Third-party embeds (click-to-load)</b> — the interactive map on our Contact
-                page loads from Google Maps only when you press "Load interactive map"; until
-                then no request is made to Google. Our fonts are served by Google Fonts, which
-                receives your IP address as part of any standard web request.
-              </li></ul>
+                page loads from Google Maps only when you press "Load interactive map"; until then
+                no request is made to Google. Our fonts are served by Google Fonts, which receives
+                your IP address as part of any standard web request.
+              </li>
+            </ul>
             <p className="mt-3">
               We do not run advertising trackers, sell data, or operate central user accounts on
               this site today.

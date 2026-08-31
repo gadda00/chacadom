@@ -154,10 +154,88 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-        <p className="mt-4 text-center text-[11px] leading-relaxed text-ink-muted">
+        <p className="mt-4 px-6 text-center text-[11px] leading-relaxed text-ink-muted">
           Past performance is not a guarantee of future results. Figures reflect mandates completed
           between 2022 and 2026; outcomes depend on market conditions, execution and holding period.
+          Curious how each number is counted?{' '}
+          <Link
+            to="/proof#how-we-count"
+            className="font-semibold text-gold-700 underline decoration-gold-400 underline-offset-2"
+          >
+            See definitions, periods and sources →
+          </Link>
         </p>
+      </section>
+
+      {/* INTENT PATHWAYS — one door per job, not one narrative for all */}
+      <section className="section-pad bg-ink">
+        <div className="container-luxe">
+          <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow !text-gold-400">Start where you are</p>
+            <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+              What brings you here?
+            </h2>
+            <p className="mt-4 leading-relaxed text-white/60">
+              A seller, a landlord, an investor and a job candidate need different conversations.
+              Pick your door — every path leads to a human who knows why you came.
+            </p>
+          </motion.div>
+          <div className="mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                to: '/contact?intent=sell',
+                title: 'Sell or lease an asset',
+                text: 'Disposal strategy, tenant sourcing, marketing — priced from verified income, not wishful BSVs.',
+                cta: 'Start a disposal conversation',
+              },
+              {
+                to: '/contact?intent=buy',
+                title: 'Buy or invest',
+                text: 'Underwritten opportunities with the math shown — yields, downside and exit, labelled honestly.',
+                cta: 'See what we would run for you',
+              },
+              {
+                to: '/contact?intent=manage',
+                title: 'Own property, want it managed',
+                text: 'Tenanting, rent collection, maintenance and monthly statements that never average over surprises.',
+                cta: 'Hand over the headaches',
+              },
+              {
+                to: '/ventures',
+                title: 'Partner with us',
+                text: 'Agencies, developers and capital partners — including the Keja.ai verified-listing network.',
+                cta: 'Explore partnerships',
+              },
+              {
+                to: '/careers',
+                title: 'Join the team',
+                text: 'Analysts, agents and operators who think like owners. Grown-up culture, no shortcuts.',
+                cta: 'See open roles',
+              },
+              {
+                to: '/proof',
+                title: 'Check our working',
+                text: 'How we count our numbers, how we underwrite, and what we charge — all in one place.',
+                cta: 'Open the Proof Center',
+              },
+            ].map((p) => (
+              <motion.div
+                key={p.title}
+                {...fadeUp}
+                className="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-gold-400/50"
+              >
+                <h3 className="font-display text-lg font-semibold text-white">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{p.text}</p>
+                <Link
+                  to={p.to}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-300 transition group-hover:text-gold-200"
+                >
+                  {p.cta} <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* PILLARS */}

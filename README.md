@@ -3,7 +3,38 @@
 Corporate site of Chacadom Investments, parent of **Keja.ai** (Kenya's AI real-estate trust layer).
 Live at **https://gadda00.github.io/chacadom/**
 
-## Round-4 upgrades (this wave)
+## Round-5 upgrades (this wave — external-review implementation)
+
+An independent product review (Aug 2026) found the site's primary weakness was
+**proof density**: authoritative claims without definitions, periods, sources,
+fees or case studies. This wave builds the truth layer:
+
+- **Proof & Disclosure Center (`/proof`)**: how we count our numbers (every
+  stat now carries `definition` / `asOf` / `source`, owner-attested figures
+  explicitly say "not independently audited"); engagement profiles with the
+  full case-study structure (role, problem, work, outcome, horizon, risks) —
+  clearly labelled **illustrative composites** until permissioned real cases
+  replace them; five methodology outlines (valuation, underwriting, title
+  review, tenant screening, reporting); fees & conflicts disclosure
+  ("negotiated per mandate" stated plainly; website ranking explicitly
+  **not charged"); an entity block that shows exactly what is verified vs
+  pending instead of papering over the placeholders.
+- **Structured inquiry form**: intent (radio cards, pre-selected via
+  `?intent=` from the homepage), budget band, preferred response channel,
+  timeline, message, and an explicit timestamped **consent** record stored
+  on-device (KDPA-aligned); every enquiry gets a reference ID, and the
+  confirmation panel states who responds, on which channel, and when.
+- **Audience intent pathways** on Home ("What brings you here?"): six doors —
+  sell, buy/invest, manage, partner, careers, proof — each with tailored copy
+  and destination, replacing the single generic "Invest Today" framing.
+- **security.txt** at `/.well-known/security.txt`.
+- **`docs/REVIEW_ACTIONS.md`**: every external-review recommendation mapped
+  to implemented / partial / deferred-with-reason — nothing silently ignored.
+- Tests 18 → 26 (provenance, engagement-profile, fee-disclosure and
+  entity-state invariants); route/sitemap/prerender consistency extended to
+  the new `/proof` route; SW v4 → v5.
+
+## Round-4 upgrades (previous wave)
 
 - **Static-first deployment**: all 12 routes are prerendered at build time
   (`scripts/prerender.mjs`, headless Chromium) — every sitemap URL now returns
@@ -35,7 +66,7 @@ Live at **https://gadda00.github.io/chacadom/**
 
 ## Pages
 
-Home · About (2022–2026 timeline) · **Leadership & Desks** · Services (7 lines) · **Track Record** · Ventures (Keja.ai showcase + 2026–2030 roadmap + investor relations) · Insights (philosophy) · Contact (mailto + WhatsApp handoff, click-to-load map) · **FAQ** · **Careers** · **Privacy Policy (KDPA-aligned)** · **Terms & Disclaimers**
+Home · About (2022–2026 timeline) · **Leadership & Desks** · Services (7 lines) · **Track Record** · **Proof & Disclosure Center** · Ventures (Keja.ai showcase + 2026–2030 roadmap + investor relations) · Insights (philosophy) · Contact (structured inquiry + consent + reference ID, mailto + WhatsApp handoff, click-to-load map) · **FAQ** · **Careers** · **Privacy Policy (KDPA-aligned)** · **Terms & Disclaimers**
 
 Per-route SEO titles/descriptions/canonicals + FAQPage JSON-LD; 404 is `noindex`; Careers is in the primary nav; PWA (manifest + service worker + offline page); skip-link, reduced-motion support, focus/ARIA discipline.
 
@@ -50,7 +81,7 @@ npm install
 npm run dev
 npm run typecheck   # tsc -b (strict; same gate as CI)
 npm run lint        # oxlint
-npm test            # vitest (18 tests)
+npm test            # vitest (26 tests)
 npm run verify      # typecheck + lint + tests + build — the full CI pipeline
 npm run build       # production build (base /chacadom/ baked in)
 ```
@@ -73,6 +104,17 @@ the prerender list.
 `src/data/content.ts` holds the single source for phone/email/WhatsApp —
 replace the placeholder numbers there (and in `index.html` JSON-LD) when the
 real client lines are confirmed. **This is the remaining launch blocker.**
+The `/proof#entity` block discloses this state publicly, and the structured
+inquiry form works without it (enquiries compose in the visitor's own email
+client), but a live corporate site should not ship placeholder phone lines —
+until then, the site is honest about it rather than silent.
+
+## External-review implementation
+
+`docs/REVIEW_ACTIONS.md` maps every recommendation from the independent
+product review (Aug 2026) to implemented / partial / deferred-with-reason.
+Deferred items are owner decisions (real contact channels, registration
+numbers, permissioned case studies, fee schedule) — documented, not ignored.
 
 ## Deployment
 

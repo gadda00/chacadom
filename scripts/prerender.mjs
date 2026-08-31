@@ -43,6 +43,7 @@ const BASE = (baseArgIdx !== -1 ? args[baseArgIdx + 1] : '/chacadom/').replace(/
 const ROUTES = [
   '/',
   '/about',
+  '/proof',
   '/team',
   '/services',
   '/portfolio',
@@ -83,63 +84,73 @@ async function main() {
     }
   }
   if (!up) {
-    try { process.kill(-server.pid, 'SIGKILL') } catch { server.kill() }
+    try {
+      process.kill(-server.pid, 'SIGKILL')
+    } catch {
+      server.kill()
+    }
     console.error('[prerender] vite preview did not come up on :4173')
     process.exit(1)
   }
 
   let failures = 0
   try {
-  const browser = await chromium.launch()
-  const page = await browser.newPage()
+    const browser = await chromium.launch()
+    const page = await browser.newPage()
 
-  for (const route of ROUTES) {
-    const url = origin + BASE + route
-    try {
-      await page.goto(url, { waitUntil: 'networkidle' })
-      // settle: let React mount + usePageMeta run
-      await page.waitForFunction(() => document.readyState === 'complete')
-      await page.waitForTimeout(350)
+    for (const route of ROUTES) {
+      const url = origin + BASE + route
+      try {
+        await page.goto(url, { waitUntil: 'networkidle' })
+        // settle: let React mount + usePageMeta run
+        await page.waitForFunction(() => document.readyState === 'complete')
+        await page.waitForTimeout(350)
 
-      let html = await page.evaluate(() => {
-        // strip dev-only artifacts so they never leak into static files
-        document.querySelectorAll('script[src*="@vite"]').forEach((s) => s.remove())
-        return '<!DOCTYPE html>\n' + document.documentElement.outerHTML
-      })
-      // canonical/og:url/modulepreload: preview origin -> production origin
-      html = html.replaceAll(PREVIEW_ORIGIN, PROD_ORIGIN)
-      if (html.includes('localhost:')) {
-        throw new Error('localhost URL survived the rewrite — check canonical/meta/modulepreload')
+        let html = await page.evaluate(() => {
+          // strip dev-only artifacts so they never leak into static files
+          document.querySelectorAll('script[src*="@vite"]').forEach((s) => s.remove())
+          return '<!DOCTYPE html>\n' + document.documentElement.outerHTML
+        })
+        // canonical/og:url/modulepreload: preview origin -> production origin
+        html = html.replaceAll(PREVIEW_ORIGIN, PROD_ORIGIN)
+        if (html.includes('localhost:')) {
+          throw new Error('localhost URL survived the rewrite — check canonical/meta/modulepreload')
+        }
+
+        // sanity: the route's own title must be present (catches a blank render)
+        const title = await page.title()
+        if (!title) throw new Error('empty document title')
+
+        const outDir = resolve(DIST, route === '/' ? '.' : route.slice(1))
+        mkdirSync(outDir, { recursive: true })
+        writeFileSync(resolve(outDir, 'index.html'), html)
+        console.log(
+          `[prerender] ${route.padEnd(12)} -> ${route === '/' ? 'dist/index.html' : `dist${route}/index.html`}  ("${title}")`,
+        )
+      } catch (err) {
+        failures++
+        console.error(`[prerender] FAILED ${route}: ${err.message}`)
       }
-
-      // sanity: the route's own title must be present (catches a blank render)
-      const title = await page.title()
-      if (!title) throw new Error('empty document title')
-
-      const outDir = resolve(DIST, route === '/' ? '.' : route.slice(1))
-      mkdirSync(outDir, { recursive: true })
-      writeFileSync(resolve(outDir, 'index.html'), html)
-      console.log(
-        `[prerender] ${route.padEnd(12)} -> ${route === '/' ? 'dist/index.html' : `dist${route}/index.html`}  ("${title}")`,
-      )
-    } catch (err) {
-      failures++
-      console.error(`[prerender] FAILED ${route}: ${err.message}`)
     }
-  }
 
-  await browser.close()
+    await browser.close()
   } finally {
     // always free the port — an orphaned preview server serving stale dist
     // makes every later run "succeed" against the wrong build
-    try { process.kill(-server.pid, 'SIGKILL') } catch { server.kill() }
+    try {
+      process.kill(-server.pid, 'SIGKILL')
+    } catch {
+      server.kill()
+    }
   }
 
   if (failures > 0) {
     console.error(`[prerender] ${failures}/${ROUTES.length} routes failed`)
     process.exit(2)
   }
-  console.log(`[prerender] ${ROUTES.length}/${ROUTES.length} routes prerendered (status-200 pages for every sitemap URL)`)
+  console.log(
+    `[prerender] ${ROUTES.length}/${ROUTES.length} routes prerendered (status-200 pages for every sitemap URL)`,
+  )
 }
 
 main().catch((e) => {

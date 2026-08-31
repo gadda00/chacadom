@@ -2,39 +2,110 @@ import { usePageMeta } from '@/lib/seo'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import { SITE, whatsappLink } from '@/data/content'
 import { asset } from '@/data/content'
 import { fadeUp } from '@/lib/motion'
+
+/** Structured inquiry — the review asked for intent, budget, channel,
+ *  urgency, consent and a next-step expectation instead of a bare message. */
+const INTENTS = [
+  { value: 'buy', label: 'Buying or investing in property' },
+  { value: 'sell', label: 'Selling or leasing an asset' },
+  { value: 'manage', label: 'Property management' },
+  { value: 'land', label: 'Land acquisition & development' },
+  { value: 'jv', label: 'Joint venture / partnership' },
+  { value: 'diaspora', label: 'Diaspora investment' },
+  { value: 'keja', label: 'Keja.ai partnership' },
+  { value: 'other', label: 'Something else' },
+] as const
+
+const BUDGETS = [
+  'Under KES 5M',
+  'KES 5M – 15M',
+  'KES 15M – 50M',
+  'KES 50M – 150M',
+  'Above KES 150M',
+  'Not sure yet',
+]
+
+const CHANNELS = ['WhatsApp', 'Phone call', 'Email', 'Video call (diaspora-friendly)'] as const
+const TIMELINES = ['Exploring for now', 'Next 3 months', 'Next 6–12 months', 'Urgent'] as const
+
+const CONSENT_STORE_KEY = 'chacadom.consent-log'
 
 export default function Contact() {
   usePageMeta(
     'Contact — Invest Today, Secure Your Tomorrow',
     'Reach Chacadom on WhatsApp, phone or email — the first consultation is free and pressure-free.',
   )
-  const [form, setForm] = useState({ name: '', email: '', phone: '', interest: '', message: '' })
+  const [searchParams] = useSearchParams()
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    budget: '',
+    channel: 'WhatsApp' as (typeof CHANNELS)[number],
+    timeline: 'Exploring for now' as (typeof TIMELINES)[number],
+  })
+  const [userIntent, setUserIntent] = useState<string | null>(null)
+  const [consent, setConsent] = useState(false)
   const [sent, setSent] = useState(false)
+  const [reference, setReference] = useState('')
   const [honey, setHoney] = useState('') // bot trap
   const [mapLoaded, setMapLoaded] = useState(false) // click-to-load gate for the Google Maps embed — humans never see it
+
+  // ?intent=sell from the homepage pathway cards pre-selects the door —
+  // derived during render (no setState-in-effect), user choice overrides
+  const paramIntent = searchParams.get('intent')
+  const intent =
+    userIntent ?? (paramIntent && INTENTS.some((i) => i.value === paramIntent) ? paramIntent : '')
+  const setIntent = (v: string) => setUserIntent(v)
 
   const emailValid = !form.email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email)
   const valid =
     form.name.trim().length >= 2 &&
     form.phone.trim().length >= 7 &&
     emailValid &&
-    form.message.trim().length >= 10
+    form.message.trim().length >= 10 &&
+    intent !== '' &&
+    consent
 
-  const composeBody = () =>
-    `Name: ${form.name}\nPhone: ${form.phone}${form.email ? `\nEmail: ${form.email}` : ''}${
-      form.interest ? `\nInterest: ${form.interest}` : ''
-    }\n\n${form.message}\n\n— Sent from the Chacadom Investments website contact form`
+  const intentLabel = INTENTS.find((i) => i.value === intent)?.label ?? 'General'
+
+  const composeBody = (ref: string) =>
+    `Reference: ${ref}\nName: ${form.name}\nPhone: ${form.phone}${
+      form.email ? `\nEmail: ${form.email}` : ''
+    }\nIntent: ${intentLabel}${form.budget ? `\nBudget: ${form.budget}` : ''}\nPreferred channel: ${form.channel}\nTimeline: ${form.timeline}\n\n${form.message}\n\nConsent: sender agreed to be contacted about this enquiry (${new Date().toISOString()})\n\n— Sent from the Chacadom Investments website contact form`
+
+  /** Consent record — kept on the visitor's device (static host: no server),
+   *  timestamped, inspectable, deletable. The email itself carries the flag. */
+  const recordConsent = (ref: string) => {
+    try {
+      const log = JSON.parse(localStorage.getItem(CONSENT_STORE_KEY) ?? '[]') as unknown[]
+      log.unshift({
+        reference: ref,
+        intent: intentLabel,
+        consentedAt: new Date().toISOString(),
+        purpose: 'Contact-response only',
+      })
+      localStorage.setItem(CONSENT_STORE_KEY, JSON.stringify(log.slice(0, 20)))
+    } catch {
+      /* private mode — the email body still carries the consent line */
+    }
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!valid || honey) return
+    const ref = `CHQ-${Date.now().toString(36).toUpperCase().slice(-6)}`
+    setReference(ref)
+    recordConsent(ref)
     // Static hosting: compose the enquiry in the visitor's own email client,
     // with WhatsApp as an alternate one-tap channel. No silent dead ends.
-    const subject = `Website enquiry — ${form.interest || 'General'} — ${form.name}`
-    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(composeBody())}`
+    const subject = `Website enquiry ${ref} — ${intentLabel} — ${form.name}`
+    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(composeBody(ref))}`
     setSent(true)
   }
 
@@ -69,9 +140,23 @@ export default function Contact() {
                   send in your email app. If nothing opened (or you use webmail), use the WhatsApp
                   button below — nothing is sent until you complete one of those two steps.
                 </p>
+                <div className="mx-auto mt-6 max-w-md rounded-xl bg-cream/70 p-4 text-left ring-1 ring-gold-100">
+                  <p className="text-xs font-bold uppercase tracking-wider text-gold-700">
+                    Your reference
+                  </p>
+                  <p className="mt-1 font-mono text-lg font-bold text-ink">{reference}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-ink-muted">
+                    <b className="text-ink-soft">What happens next:</b> a named person replies on
+                    your preferred channel ({form.channel.toLowerCase()}) during business hours
+                    (Mon–Fri 8:30–17:30, Sat 9:00–13:00 EAT) — usually the same working day, at
+                    worst the next. Quote your reference in any follow-up so we start warm. Your
+                    consent record for this enquiry is stored on your device and referenced in the
+                    message itself.
+                  </p>
+                </div>
                 <a
                   href={whatsappLink(
-                    `Hello Chacadom! Enquiry from ${form.name || 'the website'}: ${form.interest || 'general'}. ${form.message.slice(0, 200)}`,
+                    `Hello Chacadom! Enquiry ${reference} from ${form.name || 'the website'} (${intentLabel}). ${form.message.slice(0, 200)}`,
                   )}
                   target="_blank"
                   rel="noreferrer"
@@ -88,11 +173,10 @@ export default function Contact() {
               </div>
             ) : (
               <>
-                <h2 className="font-display text-2xl font-bold text-ink">
-                  Tell us about your goals
-                </h2>
+                <h2 className="font-display text-2xl font-bold text-ink">Tell us what you need</h2>
                 <p className="mt-1.5 text-sm text-ink-muted">
-                  The more you share, the sharper our first recommendation.
+                  Six quick questions — then a human who knows why you came. First consultation:
+                  honest, free, pressure-free.
                 </p>
                 <form className="mt-6 space-y-5" onSubmit={handleSubmit} noValidate>
                   <input
@@ -105,6 +189,34 @@ export default function Contact() {
                     aria-hidden="true"
                     className="absolute -left-[9999px] h-0 w-0 opacity-0"
                   />
+
+                  {/* intent — radio cards so the choice is explicit */}
+                  <fieldset>
+                    <legend className="label-luxe">I want to *</legend>
+                    <div className="mt-2 grid gap-2 grid-cols-1 sm:grid-cols-2">
+                      {INTENTS.map((i) => (
+                        <label
+                          key={i.value}
+                          className={`flex cursor-pointer items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-sm transition ${
+                            intent === i.value
+                              ? 'border-gold-400 bg-gold-50 font-semibold text-ink'
+                              : 'border-gold-200 bg-white text-ink-soft hover:border-gold-300'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="cf-intent"
+                            value={i.value}
+                            checked={intent === i.value}
+                            onChange={() => setIntent(i.value)}
+                            className="h-4 w-4 accent-gold-600"
+                          />
+                          {i.label}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+
                   <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                     <div>
                       <label htmlFor="cf-name" className="label-luxe">
@@ -140,6 +252,7 @@ export default function Contact() {
                       />
                     </div>
                   </div>
+
                   <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                     <div>
                       <label htmlFor="cf-email" className="label-luxe">
@@ -158,27 +271,63 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="cf-interest" className="label-luxe">
-                        I’m interested in
+                      <label htmlFor="cf-budget" className="label-luxe">
+                        Indicative budget
                       </label>
                       <select
-                        id="cf-interest"
+                        id="cf-budget"
                         className="input-luxe"
-                        value={form.interest}
-                        onChange={(e) => setForm({ ...form, interest: e.target.value })}
+                        value={form.budget}
+                        onChange={(e) => setForm({ ...form, budget: e.target.value })}
                       >
-                        <option value="">Choose one…</option>
-                        <option>Buying property</option>
-                        <option>Selling property</option>
-                        <option>Leasing space</option>
-                        <option>Land acquisition</option>
-                        <option>Joint venture</option>
-                        <option>Portfolio management</option>
-                        <option>Diaspora investment</option>
-                        <option>Keja.ai partnership</option>
+                        <option value="">Prefer not to say</option>
+                        {BUDGETS.map((b) => (
+                          <option key={b}>{b}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
+
+                  <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="cf-channel" className="label-luxe">
+                        Preferred response channel
+                      </label>
+                      <select
+                        id="cf-channel"
+                        className="input-luxe"
+                        value={form.channel}
+                        onChange={(e) =>
+                          setForm({ ...form, channel: e.target.value as (typeof CHANNELS)[number] })
+                        }
+                      >
+                        {CHANNELS.map((c) => (
+                          <option key={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="cf-timeline" className="label-luxe">
+                        Timeline
+                      </label>
+                      <select
+                        id="cf-timeline"
+                        className="input-luxe"
+                        value={form.timeline}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            timeline: e.target.value as (typeof TIMELINES)[number],
+                          })
+                        }
+                      >
+                        {TIMELINES.map((t) => (
+                          <option key={t}>{t}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
                   <div>
                     <label htmlFor="cf-message" className="label-luxe">
                       Message *
@@ -190,23 +339,47 @@ export default function Contact() {
                       className="input-luxe resize-none"
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Your goals, budget range, preferred areas and timeline…"
+                      placeholder="Your goals, preferred areas and anything we should know…"
                       aria-invalid={form.message.length > 0 && form.message.trim().length < 10}
                       aria-describedby="cf-hint"
                     />
                     {!valid && (form.name || form.message) && (
                       <p id="cf-hint" className="mt-2 text-xs text-gold-700" role="alert">
-                        Please complete the required fields (message of at least 10 characters)
-                        before sending.
+                        Please complete the required fields (message of at least 10 characters) and
+                        confirm consent before sending.
                       </p>
                     )}
                   </div>
+
+                  {/* consent — explicit, timestamped, scoped */}
+                  <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-cream/70 p-4 ring-1 ring-gold-100">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-gold-600"
+                      required
+                    />
+                    <span className="text-xs leading-relaxed text-ink-soft">
+                      I agree to be contacted about <b className="text-ink">this enquiry only</b>,
+                      via my preferred channel. The consent record (time, purpose) is stored on my
+                      device and travels with the enquiry itself. No marketing lists — see the{' '}
+                      <a
+                        href="/privacy"
+                        className="font-semibold text-gold-700 underline decoration-gold-400 underline-offset-2"
+                      >
+                        privacy policy
+                      </a>
+                      .
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
                     disabled={!valid}
                     className="btn-gold w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <Send className="h-4 w-4" /> Send message
+                    <Send className="h-4 w-4" /> Send enquiry
                   </button>
                   <p className="text-xs leading-relaxed text-ink-muted">
                     Your email app will open with the enquiry ready to send — or reach us instantly

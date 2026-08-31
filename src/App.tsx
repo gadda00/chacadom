@@ -7,6 +7,7 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 import { MotionConfig } from 'framer-motion'
 
 const About = lazy(() => import('@/pages/About'))
+const Proof = lazy(() => import('@/pages/Proof'))
 const Services = lazy(() => import('@/pages/Services'))
 const Ventures = lazy(() => import('@/pages/Ventures'))
 const Insights = lazy(() => import('@/pages/Insights'))
@@ -88,6 +89,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/proof" element={<Proof />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/ventures" element={<Ventures />} />
                 <Route path="/insights" element={<Insights />} />

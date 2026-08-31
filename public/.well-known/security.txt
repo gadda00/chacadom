@@ -1,0 +1,8 @@
+Contact: mailto:info@chacadom.com
+Expires: 2027-08-31T23:59:00.000Z
+Preferred-Languages: en, sw
+Canonical: https://gadda00.github.io/chacadom/.well-known/security.txt
+Policy: https://gadda00.github.io/chacadom/privacy
+
+# Static corporate site — no accounts, no payments, no data collection.
+# Reports about site content or security are welcome.
