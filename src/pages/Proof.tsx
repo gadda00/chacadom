@@ -300,15 +300,14 @@ export default function Proof() {
             </div>
             <div className="border-t border-gold-100 bg-cream/60 p-5">
               <p className="text-xs leading-relaxed text-ink-muted">
-                <b className="text-ink-soft">Verified status:</b> business registration number,
-                applicable licences and verified contact channels are{' '}
-                <b>not yet published on this site</b>. Until the owner publishes and tests them, the
-                phone and email shown across the site are placeholders — this is flagged as a launch
-                blocker in the repository, and it will not be papered over here.
+                <b className="text-ink-soft">Verified status:</b> the phone and WhatsApp lines (+254
+                108 611 387) are live — the WhatsApp number also carries the vendor catalogue behind
+                the Portfolio page. The business registration number, applicable licences and a
+                two-way-verified email are <b>not yet published on this site</b>; they will be added
+                as a verified register without redesign when the owner publishes them.
               </p>
               <p className="mt-2 text-[11px] text-ink-faint">
-                Entity block last reviewed {ENTITY.lastReviewed}. When real values arrive, this
-                section flips to a verified register without redesign.
+                Entity block last reviewed {ENTITY.lastReviewed}.
               </p>
             </div>
           </div>

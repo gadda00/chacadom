@@ -23,6 +23,7 @@ import {
 import { SITE, SERVICES, STATS } from '@/data/content'
 import { asset } from '@/data/content'
 import { WATERFRONT_KAREN } from '@/data/waterfront'
+import { LISTINGS, WHATSAPP_CATALOG_URL, formatKes } from '@/data/listings'
 import { fadeUp } from '@/lib/motion'
 
 const ICONS: Record<string, React.ElementType> = {
@@ -414,15 +415,12 @@ export default function Home() {
             <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-[2.5rem] bg-gold-100/60 blur-2xl" />
             <div className="overflow-hidden rounded-3xl shadow-card-hover ring-1 ring-gold-200">
               <picture>
-                <source
-                  srcSet={asset('/images/waterfront/waterfront-hero.webp')}
-                  type="image/webp"
-                />
+                <source srcSet={asset('/images/waterfront/wf-entrance.webp')} type="image/webp" />
                 <img
-                  src={asset('/images/waterfront/waterfront-hero.jpg')}
+                  src={asset('/images/waterfront/wf-entrance.jpg')}
                   alt={WATERFRONT_KAREN.hero.alt}
-                  width={1280}
-                  height={720}
+                  width={1200}
+                  height={665}
                   loading="lazy"
                   className="h-[340px] w-full object-cover sm:h-[380px]"
                 />
@@ -431,10 +429,10 @@ export default function Home() {
             </div>
             <div className="absolute -bottom-6 -left-2 hidden w-52 overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-gold-200 sm:block lg:-left-6">
               <img
-                src={asset('/images/waterfront/waterfront-jump.jpg')}
-                alt="Family fun at the Maji Magic aqua park at The Waterfront Karen"
+                src={asset('/images/waterfront/wf-sunset-lake.jpg')}
+                alt="Maji Magic Aqua Park on the lake at The Waterfront Karen, at dusk"
                 width={1200}
-                height={800}
+                height={675}
                 loading="lazy"
                 className="h-32 w-full object-cover"
               />
@@ -495,6 +493,74 @@ export default function Home() {
               </a>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* CURRENT LISTINGS STRIP */}
+      <section className="section-pad bg-white">
+        <div className="container-luxe">
+          <motion.div {...fadeUp} className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow">On the market now</p>
+              <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
+                Current listings, <span className="gold-text">straight from our desk</span>
+              </h2>
+            </div>
+            <Link to="/portfolio" className="btn-outline">
+              All listings <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+          <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {LISTINGS.map((l, i) => (
+              <motion.a
+                key={l.id}
+                href={l.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.06 }}
+                className="card-luxe card-luxe-hover group overflow-hidden"
+                aria-label={`${l.title} — ${l.location} — ${
+                  l.priceKes != null ? formatKes(l.priceKes) : 'price on application'
+                } — opens the WhatsApp listing`}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={asset(`${l.image.base}.jpg`)}
+                    alt={l.image.alt}
+                    width={l.image.width}
+                    height={l.image.height}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <p className="absolute right-3 top-3 rounded-full bg-ink/85 px-2.5 py-1 font-display text-xs font-bold text-gold-300 backdrop-blur">
+                    {l.priceKes != null ? formatKes(l.priceKes) : 'POA'}
+                  </p>
+                </div>
+                <div className="p-5">
+                  <p className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-gold-700">
+                    <MapPin className="h-3 w-3" aria-hidden="true" /> {l.area}
+                  </p>
+                  <h3 className="mt-1.5 font-display text-base font-bold text-ink group-hover:text-gold-700">
+                    {l.title}
+                  </h3>
+                  <p className="mt-1 text-xs font-medium text-ink-muted">{l.beds}</p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+          <motion.p {...fadeUp} className="mt-6 text-center text-xs leading-relaxed text-ink-muted">
+            Prices and availability as advertised by the vendor — the live source is our{' '}
+            <a
+              href={WHATSAPP_CATALOG_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-gold-700 underline underline-offset-2"
+            >
+              WhatsApp catalogue
+            </a>
+            . Verification, negotiation and escrow are handled by our advisory desk.
+          </motion.p>
         </div>
       </section>
 

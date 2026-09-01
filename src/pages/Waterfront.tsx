@@ -16,7 +16,7 @@ export default function Waterfront() {
   usePageMeta(
     'The Waterfront Karen — Flagship Location',
     'The Waterfront Karen: the lakeside town centre anchoring Nairobi’s premier suburb. The lifestyle, the reported KES 9B institutional transaction, the 50.6-acre expansion — and what it means for property in the Karen corridor.',
-    { image: asset('/images/waterfront/waterfront-hero.jpg') },
+    { image: asset('/images/waterfront/wf-entrance.jpg') },
   )
   useRouteJsonLd({
     '@context': 'https://schema.org',
@@ -39,9 +39,9 @@ export default function Waterfront() {
       <section className="relative overflow-hidden bg-ink py-20 sm:py-28">
         <div className="absolute inset-0">
           <picture>
-            <source srcSet={asset('/images/waterfront/waterfront-hero.webp')} type="image/webp" />
+            <source srcSet={asset(`${WATERFRONT_KAREN.hero.base}.webp`)} type="image/webp" />
             <img
-              src={asset('/images/waterfront/waterfront-hero.jpg')}
+              src={asset(`${WATERFRONT_KAREN.hero.base}.jpg`)}
               alt={WATERFRONT_KAREN.hero.alt}
               width={WATERFRONT_KAREN.hero.width}
               height={WATERFRONT_KAREN.hero.height}
@@ -206,7 +206,7 @@ export default function Waterfront() {
                 videoId={WATERFRONT_KAREN.video.id}
                 title={WATERFRONT_KAREN.video.title}
                 channel={WATERFRONT_KAREN.video.channel}
-                poster={asset('/images/waterfront/waterfront-plaza.jpg')}
+                poster={asset(`${WATERFRONT_KAREN.gallery[0].base}.jpg`)}
                 posterAlt={WATERFRONT_KAREN.gallery[0].alt}
               />
             </div>
@@ -337,6 +337,7 @@ export default function Waterfront() {
           <p className="mt-4 text-xs text-ink-muted">
             Reviewed {WATERFRONT_KAREN.lastReviewed}. Independent of The Waterfront Karen — this
             page is editorial context from our advisory desk, not an advertisement.
+            {WATERFRONT_KAREN.photoNote ? ` ${WATERFRONT_KAREN.photoNote}` : ''}
           </p>
         </div>
       </section>

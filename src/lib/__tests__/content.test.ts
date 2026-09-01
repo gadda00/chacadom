@@ -140,9 +140,13 @@ describe('methodology & disclosure completeness', () => {
     expect(ranking?.status).toBe('Not charged')
   })
 
-  it('entity block discloses the unverified state honestly', () => {
-    expect(ENTITY.contact.verified).toBe(false)
+  it('entity block discloses verification state honestly', () => {
+    // Phone/WhatsApp went live (2026-09-01) and are pinned by listings.test.ts;
+    // registration and licence remain unverified and must stay flagged false.
+    expect(ENTITY.contact.verified).toBe(true)
+    expect(ENTITY.contact.note).not.toMatch(/placeholder/i)
     expect(ENTITY.registration.verified).toBe(false)
+    expect(ENTITY.licence.verified).toBe(false)
     expect(ENTITY.lastReviewed).toMatch(/^\d{4}-\d{2}-\d{2}$/)
   })
 })

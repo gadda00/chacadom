@@ -8,8 +8,8 @@ export const SITE = {
   pillars: ['Vision', 'Value', 'Growth', 'Legacy'],
   values: ['Trust', 'Integrity', 'Performance', 'Partnership'],
   email: 'info@chacadom.com',
-  phone: '+254 700 123 456',
-  whatsapp: '254700123456',
+  phone: '+254 108 611 387',
+  whatsapp: '254108611387',
   address: 'Westlands, Nairobi · Kenya',
   /** Live deployment (keja.ai domain pending registration/DNS) */
   kejaUrl: 'https://gadda00.github.io/keja-ai/',
@@ -375,7 +375,7 @@ export const FEES_DISCLOSURE = {
 
 /**
  * Entity & contact block — data-driven so real values drop in without
- * redesign, and placeholders stay honestly labelled until then.
+ * redesign, and unverified fields stay honestly labelled until then.
  */
 export const ENTITY = {
   legalName: 'Chacadom Investments',
@@ -384,11 +384,11 @@ export const ENTITY = {
   office: { value: SITE.address, label: 'Office location', verified: false },
   contact: {
     value: `${SITE.phone} · ${SITE.email}`,
-    label: 'Phone & email',
-    verified: false,
-    note: 'Contact details on this site are placeholders pending the owner publishing verified channels — flagged as a launch blocker in the repository README.',
+    label: 'Phone & WhatsApp',
+    verified: true,
+    note: 'Phone and WhatsApp lines are live (the WhatsApp number also backs the vendor catalogue on the Portfolio page); email remains unverified by two-way handshake.',
   },
-  lastReviewed: '2026-08-31',
+  lastReviewed: '2026-09-01',
 }
 
 export const TIMELINE = [

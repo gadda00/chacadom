@@ -8,8 +8,8 @@ const NAV = [
   { to: '/about', label: 'About' },
   { to: '/team', label: 'Team' },
   { to: '/services', label: 'Services' },
-  { to: '/portfolio', label: 'Track Record' },
-  { to: '/proof', label: 'Proof & Fees' },
+  { to: '/portfolio', label: 'Portfolio' },
+  { to: '/proof', label: 'Proof' },
   { to: '/waterfront-karen', label: 'Waterfront' },
   { to: '/ventures', label: 'Ventures' },
   { to: '/insights', label: 'Insights' },
@@ -108,7 +108,7 @@ export default function Navbar() {
               to={item.to}
               end={item.to === '/'}
               className={({ isActive }) =>
-                `rounded-lg px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 ${
+                `whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 ${
                   isActive
                     ? 'bg-gold-50 text-gold-700'
                     : 'text-ink-soft hover:bg-gold-50/60 hover:text-gold-700'

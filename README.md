@@ -123,13 +123,12 @@ the prerender list.
 
 ## Contact details
 
-`src/data/content.ts` holds the single source for phone/email/WhatsApp —
-replace the placeholder numbers there (and in `index.html` JSON-LD) when the
-real client lines are confirmed. **This is the remaining launch blocker.**
-The `/proof#entity` block discloses this state publicly, and the structured
-inquiry form works without it (enquiries compose in the visitor's own email
-client), but a live corporate site should not ship placeholder phone lines —
-until then, the site is honest about it rather than silent.
+`src/data/content.ts` holds the single source for phone/email/WhatsApp. The
+real client lines are live: **+254 108 611 387** (phone & WhatsApp — the same
+number backs the vendor catalogue linked from the Portfolio page). The
+`/proof#entity` block reflects the confirmed state, and every WhatsApp
+handoff (`whatsappLink()`) and listing deep-link (`src/data/listings.ts`) is
+pinned to that number by test (`src/lib/__tests__/listings.test.ts`).
 
 ## External-review implementation
 

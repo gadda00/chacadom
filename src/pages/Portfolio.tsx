@@ -1,8 +1,17 @@
 import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
-import { MapPin, TrendingUp, Building2, ArrowRight } from 'lucide-react'
+import {
+  BedDouble,
+  Building2,
+  ExternalLink,
+  MapPin,
+  MessageCircle,
+  TrendingUp,
+  ArrowRight,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { STATS, asset } from '@/data/content'
+import { STATS, asset, whatsappLink } from '@/data/content'
+import { LISTINGS, WHATSAPP_CATALOG_URL, formatKes } from '@/data/listings'
 import { fadeUp } from '@/lib/motion'
 
 const TRACK = [
@@ -67,22 +76,21 @@ const TRACK = [
 
 export default function Portfolio() {
   usePageMeta(
-    'Track Record — Representative Mandates',
-    'Numbers first: representative Chacadom mandates across Nairobi and beyond, with honest disclaimers.',
+    'Listings & Track Record — Chacadom Investments',
+    'Current Chacadom vendor stock in Kilimani, Runda and Tatu City — each listing deep-linked to its live WhatsApp page — plus representative advisory mandates, with honest disclaimers.',
   )
   return (
     <div>
       <section className="bg-ink py-20 sm:py-24">
         <div className="container-luxe max-w-3xl text-center">
-          <p className="eyebrow !text-gold-400">Track record</p>
+          <p className="eyebrow !text-gold-400">Live listings & track record</p>
           <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
-            Numbers first. <span className="gold-text">Then the stories.</span>
+            On the market now. <span className="gold-text">Then the numbers.</span>
           </h1>
           <p className="mt-6 leading-relaxed text-white/65">
-            Representative mandates across our desks, owner-attested and not independently audited.
-            Client identities stay confidential; each case describes the playbook exactly as it runs
-            — named cases are representative composites until permissioned client stories replace
-            them (see the{' '}
+            Current vendor stock advertised through our WhatsApp catalogue — every card links
+            straight to the live product page — followed by representative mandates from our
+            advisory desks, owner-attested and not independently audited (see the{' '}
             <Link to="/proof" className="font-semibold text-gold-300 underline underline-offset-2">
               Proof &amp; Disclosure page
             </Link>
@@ -93,6 +101,137 @@ export default function Portfolio() {
 
       <section className="section-pad bg-white">
         <div className="container-luxe">
+          {/* ===================== LIVE LISTINGS ===================== */}
+          <motion.div {...fadeUp} className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow">Current listings</p>
+              <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
+                Vendor stock, <span className="gold-text">on the market now</span>
+              </h2>
+            </div>
+            <a href={WHATSAPP_CATALOG_URL} target="_blank" rel="noreferrer" className="btn-outline">
+              <MessageCircle className="h-4 w-4" /> Browse the full catalogue
+            </a>
+          </motion.div>
+
+          <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-2">
+            {LISTINGS.map((l, i) => (
+              <motion.article
+                key={l.id}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: (i % 2) * 0.07 }}
+                className="card-luxe card-luxe-hover overflow-hidden"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <picture>
+                    <source srcSet={asset(`${l.image.base}.webp`)} type="image/webp" />
+                    <img
+                      src={asset(`${l.image.base}.jpg`)}
+                      alt={l.image.alt}
+                      width={l.image.width}
+                      height={l.image.height}
+                      loading={i < 2 ? 'eager' : 'lazy'}
+                      className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    />
+                  </picture>
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent p-4 pt-12">
+                    <div>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-gold-300">
+                        <MapPin className="h-3 w-3" aria-hidden="true" /> {l.location}
+                      </span>
+                      <h3 className="mt-0.5 font-display text-xl font-bold text-white">
+                        {l.title}
+                      </h3>
+                    </div>
+                    <p className="shrink-0 rounded-xl bg-gold-500 px-3 py-1.5 font-display text-sm font-bold text-ink shadow-lg">
+                      {l.priceKes != null ? formatKes(l.priceKes) : 'POA'}
+                    </p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700 ring-1 ring-gold-100">
+                      {l.type}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-ink-muted">
+                      <BedDouble className="h-3.5 w-3.5" aria-hidden="true" /> {l.beds}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{l.description}</p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {l.specs.map((s) => (
+                      <li
+                        key={s.label}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-[11px] font-semibold text-ink ring-1 ring-gold-100"
+                      >
+                        <s.icon className="h-3 w-3 text-gold-700" aria-hidden="true" />
+                        {s.label}
+                      </li>
+                    ))}
+                  </ul>
+                  {l.priceNote && (
+                    <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-ink-muted">
+                      {l.priceKes != null
+                        ? `${formatKes(l.priceKes)} · ${l.priceNote}`
+                        : l.priceNote}
+                    </p>
+                  )}
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <a href={l.whatsappUrl} target="_blank" rel="noreferrer" className="btn-gold">
+                      <MessageCircle className="h-4 w-4" /> Enquire on WhatsApp
+                    </a>
+                    <a
+                      href={l.whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-outline"
+                      aria-label={`View ${l.title} on the vendor's WhatsApp listing page`}
+                    >
+                      Listing page <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <motion.div
+            {...fadeUp}
+            className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-cream p-8 text-center ring-1 ring-gold-100 sm:flex-row sm:justify-between sm:text-left"
+          >
+            <div>
+              <p className="font-display text-lg font-bold text-ink">
+                This is a snapshot — the catalogue moves weekly
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-ink-muted">
+                Availability and prices are as advertised by the vendor at the time of posting and
+                change without notice; the WhatsApp catalogue is the live source of truth.
+              </p>
+            </div>
+            <a
+              href={WHATSAPP_CATALOG_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-gold shrink-0"
+            >
+              <MessageCircle className="h-4 w-4" /> Open the catalogue
+            </a>
+          </motion.div>
+
+          {/* ===================== TRACK RECORD ===================== */}
+          <div className="mt-16">
+            <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+              <p className="eyebrow">Track record</p>
+              <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
+                Representative mandates, <span className="gold-text">owner-attested</span>
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                Client identities stay confidential; each case describes the playbook exactly as it
+                runs — named cases are representative composites until permissioned client stories
+                replace them.
+              </p>
+            </motion.div>
+          </div>
           {/* Rendered from the single-source STATS register (content.ts) so the
               value, label, definition and provenance can never drift between
               Home, Proof and this page. */}
@@ -110,7 +249,7 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <div className="mt-14 space-y-5">
+          <div className="mt-10 space-y-5">
             {TRACK.map((t, i) => (
               <motion.article
                 key={t.asset}
@@ -128,7 +267,7 @@ export default function Portfolio() {
                       {t.location}
                     </span>
                   </div>
-                  <h2 className="mt-2.5 font-display text-lg font-bold text-ink">{t.asset}</h2>
+                  <h3 className="mt-2.5 font-display text-lg font-bold text-ink">{t.asset}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{t.note}</p>
                 </div>
                 <p className="inline-flex items-center gap-2 text-sm font-bold text-gold-700">
@@ -147,15 +286,12 @@ export default function Portfolio() {
           >
             <div className="absolute inset-0">
               <picture>
-                <source
-                  srcSet={asset('/images/waterfront/waterfront-hero.webp')}
-                  type="image/webp"
-                />
+                <source srcSet={asset('/images/waterfront/wf-complex.webp')} type="image/webp" />
                 <img
-                  src={asset('/images/waterfront/waterfront-hero.jpg')}
-                  alt="The Waterfront Karen town centre"
-                  width={1280}
-                  height={720}
+                  src={asset('/images/waterfront/wf-complex.jpg')}
+                  alt="The Waterfront Karen town centre above the lake"
+                  width={1000}
+                  height={750}
                   loading="lazy"
                   className="h-full w-full object-cover opacity-25"
                 />
@@ -172,6 +308,16 @@ export default function Portfolio() {
                   Verified listings, honest bands and catalyst timing around the suburb&rsquo;s
                   lifestyle anchor — positioned as math, not hype.
                 </p>
+                <a
+                  href={whatsappLink(
+                    'Hello Chacadom! I am interested in the Waterfront Karen corridor.',
+                  )}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline mt-4"
+                >
+                  <MessageCircle className="h-4 w-4" /> WhatsApp the desk
+                </a>
               </div>
               <Link
                 to="/waterfront-karen"

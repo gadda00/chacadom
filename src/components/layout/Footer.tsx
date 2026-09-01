@@ -91,7 +91,7 @@ export default function Footer() {
             </li>
             <li>
               <Link to="/portfolio" className="hover:text-gold-300">
-                Track Record
+                Portfolio & Listings
               </Link>
             </li>
             <li>
