@@ -165,3 +165,99 @@ export const LISTINGS: Listing[] = [
     whatsappUrl: 'https://wa.me/p/24081714854762435/254108611387',
   },
 ]
+
+/**
+ * Chacadom client desk — DIRECT MANDATES (distinct from vendor catalogue
+ * stock). These are live owner mandates we hold and sell ourselves: prices
+ * are the sellers' asking figures, verification is in progress where noted,
+ * and enquiries open a prefilled WhatsApp chat with our desk (there is no
+ * vendor product page — we ARE the desk).
+ */
+export interface ClientMandate {
+  id: string
+  title: string
+  kind: string
+  location: string
+  /** Asking price display (per-acre pricing for land). */
+  price: string
+  priceNote?: string
+  highlights: string[]
+  description: string
+  /** Optional photography; land mandates may be stat-forward without one. */
+  image?: { base: string; alt: string; width: number; height: number }
+  /** Prefilled WhatsApp enquiry to the Chacadom desk. */
+  enquiryUrl: string
+}
+
+const WA = (message: string) => `https://wa.me/254108611387?text=${encodeURIComponent(message)}`
+
+export const CLIENT_MANDATES: ClientMandate[] = [
+  {
+    id: 'daykio-kiragu-residence',
+    title: 'Daykio Kiragu Residence',
+    kind: 'Executive 5BR residence · direct-owner mandate',
+    location: 'Daykio Kiragu Road, Karen · Nairobi',
+    price: 'KES 67M',
+    priceNote: 'Asking — seller negotiable around serious offers',
+    highlights: [
+      'Three storeys of premium finishes throughout',
+      'Minutes from the Waterfront and Karen centre',
+      'Owner-supplied photography, unedited',
+      'Also live on Keja.ai with a full trust profile',
+    ],
+    description:
+      'A newly finished five-bedroom residence on Daykio Kiragu Road: crisp white elevations under a dark shingle roof, a manicured lawn, and interiors finished with hardwood floors, tray ceilings with chandeliers, a fitted kitchen and floor-to-ceiling glazing across the open-plan living and dining rooms. Sold on a direct-owner mandate held by our desk — no intermediary chain — with an independent title search booked before any deposit moves.',
+    image: {
+      base: '/images/listings/listing-daykio',
+      alt: 'Daykio Kiragu Residence — white three-storey house with manicured lawn',
+      width: 1280,
+      height: 960,
+    },
+    enquiryUrl: WA(
+      'Hi Chacadom — I am interested in the Daykio Kiragu 5BR residence (KES 67M) from your portfolio page.',
+    ),
+  },
+  {
+    id: 'amber-bay-heights',
+    title: 'Amber Bay Heights',
+    kind: '24-floor residential tower · off-plan',
+    location: 'General Mathenge Drive, Westlands · Nairobi',
+    price: 'Priced on application',
+    priceNote: 'Unit mix, floor plans and payment terms on WhatsApp',
+    highlights: [
+      'Rooftop infinity pool and sky bar',
+      'Gym, yoga deck, conference room, coffee lounge',
+      'Cascade pools and residents’ facilities stack',
+    ],
+    description:
+      'A 24-floor residential tower on General Mathenge Drive in Westlands, offering studios to three-bedroom layouts over a full amenity stack: rooftop infinity pool with skyline views, sky bar, residents’ lounge, gym and yoga deck, conference facilities and a coffee lounge. Off-plan sales with structured payment plans; developer-supplied imagery and brochures available through our desk.',
+    image: {
+      base: '/images/listings/listing-amberbay',
+      alt: 'Amber Bay Heights — 24-floor tower brochure render with amenity stack',
+      width: 1024,
+      height: 777,
+    },
+    enquiryUrl: WA(
+      'Hi Chacadom — I would like the Amber Bay Heights (Westlands) unit mix, pricing and payment plan.',
+    ),
+  },
+  {
+    id: 'kantafu-30-acres',
+    title: 'Kantafu — 30 Acres with Ready Title',
+    kind: 'Prime land · development or land-banking',
+    location: 'Kantafu · ~1.3 km off tarmac, off Old Kangundo Road',
+    price: 'KES 5.5M per acre',
+    priceNote: '30 acres total · slightly negotiable · direct owner transaction',
+    highlights: [
+      'Ready title deed — a single clean deed',
+      'Electricity and piped water on site',
+      'Gated-community, institutional or subdivision potential',
+      'Natural drainage gradient, developed neighbourhood',
+    ],
+    description:
+      'Thirty acres of strategically located land in Kantafu, roughly 1.3 km off the tarmac and under 500 m from Old Kangundo Road. Utilities are on site and the parcel sits inside a developed neighbourhood with schools and churches nearby and housing projects underway — suited to a gated community, an institutional development, subdivision or patient land banking. Offered on a ready title with the owner available for a direct transaction.',
+    enquiryUrl: WA(
+      'Hi Chacadom — I am interested in the 30-acre Kantafu land (KES 5.5M/acre). Please share the title particulars.',
+    ),
+  },
+]

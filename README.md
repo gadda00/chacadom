@@ -150,3 +150,13 @@ headless prerender pass — via `.github/workflows/pr-check.yml`.
 `netlify.toml` sets `VITE_BASE=/` so the same repo deploys at the root of a
 Netlify site with correct asset URLs and an SPA redirect. GitHub Pages
 remains the canonical host.
+
+### Client desk — direct mandates
+
+Beyond vendor catalogue stock, `src/data/listings.ts` also exports
+`CLIENT_MANDATES`: live owner mandates Chacadom holds and sells itself
+(Daykio Kiragu 5BR at KES 67M, Amber Bay Heights off-plan, and the 30-acre
+Kantafu parcel at KES 5.5M/acre). Each opens a prefilled WhatsApp chat with
+the desk; land mandates without photography render a stat-forward gold card.
+Data-integrity tests pin ids, images, enquiry links and substance for both
+collections (86 tests total).

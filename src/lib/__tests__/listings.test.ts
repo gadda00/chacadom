@@ -12,7 +12,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
-import { LISTINGS, WHATSAPP_CATALOG_URL, formatKes } from '@/data/listings'
+import { CLIENT_MANDATES, LISTINGS, WHATSAPP_CATALOG_URL, formatKes } from '@/data/listings'
 import { SITE } from '@/data/content'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..')
@@ -114,5 +114,46 @@ describe('listings — page wiring', () => {
     }
     walk(resolve(ROOT, 'src'))
     expect(offenders).toEqual([])
+  })
+})
+
+describe('client mandates — direct desk inventory', () => {
+  it('ships the three live mandates with unique ids', () => {
+    expect(CLIENT_MANDATES.length).toBeGreaterThanOrEqual(3)
+    const ids = CLIENT_MANDATES.map((m) => m.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    expect(ids).toContain('daykio-kiragu-residence')
+    expect(ids).toContain('amber-bay-heights')
+    expect(ids).toContain('kantafu-30-acres')
+  })
+
+  it('mandate images exist as webp+jpg in public/ when provided', () => {
+    for (const m of CLIENT_MANDATES) {
+      if (!m.image) continue
+      expect(existsSync(resolve(ROOT, `public${m.image.base}.webp`)), `${m.image.base}.webp`).toBe(
+        true,
+      )
+      expect(existsSync(resolve(ROOT, `public${m.image.base}.jpg`)), `${m.image.base}.jpg`).toBe(
+        true,
+      )
+      expect(m.image.alt.length).toBeGreaterThan(10)
+    }
+  })
+
+  it('every mandate enquiry opens a prefilled WhatsApp chat with the desk', () => {
+    for (const m of CLIENT_MANDATES) {
+      expect(m.enquiryUrl).toMatch(/^https:\/\/wa\.me\/254108611387\?text=.+$/)
+      expect(decodeURIComponent(m.enquiryUrl.split('text=')[1]).length).toBeGreaterThan(20)
+    }
+  })
+
+  it('mandates carry honest pricing and substance, not stubs', () => {
+    for (const m of CLIENT_MANDATES) {
+      expect(m.price.length).toBeGreaterThan(3)
+      expect(m.title.length).toBeGreaterThan(3)
+      expect(m.description.length).toBeGreaterThan(150)
+      expect(m.highlights.length).toBeGreaterThanOrEqual(3)
+      expect(m.location.length).toBeGreaterThan(5)
+    }
   })
 })

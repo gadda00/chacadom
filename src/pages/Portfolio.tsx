@@ -1,17 +1,18 @@
 import { usePageMeta } from '@/lib/seo'
 import { motion } from 'framer-motion'
 import {
+  ArrowRight,
   BedDouble,
   Building2,
   ExternalLink,
+  LandPlot,
   MapPin,
   MessageCircle,
   TrendingUp,
-  ArrowRight,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { STATS, asset, whatsappLink } from '@/data/content'
-import { LISTINGS, WHATSAPP_CATALOG_URL, formatKes } from '@/data/listings'
+import { CLIENT_MANDATES, LISTINGS, WHATSAPP_CATALOG_URL, formatKes } from '@/data/listings'
 import { fadeUp } from '@/lib/motion'
 
 const TRACK = [
@@ -217,6 +218,102 @@ export default function Portfolio() {
               <MessageCircle className="h-4 w-4" /> Open the catalogue
             </a>
           </motion.div>
+
+          {/* ===================== DIRECT MANDATES (CLIENT DESK) ===================== */}
+          <div className="mt-16">
+            <motion.div {...fadeUp} className="max-w-2xl">
+              <p className="eyebrow flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+                Chacadom client desk · direct mandates
+              </p>
+              <h2 className="heading-display mt-3 text-3xl sm:text-4xl">
+                Mandates we hold <span className="gold-text">ourselves</span>
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                Live owner mandates sold directly by our desk — no intermediary chain. Prices are
+                the sellers&rsquo; asking figures; our diligence desk completes independent title
+                searches before any deposit is requested, and the same listings carry trust profiles
+                on Keja.ai.
+              </p>
+            </motion.div>
+
+            <div className="mt-8 grid gap-6 grid-cols-1 md:grid-cols-3">
+              {CLIENT_MANDATES.map((m, i) => (
+                <motion.article
+                  key={m.id}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: (i % 3) * 0.06 }}
+                  className="card-luxe card-luxe-hover flex flex-col overflow-hidden"
+                >
+                  {m.image ? (
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <picture>
+                        <source srcSet={asset(`${m.image.base}.webp`)} type="image/webp" />
+                        <img
+                          src={asset(`${m.image.base}.jpg`)}
+                          alt={m.image.alt}
+                          width={m.image.width}
+                          height={m.image.height}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                        />
+                      </picture>
+                    </div>
+                  ) : (
+                    <div className="flex aspect-[4/3] flex-col items-center justify-center gap-2 bg-gold-gradient p-6 text-center">
+                      <LandPlot className="h-8 w-8 text-gold-200" aria-hidden="true" />
+                      <p className="font-display text-2xl font-bold text-white">30 acres</p>
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-gold-100">
+                        Single clean title deed
+                      </p>
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold-700 ring-1 ring-gold-100">
+                      {m.kind}
+                    </span>
+                    <h3 className="mt-2 font-display text-lg font-bold text-ink">{m.title}</h3>
+                    <p className="mt-1 inline-flex items-center gap-1.5 text-xs text-ink-muted">
+                      <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" /> {m.location}
+                    </p>
+                    <p className="mt-3 font-display text-xl font-bold text-ink">{m.price}</p>
+                    {m.priceNote && (
+                      <p className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-ink-muted">
+                        {m.priceNote}
+                      </p>
+                    )}
+                    <ul className="mt-4 space-y-1.5">
+                      {m.highlights.map((h) => (
+                        <li key={h} className="flex gap-2 text-xs leading-relaxed text-ink-soft">
+                          <span
+                            aria-hidden="true"
+                            className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold-500"
+                          />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-auto pt-5">
+                      <a
+                        href={m.enquiryUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-gold w-full justify-center !py-2.5 text-xs"
+                      >
+                        <MessageCircle className="h-4 w-4" /> Enquire with our desk
+                      </a>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+
+            <motion.p {...fadeUp} className="mt-6 text-[11px] leading-relaxed text-ink-muted">
+              Mandate photography is supplied by the sellers and developers. Where an independent
+              title search is still in progress we say so — ask the desk for the current status of
+              any title, plan or specification before relying on it.
+            </motion.p>
+          </div>
 
           {/* ===================== TRACK RECORD ===================== */}
           <div className="mt-16">
