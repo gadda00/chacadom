@@ -60,11 +60,16 @@ describe('usePageMeta', () => {
     expect(head()).toContain('name="robots" content="index, follow, max-image-preview:large"')
   })
 
-  it('upserts per-route og:image + twitter:image when provided', () => {
+  it('upserts ABSOLUTE per-route og:image + twitter:image when provided (relative paths make scrapers drop the card)', () => {
     renderHook(() => usePageMeta('Portfolio', 'Track record', { image: '/insights/track.webp' }))
     const h = head()
-    expect(h).toContain('property="og:image" content="/insights/track.webp"')
-    expect(h).toContain('name="twitter:image" content="/insights/track.webp"')
+    expect(h).toMatch(/property="og:image" content="https?:\/\/[^"]+\/insights\/track\.webp"/)
+    expect(h).toMatch(/name="twitter:image" content="https?:\/\/[^"]+\/insights\/track\.webp"/)
+    // a route image has unknown intrinsic size — the static 1200x630 dims
+    // and site-default alt from index.html must not misdescribe it
+    expect(h).not.toContain('og:image:width')
+    expect(h).not.toContain('og:image:height')
+    expect(h).not.toContain('og:image:alt')
   })
 })
 

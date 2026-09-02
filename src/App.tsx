@@ -53,7 +53,11 @@ function ScrollManager() {
     }
     timer = setTimeout(tryScroll, 100)
     return () => clearTimeout(timer)
-  }, [hash])
+    // pathname is a dependency too: navigating /a#x → /b#x keeps the same
+    // hash, and without pathname the effect never re-runs so /b never
+    // scrolls to its target.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hash, pathname])
   return null
 }
 

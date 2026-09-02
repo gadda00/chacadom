@@ -83,8 +83,11 @@ export default function Terms() {
             <p className="mt-3">
               Our digital flagship Keja.ai (linked from this site) publishes listings submitted by
               third parties; those listings, while screened by trust-by-design checks, remain the
-              responsibility of their submitters. This corporate website itself hosts no listings.
-              We are not liable for third-party sites linked from either site.
+              responsibility of their submitters. This corporate website hosts a curated snapshot of
+              current opportunities — vendor listings that deep-link to the vendor's live WhatsApp
+              catalogue, and client mandates handled by our own desk — for introduction only;
+              binding terms are concluded directly with the vendor or through our client desk. We
+              are not liable for third-party sites linked from either site.
             </p>
           </div>
 

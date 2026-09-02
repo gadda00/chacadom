@@ -24,6 +24,7 @@ import Services from '@/pages/Services'
 import Team from '@/pages/Team'
 import Terms from '@/pages/Terms'
 import Ventures from '@/pages/Ventures'
+import Waterfront from '@/pages/Waterfront'
 
 const PAGES: [string, ComponentType][] = [
   ['Home', Home],
@@ -31,6 +32,7 @@ const PAGES: [string, ComponentType][] = [
   ['Proof', Proof],
   ['Services', Services],
   ['Ventures', Ventures],
+  ['Waterfront', Waterfront],
   ['Insights', Insights],
   ['Contact', Contact],
   ['Careers', Careers],

@@ -173,9 +173,9 @@ export const WATERFRONT_KAREN = {
     ),
   ] as WaterfrontImage[],
   video: {
-    id: 'WpxuRP-p6CU',
-    title: 'Waterfront Mall Nairobi — Full Tour',
-    channel: 'Nairobi vlog (YouTube)',
+    id: 'zDlefHy09pg',
+    title: 'The Waterfront, Karen — Things To Do, Prices & Location',
+    channel: 'Kyls Journal (YouTube)',
   },
   kejaGuide: 'https://gadda00.github.io/keja-ai/areas/waterfront-karen',
   /** Campus photos captured on the ground; lifestyle shots representative. */

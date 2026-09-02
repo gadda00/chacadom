@@ -1,5 +1,5 @@
 import { usePageMeta } from '@/lib/seo'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Clock } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -75,15 +75,18 @@ export default function Contact() {
     intent !== '' &&
     consent
   // the cf-hint alert only exists while the form is incomplete — reference
-  // it from the fields only then, so aria-describedby never dangles
-  const showHint = !valid && !!(form.name || form.message)
+  // it from the fields only then, so aria-describedby never dangles.
+  // Any touched field (name/phone/message/consent/intent) counts as
+  // interaction: a user who fills only phone + intent + consent previously
+  // saw a disabled button with zero explanation.
+  const showHint = !valid && !!(form.name || form.phone || form.message || consent || intent)
 
   const intentLabel = INTENTS.find((i) => i.value === intent)?.label ?? 'General'
 
   const composeBody = (ref: string) =>
     `Reference: ${ref}\nName: ${form.name}\nPhone: ${form.phone}${
       form.email ? `\nEmail: ${form.email}` : ''
-    }\nIntent: ${intentLabel}${form.budget ? `\nBudget: ${form.budget}` : ''}\nPreferred channel: ${form.channel}\nTimeline: ${form.timeline}\n\n${form.message}\n\nConsent: sender agreed to be contacted about this enquiry (${new Date().toISOString()})\n\n— Sent from the Chacadom Investments website contact form`
+    }\nIntent: ${intentLabel}${form.budget ? `\nBudget: ${form.budget}` : ''}\nPreferred channel: ${form.channel}\nTimeline: ${form.timeline}\n\n${form.message.slice(0, 800)}${form.message.length > 800 ? '\n[message truncated — full text in the WhatsApp thread]' : ''}\n\nConsent: sender agreed to be contacted about this enquiry (${new Date().toISOString()})\n\n— Sent from the Chacadom Investments website contact form`
 
   /** Consent record — kept on the visitor's device (static host: no server),
    *  timestamped, inspectable, deletable. The email itself carries the flag. */
@@ -101,6 +104,13 @@ export default function Contact() {
       /* private mode — the email body still carries the consent line */
     }
   }
+
+  const sentHeadingRef = useRef<HTMLHeadingElement>(null)
+  // After submit the form (and its focused button) unmount — keyboard users
+  // landed on <body>. Move focus to the confirmation heading instead.
+  useEffect(() => {
+    if (sent) sentHeadingRef.current?.focus()
+  }, [sent])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -138,7 +148,11 @@ export default function Contact() {
             {sent ? (
               <div className="py-12 text-center" role="status" aria-live="polite">
                 <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-600" />
-                <h2 className="mt-4 font-display text-2xl font-bold text-ink">
+                <h2
+                  ref={sentHeadingRef}
+                  tabIndex={-1}
+                  className="mt-4 font-display text-2xl font-bold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+                >
                   Your email app should have opened
                 </h2>
                 <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-muted">

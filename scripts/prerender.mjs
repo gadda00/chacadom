@@ -109,21 +109,23 @@ async function main() {
 
         let html = await page.evaluate(() => {
           // Framer-motion initial states hide below-fold content from
-          // no-JS clients and crawlers (inline `opacity: 0` +
+          // no-JS clients and crawlers (inline `opacity: 0` + optional
           // `transform: translateY(...)` on whileInView elements) — the
           // audit counted 33 such elements on Home. Static HTML must
           // actually show the content; the SPA re-applies its own initial
-          // states once it boots. Only elements carrying BOTH properties
-          // are touched, so intentional CSS hides are safe.
+          // states once it boots. A LONE `opacity: 0` (fade-only reveals,
+          // no transform) is stripped too — otherwise those elements stay
+          // invisible in the prerendered HTML forever. Intentional CSS
+          // hides use display:none or classes, not inline opacity.
           document.querySelectorAll('[style]').forEach((el) => {
             const s = el.getAttribute('style') || ''
-            if (s.includes('opacity: 0') && /transform:\s*translate/.test(s)) {
-              el.setAttribute(
-                'style',
-                s
-                  .replace(/opacity:\s*0(?:\.0+)?;?\s*/g, '')
-                  .replace(/transform:\s*[^;]*;?\s*/g, ''),
-              )
+            if (s.includes('opacity: 0')) {
+              let next = s.replace(/opacity:\s*0(?:\.0+)?;?\s*/g, '')
+              if (/transform:\s*translate/.test(s)) {
+                next = next.replace(/transform:\s*[^;]*;?\s*/g, '')
+              }
+              if (next.trim()) el.setAttribute('style', next)
+              else el.removeAttribute('style')
             }
           })
           // strip dev-only artifacts so they never leak into static files

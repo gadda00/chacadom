@@ -137,7 +137,7 @@ export default function Ventures() {
               {
                 icon: MessageCircle,
                 title: 'WhatsApp-first service',
-                text: 'Instant answers, viewing requests and M-Pesa escrow prompts where Kenya already has its conversations.',
+                text: 'Instant answers, viewing requests and document sharing where Kenya already has its conversations.',
               },
               {
                 icon: TrendingUp,
@@ -146,8 +146,8 @@ export default function Ventures() {
               },
               {
                 icon: Lock,
-                title: 'Escrowed transactions',
-                text: 'Deposits and viewing fees held in M-Pesa escrow — released only on confirmed milestones, never to personal wallets.',
+                title: 'Escrowed transactions (roadmap)',
+                text: 'Deposits and viewing fees would be held in M-Pesa escrow — released only on confirmed milestones, never to personal wallets. Escrow is on the product roadmap for the CMA sandbox test, not live today.',
               },
             ].map((c, i) => (
               <motion.div

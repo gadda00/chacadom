@@ -42,8 +42,6 @@ fees or case studies. This wave builds the truth layer:
   entity-state invariants); route/sitemap/prerender consistency extended to
   the new `/proof` route; SW v4 → v5.
 
-## Round-4 upgrades (previous wave)
-
 ## Round-6 — The Waterfront Karen, flagship location
 
 - **New page `/waterfront-karen`**: the client's flagship selling point given
@@ -111,7 +109,7 @@ npm install
 npm run dev
 npm run typecheck   # tsc -b (strict; same gate as CI)
 npm run lint        # oxlint
-npm test            # vitest (68 tests: pages, navbar, faq, contact, newsletter, seo, content, routes, sw-contract)
+npm test            # vitest (89 tests: pages, navbar, faq, contact, newsletter, seo, content, routes, sw-contract, video facade)
 npm run verify      # typecheck + lint + tests + build — the full CI pipeline
 npm run build       # production build (base /chacadom/ baked in)
 ```
@@ -153,6 +151,14 @@ stamps the sitemap, stamps the service-worker cache version from deployed
 content, deploys to Pages. Pull requests get the same checks — plus the
 headless prerender pass — via `.github/workflows/pr-check.yml`.
 
+**Host-root limitation on GitHub Pages project sites:** crawlers only honour
+`robots.txt` at the host root (`gadda00.github.io/robots.txt`), and RFC 9116
+places `security.txt` at the host root too. Both files deploy correctly under
+`/chacadom/` (and work at the root of a custom domain or the Netlify deploy),
+but on the shared `github.io` host they are unreachable — a platform
+limitation, tracked here so the README's security.txt claim is not
+over-read.
+
 ## Netlify (optional)
 
 `netlify.toml` sets `VITE_BASE=/` so the same repo deploys at the root of a
@@ -167,4 +173,4 @@ Beyond vendor catalogue stock, `src/data/listings.ts` also exports
 Kantafu parcel at KES 5.5M/acre). Each opens a prefilled WhatsApp chat with
 the desk; land mandates without photography render a stat-forward gold card.
 Data-integrity tests pin ids, images, enquiry links and substance for both
-collections (86 tests total).
+collections (89 tests total).

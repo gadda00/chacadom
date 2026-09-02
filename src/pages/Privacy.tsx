@@ -67,9 +67,11 @@ export default function Privacy() {
 
               <li>
                 • <b>Third-party embeds (click-to-load)</b> — the interactive map on our Contact
-                page loads from Google Maps only when you press "Load interactive map"; until then
-                no request is made to Google. Our fonts are served by Google Fonts, which receives
-                your IP address as part of any standard web request.
+                page loads from Google Maps only when you press "Load interactive map", and the
+                video tour on our Waterfront Karen page loads from YouTube (youtube-nocookie.com)
+                only when you press play; until then no request is made to either. Our fonts are
+                served by Google Fonts, which receives your IP address as part of any standard web
+                request.
               </li>
             </ul>
             <p className="mt-3">

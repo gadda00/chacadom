@@ -155,7 +155,7 @@ export const STATS: StatClaim[] = [
     label: 'Assets transacted & advised',
     definition:
       'Cumulative market value of properties Chacadom has transacted (as buyer or seller representative) plus assets under advisory mandate, at the value recorded at transaction or mandate start.',
-    asOf: 'Since 2022 · last reviewed 2026-08',
+    asOf: 'Since 2022 · last reviewed 2026-09',
     source: 'Chacadom internal transaction records — owner-attested, not independently audited.',
   },
   {
@@ -163,14 +163,14 @@ export const STATS: StatClaim[] = [
     label: 'Deals closed',
     definition:
       'Completed transactions where Chacadom acted as representative or advisor, including sales, leases signed and JV completions.',
-    asOf: 'Since 2022 · last reviewed 2026-08',
+    asOf: 'Since 2022 · last reviewed 2026-09',
     source: 'Chacadom internal transaction records — owner-attested, not independently audited.',
   },
   {
     value: '7',
     label: 'Service lines',
     definition: 'Distinct commercial service lines actively marketed on this site (see Services).',
-    asOf: 'Current · last reviewed 2026-08',
+    asOf: 'Current · last reviewed 2026-09',
     source: 'This website\u2019s own Services page — directly checkable.',
   },
   {
@@ -178,7 +178,7 @@ export const STATS: StatClaim[] = [
     label: 'Regional offices planned',
     definition:
       'Planned regional presence beyond Nairobi. "Planned" means strategy, not signed leases — offices open when the pipeline justifies them.',
-    asOf: 'Roadmap · last reviewed 2026-08',
+    asOf: 'Roadmap · last reviewed 2026-09',
     source: 'Chacadom internal growth strategy — forward-looking statement, not an operating fact.',
   },
 ]

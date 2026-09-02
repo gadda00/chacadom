@@ -33,13 +33,16 @@ export default function VideoFacade({
   if (live) {
     return (
       <div className={`relative aspect-video w-full overflow-hidden bg-ink ${className ?? ''}`}>
+        {/* oxlint-disable-next-line iframe-missing-sandbox — sandboxing YouTube
+            embeds without allow-same-origin breaks playback in Safari (opaque
+            origin); the Maps embed made the same call. youtube-nocookie +
+            strict referrer policy + click-to-load gate carry the privacy line. */}
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
           title={title}
           className="absolute inset-0 h-full w-full"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           allowFullScreen
-          sandbox="allow-scripts allow-popups allow-presentation"
           referrerPolicy="strict-origin-when-cross-origin"
         />
       </div>

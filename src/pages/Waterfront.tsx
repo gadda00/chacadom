@@ -1,6 +1,7 @@
 import { usePageMeta, useRouteJsonLd } from '@/lib/seo'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 import { ArrowRight, ExternalLink, Globe2, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { WATERFRONT_KAREN } from '@/data/waterfront'
 import { asset, whatsappLink } from '@/data/content'
@@ -18,20 +19,27 @@ export default function Waterfront() {
     'The Waterfront Karen: the lakeside town centre anchoring Nairobi’s premier suburb. The lifestyle, the reported KES 9B institutional transaction, the 50.6-acre expansion — and what it means for property in the Karen corridor.',
     { image: asset('/images/waterfront/wf-entrance.jpg') },
   )
-  useRouteJsonLd({
-    '@context': 'https://schema.org',
-    '@type': 'Place',
-    name: WATERFRONT_KAREN.name,
-    description: WATERFRONT_KAREN.summary,
-    url: 'https://gadda00.github.io/chacadom/waterfront-karen',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Karen',
-      addressRegion: 'Nairobi',
-      addressCountry: 'KE',
-    },
-    sameAs: WATERFRONT_KAREN.sources.map((s) => s.url),
-  })
+  // memoized: useRouteJsonLd re-runs on every identity change — a fresh
+  // object literal per render kept the effect (and the DOM script swap)
+  // running needlessly (FAQ page does the same via useMemo).
+  const jsonLd = useMemo(
+    () => ({
+      '@context': 'https://schema.org',
+      '@type': 'Place',
+      name: WATERFRONT_KAREN.name,
+      description: WATERFRONT_KAREN.summary,
+      url: 'https://gadda00.github.io/chacadom/waterfront-karen',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Karen',
+        addressRegion: 'Nairobi',
+        addressCountry: 'KE',
+      },
+      sameAs: WATERFRONT_KAREN.sources.map((s) => s.url),
+    }),
+    [],
+  )
+  useRouteJsonLd(jsonLd)
 
   return (
     <div>

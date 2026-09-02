@@ -357,7 +357,7 @@ export default function Home() {
                 'Investment math with facts, estimates and assumptions labelled',
                 'Keja Tokenize — fractional ownership of prime assets from $100',
                 'Google sign-in, investor accounts & agent tools — one platform',
-                'M-Pesa escrow and WhatsApp-first client service',
+                'M-Pesa escrow (roadmap) and WhatsApp-first client service',
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-sm text-white/75">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
@@ -428,14 +428,20 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -left-2 hidden w-52 overflow-hidden rounded-2xl shadow-card-hover ring-1 ring-gold-200 sm:block lg:-left-6">
-              <img
-                src={asset('/images/waterfront/wf-sunset-lake.jpg')}
-                alt="Maji Magic Aqua Park on the lake at The Waterfront Karen, at dusk"
-                width={1200}
-                height={675}
-                loading="lazy"
-                className="h-32 w-full object-cover"
-              />
+              <picture>
+                <source
+                  srcSet={asset('/images/waterfront/wf-sunset-lake.webp')}
+                  type="image/webp"
+                />
+                <img
+                  src={asset('/images/waterfront/wf-sunset-lake.jpg')}
+                  alt="Maji Magic Aqua Park on the lake at The Waterfront Karen, at dusk"
+                  width={1200}
+                  height={675}
+                  loading="lazy"
+                  className="h-32 w-full object-cover"
+                />
+              </picture>
             </div>
             <div className="absolute -top-5 right-2 rounded-2xl bg-white p-4 shadow-card-hover ring-1 ring-gold-100 sm:right-4">
               <p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">
@@ -525,14 +531,17 @@ export default function Home() {
                 } — opens the WhatsApp listing`}
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={asset(`${l.image.base}.jpg`)}
-                    alt={l.image.alt}
-                    width={l.image.width}
-                    height={l.image.height}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
+                  <picture>
+                    <source srcSet={asset(`${l.image.base}.webp`)} type="image/webp" />
+                    <img
+                      src={asset(`${l.image.base}.jpg`)}
+                      alt={l.image.alt}
+                      width={l.image.width}
+                      height={l.image.height}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+                  </picture>
                   <p className="absolute right-3 top-3 rounded-full bg-ink/85 px-2.5 py-1 font-display text-xs font-bold text-gold-300 backdrop-blur">
                     {l.priceKes != null ? formatKes(l.priceKes) : 'POA'}
                   </p>

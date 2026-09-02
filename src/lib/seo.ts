@@ -26,6 +26,10 @@ function upsertLink(rel: string, href: string) {
   el.setAttribute('href', href)
 }
 
+function removeMeta(attr: 'name' | 'property', key: string) {
+  document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)?.remove()
+}
+
 /** Optional per-route meta directives handled by usePageMeta. */
 export interface PageMetaOptions {
   /** e.g. 'noindex, follow' for soft-404 pages. Absent ⇒ robots meta is removed. */
@@ -59,13 +63,33 @@ export function usePageMeta(title: string, description?: string, options?: PageM
       upsertMeta('name', 'robots', 'index, follow, max-image-preview:large')
     }
     if (image) {
-      upsertMeta('property', 'og:image', image)
-      upsertMeta('name', 'twitter:image', image)
+      // The OG/Twitter spec requires ABSOLUTE image URLs — relative paths make
+      // scrapers drop the share card entirely (the flagship Waterfront page
+      // shared as a bare link before this fix). Absolute against the current
+      // origin: the prerender pass rewrites the preview origin to production.
+      const url = image.startsWith('http')
+        ? image
+        : `${window.location.origin}${image.startsWith('/') ? '' : '/'}${image}`
+      upsertMeta('property', 'og:image', url)
+      upsertMeta('name', 'twitter:image', url)
+      // A route image has its own (unknown here) intrinsic size — the static
+      // 1200x630 + site-default alt from index.html would misdescribe it, so
+      // they are removed and scrapers size the image themselves.
+      removeMeta('property', 'og:image:width')
+      removeMeta('property', 'og:image:height')
+      removeMeta('property', 'og:image:alt')
     } else {
       // Reset to the site default so a route without its own image neither
       // keeps the previous route's image (stale unfurls) nor loses the card.
       upsertMeta('property', 'og:image', DEFAULT_OG_IMAGE)
       upsertMeta('name', 'twitter:image', DEFAULT_OG_IMAGE)
+      upsertMeta('property', 'og:image:width', '1200')
+      upsertMeta('property', 'og:image:height', '630')
+      upsertMeta(
+        'property',
+        'og:image:alt',
+        'Chacadom Investments — Vision. Value. Growth. Legacy.',
+      )
     }
     upsertMeta('property', 'og:title', full)
     upsertMeta('name', 'twitter:title', full)
