@@ -3,6 +3,14 @@
 Corporate site of Chacadom Investments, parent of **Keja.ai** (Kenya's AI real-estate trust layer).
 Live at **https://gadda00.github.io/chacadom/**
 
+## Regulatory readiness — CMA Regulatory Sandbox
+
+Application pack prepared per the CMA sandbox requirements (sandbox.cma.or.ke) for the
+**Keja.ai Tokenization Pilot** (applicant: Chacadom Investments):
+
+- **[Testing Plan (PDF)](docs/cma/Chacadom_CMA_Sandbox_Testing_Plan.pdf)** — a twelve-month, four-phase live test with hard participation and exposure caps, suitability screening, segregated client money, phase gates reported to the Authority, and a rehearsed exit (full licence / letter of no objection / wind-down).
+- **[Safeguards & Risk-Management Plan (PDF)](docs/cma/Chacadom_CMA_Sandbox_Safeguards_Risk_Management_Plan.pdf)** — three-lines governance, a twelve-risk register with named owners, KYC/AML controls, Kenya Data Protection Act compliance, incident classes with CMA notification times, and a wind-down that ranks investors' capital ahead of the applicant's recovery.
+
 ## Round-5 upgrades (this wave — external-review implementation)
 
 An independent product review (Aug 2026) found the site's primary weakness was
