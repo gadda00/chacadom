@@ -122,7 +122,7 @@ describe('client mandates — direct desk inventory', () => {
     expect(CLIENT_MANDATES.length).toBeGreaterThanOrEqual(3)
     const ids = CLIENT_MANDATES.map((m) => m.id)
     expect(new Set(ids).size).toBe(ids.length)
-    expect(ids).toContain('daykio-kiragu-residence')
+    expect(ids).toContain('daykio-bustani-residence')
     expect(ids).toContain('amber-bay-heights')
     expect(ids).toContain('kantafu-30-acres')
   })

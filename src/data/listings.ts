@@ -193,28 +193,28 @@ const WA = (message: string) => `https://wa.me/254108611387?text=${encodeURIComp
 
 export const CLIENT_MANDATES: ClientMandate[] = [
   {
-    id: 'daykio-kiragu-residence',
-    title: 'Daykio Kiragu Residence',
+    id: 'daykio-bustani-residence',
+    title: 'Daykio Bustani',
     kind: 'Executive 5BR residence · direct-owner mandate',
-    location: 'Daykio Kiragu Road, Karen · Nairobi',
+    location: 'Kiganjo Road, Ruiru · Kiambu',
     price: 'KES 67M',
     priceNote: 'Asking — seller negotiable around serious offers',
     highlights: [
       'Three storeys of premium finishes throughout',
-      'Minutes from the Waterfront and Karen centre',
+      'Kiganjo Road, Ruiru · Eastern Bypass access',
       'Owner-supplied photography, unedited',
       'Also live on Keja.ai with a full trust profile',
     ],
     description:
-      'A newly finished five-bedroom residence on Daykio Kiragu Road: crisp white elevations under a dark shingle roof, a manicured lawn, and interiors finished with hardwood floors, tray ceilings with chandeliers, a fitted kitchen and floor-to-ceiling glazing across the open-plan living and dining rooms. Sold on a direct-owner mandate held by our desk — no intermediary chain — with an independent title search booked before any deposit moves.',
+      'A newly finished five-bedroom residence at Daykio Bustani, off Kiganjo Road, Ruiru: crisp white elevations under a dark shingle roof, a manicured lawn, and interiors finished with hardwood floors, tray ceilings with chandeliers, a fitted kitchen and floor-to-ceiling glazing across the open-plan living and dining rooms. Ruiru is one of Kiambu\u2019s fastest-growing satellite towns, with commuter rail and Eastern Bypass links into Nairobi. Sold on a direct-owner mandate held by our desk — no intermediary chain — with an independent title search booked before any deposit moves.',
     image: {
       base: '/images/listings/listing-daykio',
-      alt: 'Daykio Kiragu Residence — white three-storey house with manicured lawn',
+      alt: 'Daykio Bustani — white three-storey house with manicured lawn in Ruiru',
       width: 1280,
       height: 960,
     },
     enquiryUrl: WA(
-      'Hi Chacadom — I am interested in the Daykio Kiragu 5BR residence (KES 67M) from your portfolio page.',
+      'Hi Chacadom — I am interested in the Daykio Bustani 5BR residence (KES 67M) from your portfolio page.',
     ),
   },
   {
